@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HSC 2026 Elite - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c6c6cd",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-fixed": "#ffdbca",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#5c2400",
+                        "on-tertiary-fixed-variant": "#005049",
+                        "surface-container": "#e5eeff",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-container": "#0c9488",
+                        "background": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#0b1c30",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container-high": "#dce9ff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface": "#f8f9ff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary": "#9d4300",
+                        "on-secondary-fixed": "#341100",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#000000",
+                        "inverse-surface": "#213145",
+                        "tertiary": "#000000",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-container-low": "#eff4ff",
+                        "surface-tint": "#565e74",
+                        "primary-container": "#131b2e",
+                        "primary-fixed": "#dae2fd",
+                        "on-secondary-fixed-variant": "#783200",
+                        "outline": "#76777d",
+                        "tertiary-container": "#00201d",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-background": "#0b1c30",
+                        "secondary-container": "#fd761a",
+                        "tertiary-fixed-dim": "#6bd8cb",
+                        "secondary-fixed-dim": "#ffb690",
+                        "on-tertiary-fixed": "#00201d",
+                        "inverse-primary": "#bec6e0",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#45464d",
+                        "tertiary-fixed": "#89f5e7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "stack-md": "24px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "stack-lg": "48px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Lexend"],
+                        "label-caps": ["Inter"],
+                        "timer-display": ["Inter"],
+                        "body-base": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "headline-md": ["Lexend"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "timer-display": ["40px", {"lineHeight": "1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "body-base": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "title-sm": ["20px", {"lineHeight": "1.5", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #020617; /* bg-slate-950 */
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden bg-slate-950 text-slate-200">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-6 py-4 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+<div class="flex items-center gap-4">
+<span class="text-xl font-black tracking-tighter text-white">HSC 2026 Elite</span>
+</div>
+<div class="hidden md:flex gap-8 items-center text-sm font-lexend">
+<a class="text-orange-500 font-bold" href="index.html">Home</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="learn.html">Learn</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="exams.html">Exams</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="history.html">History</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="about.html">About</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-orange-500 active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-orange-500 active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-800">
+<div class="text-right hidden sm:block">
+<span class="block text-sm font-bold text-white">Waterflame</span>
+<span class="block text-[10px] uppercase tracking-widest text-slate-400">Developer</span>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-slate-800 border border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400" data-icon="person">person</span>
+</div>
+</div>
+</div>
+</header>
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full z-40 bg-slate-900 w-64 border-r border-slate-800 pt-20">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 py-4">
+<div class="w-10 h-10 rounded-lg bg-orange-600 flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white leading-tight">HSC BBA 2026</h3>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">State of Flow</p>
+</div>
+</div>
+<button class="w-full mt-4 bg-orange-600 text-white py-3 rounded-xl font-bold text-sm hover:bg-orange-500 transition-all active:scale-95 shadow-lg shadow-orange-600/20">
+                    Start Daily Plan
+                </button>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-slate-800 text-orange-500 font-semibold border-r-4 border-orange-500 font-lexend text-sm antialiased hover:translate-x-1 duration-200" href="index.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 font-lexend text-sm antialiased hover:translate-x-1 duration-200" href="learn.html">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+                    Curriculum
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 font-lexend text-sm antialiased hover:translate-x-1 duration-200" href="exams.html">
+<span class="material-symbols-outlined" data-icon="timer">timer</span>
+                    Exam Hall
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 font-lexend text-sm antialiased hover:translate-x-1 duration-200" href="history.html">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+                    Analytics
+                </a>
+</nav>
+<div class="p-6 border-t border-slate-800">
+<div class="mb-4">
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">Appearance</p>
+<div class="flex gap-2">
+<button class="w-6 h-6 rounded-full bg-orange-500 ring-2 ring-white ring-offset-2 ring-offset-slate-900 transition-transform hover:scale-110" title="Orange"></button>
+<button class="w-6 h-6 rounded-full bg-blue-500 hover:scale-110 transition-transform" title="Blue"></button>
+<button class="w-6 h-6 rounded-full bg-purple-500 hover:scale-110 transition-transform" title="Purple"></button>
+<button class="w-6 h-6 rounded-full bg-teal-500 hover:scale-110 transition-transform" title="Teal"></button>
+</div>
+</div>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:text-orange-500 font-lexend text-sm transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="settings">settings</span>
+                        Settings
+                    </a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:text-orange-500 font-lexend text-sm transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help_outline">help_outline</span>
+                        Support
+                    </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 lg:ml-64 p-6 md:p-gutter pb-40 lg:pb-32 bg-slate-950">
+<div class="max-w-container-max mx-auto space-y-stack-lg">
+<!-- TOP SECTION: PREMIUM COUNTDOWN -->
+<section class="relative overflow-hidden rounded-[2rem] bg-slate-900 text-white p-8 md:p-12 shadow-2xl border border-slate-800">
+<!-- Background Decoration -->
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-orange-500/10 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px]"></div>
+<div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+<div class="flex-1 space-y-6 text-center lg:text-left">
+<h1 class="font-display-lg text-display-lg leading-tight">The Final Countdown to <span class="text-orange-500">Excellence</span></h1>
+<p class="text-slate-400 font-body-base text-lg max-w-xl">Your journey to the HSC 2026 peak is in its defining moments. Every second counts toward your ultimate success.</p>
+<div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+<button class="px-8 py-4 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold transition-all transform active:scale-95 shadow-lg shadow-orange-600/20">
+                                    View Exam Routine
+                                </button>
+<button class="px-8 py-4 bg-transparent border-2 border-slate-700 hover:border-slate-500 text-white rounded-xl font-bold transition-all active:scale-95">
+                                    Quick Scan Info
+                                </button>
+</div>
+</div>
+<div class="flex-shrink-0 bg-slate-950/40 backdrop-blur-xl border border-slate-700 p-8 rounded-[2.5rem] shadow-2xl">
+<div class="grid grid-cols-4 gap-4 md:gap-8 text-center">
+<div class="space-y-2">
+<span class="block font-timer-display text-timer-display text-orange-500">142</span>
+<span class="block text-label-caps text-slate-500">DAYS</span>
+</div>
+<div class="space-y-2">
+<span class="block font-timer-display text-timer-display text-white">14</span>
+<span class="block text-label-caps text-slate-500">HOURS</span>
+</div>
+<div class="space-y-2">
+<span class="block font-timer-display text-timer-display text-white">38</span>
+<span class="block text-label-caps text-slate-500">MINS</span>
+</div>
+<div class="space-y-2">
+<span class="block font-timer-display text-timer-display text-white opacity-60">55</span>
+<span class="block text-label-caps text-slate-500">SECS</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- MIDDLE SECTION: BENTO GRID MOTIVATION & TIPS -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Daily Motivation -->
+<div class="md:col-span-8 group relative overflow-hidden bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:shadow-2xl transition-all duration-300">
+<div class="flex justify-between items-start mb-6">
+<div class="bg-orange-500/10 p-3 rounded-2xl">
+<span class="material-symbols-outlined text-orange-500" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<span class="text-label-caps text-orange-500 bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">Daily Insight</span>
+</div>
+<h2 class="font-display-lg text-title-sm mb-4 text-white">"The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice."</h2>
+<p class="text-slate-400 font-body-base leading-relaxed max-w-2xl mb-8">Remember, excellence is not a singular act, but a habit. Today's focus is the foundation for tomorrow's brilliance. Stay in the flow.</p>
+<div class="relative h-48 w-full rounded-2xl overflow-hidden">
+<img alt="Motivation Image" class="w-full h-full object-cover grayscale opacity-20 group-hover:grayscale-0 group-hover:opacity-40 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI2NlBB4rkAQKdvyWa_Dm-Bca2dVUQ15FQuxAftoFOv5MXCcK_GHSZ9nkirIkyBdZhARSAoUn-TFRptaRSRVPmyvm1k1xX5xsU96ffVfvA6Qg9s3UlucN431OaSHpwr18e-c4vuho8Rt9fnoMI50-KXOHMlh1qTTcNqiCNLKiNw5usKJKeNTOsFNP9SId-WLnfw2erjpkE0Dm_ZnFLo1ISMHdwN0SxFgwan0D7eUcqfFChFnyXKEg7FjRVaYvZIeOgohdpbCykxA"/>
+</div>
+</div>
+<!-- Pro Tips -->
+<div class="md:col-span-4 bg-slate-900 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+<div>
+<div class="flex items-center gap-3 mb-6">
+<div class="bg-blue-500/10 p-3 rounded-2xl">
+<span class="material-symbols-outlined text-blue-500" data-icon="tips_and_updates">tips_and_updates</span>
+</div>
+<h3 class="font-headline-md text-title-sm text-white">Pro Tips</h3>
+</div>
+<ul class="space-y-6">
+<li class="flex gap-4">
+<div class="mt-1 w-2 h-2 rounded-full bg-orange-500 flex-shrink-0"></div>
+<p class="font-body-base text-sm text-slate-300 font-medium">Use the <span class="text-orange-500">Active Recall</span> method for Physics derivations.</p>
+</li>
+<li class="flex gap-4">
+<div class="mt-1 w-2 h-2 rounded-full bg-orange-500 flex-shrink-0"></div>
+<p class="font-body-base text-sm text-slate-300 font-medium">Solve at least one <span class="text-orange-500">Math HQ question</span> every 2 hours.</p>
+</li>
+<li class="flex gap-4">
+<div class="mt-1 w-2 h-2 rounded-full bg-orange-500 flex-shrink-0"></div>
+<p class="font-body-base text-sm text-slate-300 font-medium">Take 10-minute <span class="text-orange-500">Cognitive Breathers</span> between subjects.</p>
+</li>
+</ul>
+</div>
+<button class="mt-8 text-sm font-bold text-white flex items-center gap-2 group">
+                            Explore All Tips 
+                            <span class="material-symbols-outlined transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- BOTTOM SECTION: ROADMAP -->
+<section class="space-y-gutter">
+<div class="flex items-end justify-between px-2">
+<div class="space-y-2">
+<span class="text-label-caps text-orange-500">Academic Trajectory</span>
+<h2 class="font-display-lg text-headline-md text-white">Remaining Days Roadmap</h2>
+</div>
+<div class="text-right">
+<span class="block text-label-caps text-slate-500 mb-1">Overall Progress</span>
+<div class="flex items-center gap-4">
+<div class="w-48 h-2 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full w-[65%] bg-teal-500 shadow-[0_0_10px_rgba(20,184,166,0.5)]"></div>
+</div>
+<span class="font-bold text-white">65%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<!-- Roadmap Day 1 (Active) -->
+<div class="relative bg-slate-900 border-2 border-orange-500 rounded-3xl p-6 shadow-xl shadow-orange-500/10">
+<div class="absolute -top-3 left-6 px-3 py-1 bg-orange-500 text-white rounded-full text-[10px] font-bold uppercase tracking-widest">Today</div>
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-lexend font-bold text-white">Day 142</h4>
+<span class="material-symbols-outlined text-orange-500" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+<h5 class="text-sm font-bold text-slate-200 mb-2">Subject Category: Science</h5>
+<p class="text-xs text-slate-400 mb-6">Focus on Quantum Mechanics foundational laws &amp; equations.</p>
+<div class="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full w-full bg-orange-500"></div>
+</div>
+</div>
+<!-- Roadmap Day 2 -->
+<div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 hover:translate-y-[-4px] transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-lexend font-bold text-slate-500">Day 141</h4>
+<span class="material-symbols-outlined text-slate-700" data-icon="circle">circle</span>
+</div>
+<h5 class="text-sm font-bold text-slate-300 mb-2">Advanced Mathematics</h5>
+<p class="text-xs text-slate-500 mb-6">Calculus: Differentiation applications and real-world modeling.</p>
+<div class="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full w-0 bg-orange-500"></div>
+</div>
+</div>
+<!-- Roadmap Day 3 -->
+<div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 hover:translate-y-[-4px] transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-lexend font-bold text-slate-500">Day 140</h4>
+<span class="material-symbols-outlined text-slate-700" data-icon="circle">circle</span>
+</div>
+<h5 class="text-sm font-bold text-slate-300 mb-2">English Literature</h5>
+<p class="text-xs text-slate-500 mb-6">Critical analysis of Shakespearean themes &amp; modern context.</p>
+<div class="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full w-0 bg-orange-500"></div>
+</div>
+</div>
+<!-- Roadmap Day 4 -->
+<div class="bg-slate-900/50 border border-dashed border-slate-700 rounded-3xl p-6 flex flex-col items-center justify-center text-center space-y-4">
+<div class="w-10 h-10 rounded-full border-2 border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500" data-icon="calendar_month">calendar_month</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-500">Full Roadmap</h4>
+<p class="text-[10px] text-slate-600 uppercase tracking-widest mt-1">View All 142 Days</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>
