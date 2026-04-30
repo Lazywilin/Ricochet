@@ -1,1344 +1,356 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Preparation for NU Admission — BBA 2025–26</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HSC 2026 Elite - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c6c6cd",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-fixed": "#ffdbca",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#5c2400",
+                        "on-tertiary-fixed-variant": "#005049",
+                        "surface-container": "#e5eeff",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-container": "#0c9488",
+                        "background": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#0b1c30",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container-high": "#dce9ff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface": "#f8f9ff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary": "#9d4300",
+                        "on-secondary-fixed": "#341100",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#000000",
+                        "inverse-surface": "#213145",
+                        "tertiary": "#000000",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-container-low": "#eff4ff",
+                        "surface-tint": "#565e74",
+                        "primary-container": "#131b2e",
+                        "primary-fixed": "#dae2fd",
+                        "on-secondary-fixed-variant": "#783200",
+                        "outline": "#76777d",
+                        "tertiary-container": "#00201d",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-background": "#0b1c30",
+                        "secondary-container": "#fd761a",
+                        "tertiary-fixed-dim": "#6bd8cb",
+                        "secondary-fixed-dim": "#ffb690",
+                        "on-tertiary-fixed": "#00201d",
+                        "inverse-primary": "#bec6e0",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#45464d",
+                        "tertiary-fixed": "#89f5e7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "stack-md": "24px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "stack-lg": "48px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Lexend"],
+                        "label-caps": ["Inter"],
+                        "timer-display": ["Inter"],
+                        "body-base": ["Inter"],
+                        "title-sm": ["Inter"],
+                        "headline-md": ["Lexend"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "timer-display": ["40px", {"lineHeight": "1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "body-base": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "title-sm": ["20px", {"lineHeight": "1.5", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
 <style>
-/* ══ RESET & VARS ══ */
-:root{
-  --bg:#07090f;--bg2:#0c1118;--bg3:#111827;--card:#141c2e;
-  --border:#1a2840;--border2:#243350;
-  --gold:#d4a843;--gold2:#f0c84a;--gold3:rgba(212,168,67,.12);
-  --cream:#f0e2c0;--muted:#7a8fa8;--muted2:#a0b4cc;
-  --green:#3ecf8e;--green2:rgba(62,207,142,.15);
-  --red:#f87171;--red2:rgba(248,113,113,.12);
-  --blue:#60a5fa;--accent:#a78bfa;--accent2:rgba(167,139,250,.12);
-  --radius:10px;--radius-sm:6px;
-  --shadow:0 4px 24px rgba(0,0,0,.4);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--cream);font-family:'Crimson Pro',Georgia,serif;min-height:100vh;overflow-x:hidden;line-height:1.5}
-button{font-family:inherit;cursor:pointer}
-a{text-decoration:none;color:inherit}
-
-/* ══ NOISE ══ */
-body::before{content:'';position:fixed;inset:0;opacity:.35;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E")}
-
-/* ══ SCROLLBAR ══ */
-::-webkit-scrollbar{width:5px;height:5px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
-::-webkit-scrollbar-thumb:hover{background:var(--gold)}
-
-/* ══ FLOATING SCORE WIDGET ══ */
-#scoreWidget{position:fixed;top:60px;right:16px;z-index:200;background:var(--card);border:1px solid var(--border2);border-radius:var(--radius);padding:.6rem 1rem;min-width:130px;box-shadow:var(--shadow);display:none;flex-direction:column;gap:.2rem;animation:slideIn .3s ease}
-#scoreWidget.show{display:flex}
-.sw-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-family:'JetBrains Mono',monospace}
-.sw-score{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--gold);line-height:1}
-.sw-detail{font-size:.72rem;font-family:'JetBrains Mono',monospace;color:var(--muted2)}
-.sw-reset{margin-top:.4rem;background:none;border:1px solid var(--border);color:var(--muted);font-size:.7rem;padding:.2rem .5rem;border-radius:4px;transition:all .2s}
-.sw-reset:hover{border-color:var(--red);color:var(--red)}
-
-/* ══ NAV ══ */
-#topnav{position:fixed;top:0;left:0;right:0;z-index:150;background:rgba(7,9,15,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem;height:52px;padding:0 1rem;flex-wrap:nowrap;overflow-x:auto}
-#topnav::-webkit-scrollbar{height:0}
-.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:.95rem;color:var(--gold);white-space:nowrap;flex-shrink:0}
-.navlinks{display:flex;gap:.2rem;margin-left:auto;flex-shrink:0;flex-wrap:nowrap}
-.navbtn{background:none;border:1px solid transparent;color:var(--muted);font-size:.78rem;padding:.26rem .6rem;border-radius:4px;transition:all .2s;white-space:nowrap;letter-spacing:.02em}
-.navbtn:hover{background:var(--gold3);border-color:rgba(212,168,67,.25);color:var(--gold)}
-.navbtn.active{background:var(--gold3);border-color:rgba(212,168,67,.35);color:var(--gold)}
-.nav-test-btn{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;font-weight:700;border:none;padding:.26rem .8rem;border-radius:4px}
-.nav-test-btn:hover{opacity:.9;transform:translateY(-1px)}
-
-/* ══ HERO ══ */
-#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 1.5rem 4rem;text-align:center;position:relative;overflow:hidden}
-.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 25%,rgba(212,168,67,.08) 0%,transparent 70%),radial-gradient(ellipse 40% 30% at 80% 75%,rgba(167,139,250,.05) 0%,transparent 60%);pointer-events:none}
-.badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(212,168,67,.08);border:1px solid rgba(212,168,67,.22);border-radius:100px;padding:.32rem 1rem;font-size:.73rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.5rem;animation:fadeUp .7s ease both}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,5.5vw,4rem);font-weight:900;line-height:1.08;color:#fff;margin-bottom:.9rem;animation:fadeUp .8s ease .08s both}
-.hero h1 em{color:var(--gold);font-style:normal}
-.hero-quote{font-style:italic;font-size:clamp(1rem,2vw,1.15rem);color:var(--muted2);max-width:540px;line-height:1.75;margin-bottom:2.2rem;animation:fadeUp .8s ease .15s both}
-.hero-quote strong{color:var(--cream);font-style:normal}
-
-.exam-strip{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;margin-bottom:2.4rem;animation:fadeUp .8s ease .22s both}
-.strip-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.6rem 1.1rem;text-align:center;min-width:110px}
-.strip-item .lbl{font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.2rem}
-.strip-item .val{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--gold)}
-
-.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s ease .28s both}
-.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;font-family:'Playfair Display',serif;font-weight:700;font-size:.92rem;padding:.75rem 2rem;border:none;border-radius:var(--radius-sm);transition:all .25s}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(212,168,67,.32)}
-.btn-secondary{background:none;color:var(--cream);font-family:'Playfair Display',serif;font-weight:600;font-size:.92rem;padding:.72rem 1.8rem;border:1px solid var(--border2);border-radius:var(--radius-sm);transition:all .25s}
-.btn-secondary:hover{border-color:rgba(212,168,67,.4);color:var(--gold)}
-
-/* ══ GUIDE SECTION ══ */
-.section{padding:3.5rem 1.5rem;max-width:1100px;margin:0 auto}
-.sec-head{margin-bottom:2rem}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,2.8vw,2.1rem);font-weight:700;color:#fff}
-.sec-title em{color:var(--gold);font-style:normal}
-.sec-sub{color:var(--muted);font-size:.92rem;margin-top:.35rem}
-.divider{height:2px;width:56px;background:linear-gradient(90deg,var(--gold),transparent);margin:.8rem 0 1.5rem}
-
-.guide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
-.guide-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.3rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
-.guide-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)}
-.guide-card:hover{border-color:rgba(212,168,67,.28);transform:translateY(-1px)}
-.guide-card .icon{font-size:1.5rem;margin-bottom:.65rem}
-.guide-card h3{font-family:'Playfair Display',serif;font-size:.95rem;color:#fff;margin-bottom:.5rem}
-.guide-card li{color:var(--muted);font-size:.83rem;line-height:1.6;margin-bottom:.2rem}
-.guide-card ul{padding-left:1rem}
-
-/* ══ SUBJECT TABS ══ */
-#subjects{border-top:1px solid var(--border)}
-.tab-bar{display:flex;gap:.3rem;flex-wrap:nowrap;overflow-x:auto;padding:.9rem 1rem;position:sticky;top:52px;z-index:100;background:rgba(7,9,15,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.tab-bar::-webkit-scrollbar{height:0}
-.tab-btn{background:var(--bg2);border:1px solid var(--border);color:var(--muted);font-size:.8rem;padding:.4rem 1rem;border-radius:var(--radius-sm);transition:all .2s;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:.35rem}
-.tab-btn:hover{border-color:rgba(212,168,67,.3);color:var(--gold)}
-.tab-btn.active{background:var(--gold3);border-color:rgba(212,168,67,.4);color:var(--gold);font-weight:600}
-.tab-btn .cnt{background:rgba(255,255,255,.07);border-radius:100px;padding:.08rem .42rem;font-size:.68rem;font-family:'JetBrains Mono',monospace}
-
-.subject-panel{display:none;padding:1.2rem 1rem 3rem;max-width:1100px;margin:0 auto}
-.subject-panel.active{display:block;animation:fadeIn .25s ease}
-
-.subject-header{margin-bottom:1.6rem}
-.subject-header h2{font-family:'Playfair Display',serif;font-size:1.65rem;color:#fff}
-.subject-header p{color:var(--muted);font-size:.88rem;margin-top:.2rem}
-.subject-stats{display:flex;gap:.8rem;margin-top:.75rem;flex-wrap:wrap}
-.stat-pill{background:var(--bg3);border:1px solid var(--border);border-radius:100px;padding:.22rem .85rem;font-size:.76rem;color:var(--muted)}
-.stat-pill strong{color:var(--cream)}
-
-/* ══ TIPS BOX ══ */
-.tips-box{background:var(--card);border:1px solid rgba(212,168,67,.18);border-radius:var(--radius);padding:1.2rem 1.4rem;margin-bottom:1.2rem}
-.tips-box h4{font-family:'Playfair Display',serif;color:var(--gold);margin-bottom:.7rem;font-size:.92rem;display:flex;align-items:center;gap:.4rem}
-.tips-box ol{padding-left:1.2rem}
-.tips-box li{color:var(--muted2);font-size:.85rem;margin-bottom:.45rem;line-height:1.55}
-.tips-box li strong{color:var(--cream)}
-
-/* ══ STAR LEGEND ══ */
-.star-legend{display:flex;gap:.8rem;flex-wrap:wrap;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.7rem 1rem;margin-bottom:1.1rem}
-.star-item{font-size:.78rem;color:var(--muted)}
-.star-item strong{color:var(--cream)}
-
-/* ══ CHAPTER ACCORDION ══ */
-.chapter-list{display:flex;flex-direction:column;gap:.55rem}
-.chapter{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .25s}
-.chapter.open{border-color:var(--border2)}
-.chapter-header{display:flex;align-items:center;gap:.8rem;padding:.9rem 1.2rem;cursor:pointer;user-select:none;transition:background .2s}
-.chapter-header:hover{background:rgba(255,255,255,.025)}
-.ch-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--muted);min-width:1.8rem;flex-shrink:0}
-.ch-name{font-family:'Playfair Display',serif;font-size:.92rem;color:#fff;flex:1;line-height:1.3}
-.ch-meta{display:flex;align-items:center;gap:.6rem;margin-left:auto;flex-shrink:0}
-.ch-count{font-size:.7rem;color:var(--muted);font-family:'JetBrains Mono',monospace;background:var(--bg3);padding:.16rem .5rem;border-radius:4px;border:1px solid var(--border)}
-.ch-progress-wrap{width:60px;height:4px;background:var(--bg3);border-radius:100px;overflow:hidden}
-.ch-progress-fill{height:100%;background:var(--green);border-radius:100px;transition:width .4s ease;width:0%}
-.ch-arrow{color:var(--muted);font-size:.75rem;transition:transform .3s}
-.chapter.open .ch-arrow{transform:rotate(180deg)}
-.chapter-body{display:none;padding:0 1.2rem 1.2rem}
-.chapter.open .chapter-body{display:block;animation:fadeIn .2s ease}
-
-/* ══ MCQ ══ */
-.mcq-grid{display:flex;flex-direction:column;gap:.55rem;margin-top:.4rem}
-.mcq{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.85rem 1rem;transition:border-color .2s,transform .15s}
-.mcq.correct-answered{border-color:rgba(62,207,142,.3);background:rgba(62,207,142,.03)}
-.mcq.wrong-answered{border-color:rgba(248,113,113,.25);background:rgba(248,113,113,.02)}
-.mcq.locked .opt{cursor:default!important;pointer-events:none}
-
-.mcq-top{display:flex;align-items:flex-start;gap:.6rem}
-.mcq-qnum{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--muted);min-width:2rem;margin-top:.15rem;flex-shrink:0}
-.mcq-stars{font-size:.65rem;margin-top:.1rem;white-space:nowrap;flex-shrink:0}
-.mcq-q{font-size:.92rem;color:var(--cream);line-height:1.55;flex:1}
-
-.mcq-opts{display:grid;grid-template-columns:1fr 1fr;gap:.32rem;margin-top:.65rem;margin-left:2.6rem}
-@media(max-width:560px){.mcq-opts{grid-template-columns:1fr}}
-.opt{background:rgba(255,255,255,.035);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.38rem .65rem;font-size:.82rem;color:var(--muted2);transition:all .18s;text-align:left;font-family:'Crimson Pro',serif;line-height:1.4}
-.opt:hover:not(:disabled){background:rgba(212,168,67,.07);border-color:rgba(212,168,67,.28);color:var(--cream)}
-.opt.correct{background:var(--green2)!important;border-color:rgba(62,207,142,.45)!important;color:var(--green)!important}
-.opt.wrong{background:var(--red2)!important;border-color:rgba(248,113,113,.35)!important;color:var(--red)!important}
-.opt.reveal-correct{background:var(--green2)!important;border-color:rgba(62,207,142,.45)!important;color:var(--green)!important}
-
-.mcq-footer{margin-top:.5rem;margin-left:2.6rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
-.reveal-btn{background:none;border:1px solid var(--border);color:var(--muted);font-size:.72rem;padding:.2rem .6rem;border-radius:4px;transition:all .2s}
-.reveal-btn:hover{border-color:var(--gold);color:var(--gold)}
-.mcq-ans-txt{font-size:.79rem;color:var(--green);display:none}
-.mcq-ans-txt.show{display:inline}
-.point-pop{font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:.15rem .45rem;border-radius:4px;font-weight:600}
-.point-pop.plus{color:var(--green);background:var(--green2)}
-.point-pop.minus{color:var(--red);background:var(--red2)}
-
-/* ══ ANSWER KEY ══ */
-.ans-key{background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:.9rem 1rem;margin-top:1rem}
-.ans-key h5{font-family:'Playfair Display',serif;color:var(--gold);margin-bottom:.55rem;font-size:.85rem}
-.ans-key-grid{display:flex;flex-wrap:wrap;gap:.28rem}
-.ans-pill{background:var(--card);border:1px solid var(--border);border-radius:3px;padding:.14rem .48rem;font-size:.7rem;font-family:'JetBrains Mono',monospace;color:var(--muted)}
-.ans-pill span{color:var(--green)}
-
-/* ══ TEST MODE ══ */
-#testModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;overflow-y:auto;backdrop-filter:blur(8px)}
-#testModal.open{display:flex;align-items:flex-start;justify-content:center;padding:2rem 1rem}
-.modal-box{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;width:100%;max-width:720px;box-shadow:0 20px 60px rgba(0,0,0,.6);overflow:hidden}
-.modal-head{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.4rem;border-bottom:1px solid var(--border);background:var(--card)}
-.modal-head h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:#fff}
-.modal-close{background:none;border:none;color:var(--muted);font-size:1.3rem;line-height:1;padding:.2rem;transition:color .2s}
-.modal-close:hover{color:var(--red)}
-.modal-body{padding:1.4rem}
-
-/* Test config */
-.test-config-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem}
-@media(max-width:480px){.test-config-grid{grid-template-columns:1fr}}
-.config-group label{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.4rem}
-.config-select,.config-input{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--cream);font-family:'Crimson Pro',serif;font-size:.92rem;padding:.5rem .75rem;border-radius:var(--radius-sm);outline:none;transition:border-color .2s}
-.config-select:focus,.config-input:focus{border-color:rgba(212,168,67,.4)}
-option{background:var(--bg3)}
-
-.chap-check-grid{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin:.6rem 0 1rem}
-@media(max-width:480px){.chap-check-grid{grid-template-columns:1fr}}
-.chap-check-label{display:flex;align-items:center;gap:.5rem;padding:.45rem .7rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;font-size:.83rem;color:var(--muted2);transition:all .2s}
-.chap-check-label:hover{border-color:rgba(212,168,67,.3);color:var(--cream)}
-.chap-check-label input{accent-color:var(--gold);cursor:pointer}
-.chap-check-label.checked{border-color:rgba(212,168,67,.35);background:var(--gold3);color:var(--cream)}
-
-/* Active Test */
-#activeTest{display:none}
-.test-topbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem;padding:.8rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);position:sticky;top:0;z-index:10}
-.test-progress-txt{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--muted2)}
-.test-timer{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:600;color:var(--cream);background:var(--bg3);padding:.3rem .8rem;border-radius:var(--radius-sm);border:1px solid var(--border)}
-.test-timer.urgent{color:var(--red);border-color:rgba(248,113,113,.3);animation:pulse 1s infinite}
-.test-score-live{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gold)}
-.progress-bar-wrap{width:100%;height:4px;background:var(--border);border-radius:100px;overflow:hidden;margin-top:.4rem}
-.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:100px;transition:width .3s}
-
-.test-q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin-bottom:.75rem}
-.test-q-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--muted);margin-bottom:.4rem}
-.test-q-txt{font-size:.96rem;color:var(--cream);line-height:1.6;margin-bottom:.9rem}
-.test-opts{display:grid;grid-template-columns:1fr 1fr;gap:.38rem}
-@media(max-width:520px){.test-opts{grid-template-columns:1fr}}
-.test-opt{background:rgba(255,255,255,.03);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:.42rem .75rem;font-size:.84rem;color:var(--muted2);text-align:left;font-family:'Crimson Pro',serif;transition:all .18s}
-.test-opt:hover:not(:disabled){background:rgba(212,168,67,.08);border-color:rgba(212,168,67,.3);color:var(--cream)}
-.test-opt.t-selected{background:rgba(96,165,250,.1);border-color:rgba(96,165,250,.45);color:var(--blue)}
-.test-opt.t-correct{background:var(--green2)!important;border-color:rgba(62,207,142,.5)!important;color:var(--green)!important}
-.test-opt.t-wrong{background:var(--red2)!important;border-color:rgba(248,113,113,.4)!important;color:var(--red)!important}
-
-.test-nav-btns{display:flex;justify-content:space-between;gap:.6rem;margin-top:1rem}
-.btn-nav{background:var(--bg3);border:1px solid var(--border);color:var(--cream);padding:.55rem 1.3rem;border-radius:var(--radius-sm);font-size:.86rem;font-family:'Crimson Pro',serif;transition:all .2s}
-.btn-nav:hover{border-color:var(--gold);color:var(--gold)}
-.btn-submit-test{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;border:none;padding:.55rem 1.5rem;border-radius:var(--radius-sm);font-weight:700;font-size:.88rem;transition:all .2s}
-.btn-submit-test:hover{opacity:.9}
-
-/* Results */
-#testResults{display:none}
-.result-header{text-align:center;padding:1.5rem 1rem 1rem;border-bottom:1px solid var(--border)}
-.result-score-big{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;color:var(--gold);line-height:1}
-.result-label{font-size:.85rem;color:var(--muted);margin-top:.3rem}
-.result-grade{display:inline-block;padding:.3rem 1rem;border-radius:100px;font-size:.85rem;font-weight:700;margin:.6rem auto;letter-spacing:.08em}
-.grade-a{background:var(--green2);color:var(--green);border:1px solid rgba(62,207,142,.3)}
-.grade-b{background:rgba(96,165,250,.12);color:var(--blue);border:1px solid rgba(96,165,250,.3)}
-.grade-c{background:rgba(212,168,67,.12);color:var(--gold);border:1px solid rgba(212,168,67,.3)}
-.grade-d{background:var(--red2);color:var(--red);border:1px solid rgba(248,113,113,.3)}
-
-.result-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;padding:1rem;border-bottom:1px solid var(--border)}
-@media(max-width:440px){.result-stats-row{grid-template-columns:repeat(2,1fr)}}
-.result-stat{text-align:center;background:var(--bg3);border-radius:var(--radius-sm);padding:.65rem .4rem;border:1px solid var(--border)}
-.rs-val{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700}
-.rs-lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-top:.15rem}
-.rs-correct .rs-val{color:var(--green)}
-.rs-wrong .rs-val{color:var(--red)}
-.rs-skip .rs-val{color:var(--muted2)}
-.rs-score .rs-val{color:var(--gold)}
-
-.chap-breakdown{padding:1rem}
-.chap-breakdown h4{font-family:'Playfair Display',serif;color:var(--cream);font-size:.95rem;margin-bottom:.7rem}
-.chap-row{display:flex;align-items:center;gap:.6rem;padding:.5rem .7rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:.4rem;font-size:.8rem}
-.chap-row-name{flex:1;color:var(--cream)}
-.chap-row-bar-wrap{width:80px;height:6px;background:var(--border);border-radius:100px;overflow:hidden}
-.chap-row-bar{height:100%;border-radius:100px;transition:width .4s .2s}
-.chap-row-pct{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted2);min-width:2.5rem;text-align:right}
-.result-actions{display:flex;gap:.6rem;padding:1rem;flex-wrap:wrap}
-
-/* ══ HISTORY ══ */
-#historyPanel{padding:1.4rem}
-.hist-empty{text-align:center;color:var(--muted);padding:3rem 0;font-size:.9rem}
-.hist-list{display:flex;flex-direction:column;gap:.6rem}
-.hist-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
-.hist-item-head{display:flex;align-items:center;gap.75rem;gap:.75rem;padding:.7rem 1rem;cursor:pointer}
-.hist-item-head:hover{background:rgba(255,255,255,.02)}
-.hist-date{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--muted);min-width:7rem}
-.hist-subject{font-size:.85rem;color:var(--cream);flex:1}
-.hist-score-badge{font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:600;padding:.18rem .55rem;border-radius:4px}
-.hist-score-badge.good{background:var(--green2);color:var(--green)}
-.hist-score-badge.avg{background:rgba(212,168,67,.12);color:var(--gold)}
-.hist-score-badge.low{background:var(--red2);color:var(--red)}
-.hist-item-body{display:none;padding:.5rem 1rem .8rem;border-top:1px solid var(--border)}
-.hist-item.open .hist-item-body{display:block}
-.hist-chap-row{display:flex;align-items:center;gap:.5rem;font-size:.78rem;margin-bottom:.3rem}
-.hist-chap-name{flex:1;color:var(--muted2)}
-.hist-chap-correct{color:var(--green)}
-.hist-chap-wrong{color:var(--red)}
-
-/* ══ GK BADGE ══ */
-.gk-badge{display:inline-block;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);background:var(--accent2);border:1px solid rgba(167,139,250,.2);border-radius:4px;padding:.14rem .5rem;margin-bottom:.6rem}
-
-/* ══ ANIMATIONS ══ */
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideIn{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
-.score-pop{animation:pop .3s ease}
-
-/* ══ FOOTER ══ */
-footer{text-align:center;padding:2.5rem 1.5rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border);margin-top:2rem}
-footer strong{color:var(--gold)}
-
-/* ══ UTILITY ══ */
-.hidden{display:none!important}
-.text-gold{color:var(--gold)}
-.text-green{color:var(--green)}
-.text-red{color:var(--red)}
-.text-muted{color:var(--muted)}
-</style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #020617; /* bg-slate-950 */
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
-<body>
-
-<!-- FLOATING SCORE WIDGET -->
-<div id="scoreWidget">
-  <span class="sw-label">Practice Score</span>
-  <span class="sw-score" id="swScore">0</span>
-  <span class="sw-detail" id="swDetail">✓ 0 &nbsp; ✗ 0</span>
-  <button class="sw-reset" onclick="resetScore()">Reset</button>
+<body class="antialiased overflow-x-hidden bg-slate-950 text-slate-200">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-6 py-4 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+<div class="flex items-center gap-4">
+<span class="text-xl font-black tracking-tighter text-white">HSC 2026 Elite</span>
 </div>
-
-<!-- TEST MODAL -->
-<div id="testModal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h3 id="modalTitle">🎯 Start Test</h3>
-      <button class="modal-close" onclick="closeTest()">✕</button>
-    </div>
-    <div class="modal-body">
-      <!-- Config Screen -->
-      <div id="testConfig">
-        <div class="test-config-grid">
-          <div class="config-group">
-            <label>Select Subject</label>
-            <select class="config-select" id="testSubjectSel" onchange="updateTestChapters()">
-              <option value="gk">🌍 General Knowledge</option>
-              <option value="bangla">📖 বাংলা</option>
-            </select>
-          </div>
-          <div class="config-group">
-            <label>Number of Questions</label>
-            <input class="config-input" type="number" id="testQCount" value="20" min="5" max="100">
-          </div>
-          <div class="config-group">
-            <label>Time Limit (minutes)</label>
-            <input class="config-input" type="number" id="testTime" value="30" min="5" max="120">
-          </div>
-          <div class="config-group">
-            <label>Question Order</label>
-            <select class="config-select" id="testOrder">
-              <option value="random">🔀 Random</option>
-              <option value="chapter">📖 By Chapter</option>
-            </select>
-          </div>
-        </div>
-        <label style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:block;margin-bottom:.4rem">Select Chapters (optional)</label>
-        <div class="chap-check-grid" id="testChapChecks"></div>
-        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
-          <button class="btn-primary" style="flex:1;min-width:120px" onclick="startTest()">Begin Test →</button>
-          <button class="btn-secondary" onclick="closeTest()">Cancel</button>
-        </div>
-      </div>
-
-      <!-- Active Test -->
-      <div id="activeTest">
-        <div class="test-topbar">
-          <div>
-            <div class="test-progress-txt" id="testProgressTxt">Q 1 / 20</div>
-            <div class="progress-bar-wrap" style="margin-top:.3rem;width:180px"><div class="progress-bar-fill" id="testProgressBar" style="width:0%"></div></div>
-          </div>
-          <div class="test-score-live" id="testScoreLive">Score: 0</div>
-          <div class="test-timer" id="testTimer">30:00</div>
-        </div>
-        <div id="testQContainer"></div>
-        <div class="test-nav-btns">
-          <button class="btn-nav" onclick="testNav(-1)" id="btnPrev">← Prev</button>
-          <button class="btn-nav" onclick="testNav(1)" id="btnNext">Next →</button>
-          <button class="btn-submit-test" onclick="submitTest()">Submit Test ✓</button>
-        </div>
-      </div>
-
-      <!-- Results -->
-      <div id="testResults">
-        <div class="result-header">
-          <div class="result-score-big" id="resultScoreBig">0</div>
-          <div class="result-label">out of <span id="resultMaxScore">0</span> marks</div>
-          <div class="result-grade" id="resultGrade"></div>
-        </div>
-        <div class="result-stats-row">
-          <div class="result-stat rs-correct"><div class="rs-val" id="resCorrect">0</div><div class="rs-lbl">Correct</div></div>
-          <div class="result-stat rs-wrong"><div class="rs-val" id="resWrong">0</div><div class="rs-lbl">Wrong</div></div>
-          <div class="result-stat rs-skip"><div class="rs-val" id="resSkip">0</div><div class="rs-lbl">Skipped</div></div>
-          <div class="result-stat rs-score"><div class="rs-val" id="resAccuracy">0%</div><div class="rs-lbl">Accuracy</div></div>
-        </div>
-        <div class="chap-breakdown">
-          <h4>Chapter Breakdown</h4>
-          <div id="chapBreakdown"></div>
-        </div>
-        <div class="result-actions">
-          <button class="btn-primary" onclick="retryTest()">🔄 Retry</button>
-          <button class="btn-secondary" onclick="closeTest()">Close</button>
-          <button class="btn-secondary" onclick="closeTest();document.getElementById('tab-history').click()">📜 View History</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="hidden md:flex gap-8 items-center text-sm font-lexend">
+<a class="text-orange-500 font-bold" href="index.html">Home</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="learn.html">Learn</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="exams.html">Exams</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="history.html">History</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="about.html">About</a>
 </div>
-
-<!-- NAV -->
-<nav id="topnav">
-  <div class="logo">📚 NU BBA 2025–26</div>
-  <div class="navlinks">
-    <button class="navbtn" onclick="scrollTo(0,0)">Home</button>
-    <button class="navbtn" onclick="document.getElementById('guideSection').scrollIntoView({behavior:'smooth'})">Guide</button>
-    <button class="navbtn" onclick="showSubject('bangla')">বাংলা</button>
-    <button class="navbtn" onclick="showSubject('gk')">GK</button>
-    <button class="navbtn nav-test-btn" onclick="openTestModal()">🎯 Take Test</button>
-  </div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-orange-500 active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-orange-500 active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-800">
+<div class="text-right hidden sm:block">
+<span class="block text-sm font-bold text-white">Waterflame</span>
+<span class="block text-[10px] uppercase tracking-widest text-slate-400">Developer</span>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-slate-800 border border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400" data-icon="person">person</span>
+</div>
+</div>
+</div>
+</header>
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full z-40 bg-slate-900 w-64 border-r border-slate-800 pt-20">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 py-4">
+<div class="w-10 h-10 rounded-lg bg-orange-600 flex items-center justify-center text-white">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white leading-tight">HSC BBA 2026</h3>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">State of Flow</p>
+</div>
+</div>
+<button class="w-full mt-4 bg-orange-600 text-white py-3 rounded-xl font-bold text-sm hover:bg-orange-500 transition-all active:scale-95 shadow-lg shadow-orange-600/20">
+                    Start Daily Plan
+                </button>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-slate-800 text-orange-500 font-semibold border-r-4 border-orange-500 font-lexend text-sm antialiased hover:translate-x-1 duration-200" href="index.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 font-lexend text-sm antialiased hover:translate-x-1 duration-200" href="learn.html">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+                    Curriculum
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 font-lexend text-sm antialiased hover:translate-x-1 duration-200" href="exams.html">
+<span class="material-symbols-outlined" data-icon="timer">timer</span>
+                    Exam Hall
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 font-lexend text-sm antialiased hover:translate-x-1 duration-200" href="history.html">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+                    Analytics
+                </a>
 </nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-glow"></div>
-  <div class="badge">✦ NU BBA Commerce Unit · Admission Prep 2025–2026 ✦</div>
-  <h1>Preparation for<br><em>NU Admission</em></h1>
-  <p class="hero-quote">"Consistency over Intensity — the river does not reach the ocean in a single rush, but by <strong>showing up every single day.</strong>"</p>
-  <div class="exam-strip">
-    <div class="strip-item"><div class="lbl">Total Marks</div><div class="val">100</div></div>
-    <div class="strip-item"><div class="lbl">Duration</div><div class="val">1 Hour</div></div>
-    <div class="strip-item"><div class="lbl">Format</div><div class="val">MCQ</div></div>
-    <div class="strip-item"><div class="lbl">Pass Mark</div><div class="val">35</div></div>
-    <div class="strip-item"><div class="lbl">Negative</div><div class="val">None ✓</div></div>
-    <div class="strip-item"><div class="lbl">Merit</div><div class="val">200</div></div>
-  </div>
-  <div class="hero-btns">
-    <button class="btn-primary" onclick="showSubject('gk');document.getElementById('subjects').scrollIntoView({behavior:'smooth'})">Start Practicing →</button>
-    <button class="btn-secondary" onclick="openTestModal()">🎯 Take Test</button>
-  </div>
+<div class="p-6 border-t border-slate-800">
+<div class="mb-4">
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">Appearance</p>
+<div class="flex gap-2">
+<button class="w-6 h-6 rounded-full bg-orange-500 ring-2 ring-white ring-offset-2 ring-offset-slate-900 transition-transform hover:scale-110" title="Orange"></button>
+<button class="w-6 h-6 rounded-full bg-blue-500 hover:scale-110 transition-transform" title="Blue"></button>
+<button class="w-6 h-6 rounded-full bg-purple-500 hover:scale-110 transition-transform" title="Purple"></button>
+<button class="w-6 h-6 rounded-full bg-teal-500 hover:scale-110 transition-transform" title="Teal"></button>
+</div>
+</div>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:text-orange-500 font-lexend text-sm transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="settings">settings</span>
+                        Settings
+                    </a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:text-orange-500 font-lexend text-sm transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help_outline">help_outline</span>
+                        Support
+                    </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 lg:ml-64 p-6 md:p-gutter pb-40 lg:pb-32 bg-slate-950">
+<div class="max-w-container-max mx-auto space-y-stack-lg">
+<!-- TOP SECTION: PREMIUM COUNTDOWN -->
+<section class="relative overflow-hidden rounded-[2rem] bg-slate-900 text-white p-8 md:p-12 shadow-2xl border border-slate-800">
+<!-- Background Decoration -->
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-orange-500/10 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px]"></div>
+<div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+<div class="flex-1 space-y-6 text-center lg:text-left">
+<h1 class="font-display-lg text-display-lg leading-tight">The Final Countdown to <span class="text-orange-500">Excellence</span></h1>
+<p class="text-slate-400 font-body-base text-lg max-w-xl">Your journey to the HSC 2026 peak is in its defining moments. Every second counts toward your ultimate success.</p>
+<div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+<button class="px-8 py-4 bg-orange-600 hover:bg-orange-500 text-white rounded-xl font-bold transition-all transform active:scale-95 shadow-lg shadow-orange-600/20">
+                                    View Exam Routine
+                                </button>
+<button class="px-8 py-4 bg-transparent border-2 border-slate-700 hover:border-slate-500 text-white rounded-xl font-bold transition-all active:scale-95">
+                                    Quick Scan Info
+                                </button>
+</div>
+</div>
+<div class="flex-shrink-0 bg-slate-950/40 backdrop-blur-xl border border-slate-700 p-8 rounded-[2.5rem] shadow-2xl">
+<div class="grid grid-cols-4 gap-4 md:gap-8 text-center">
+<div class="space-y-2">
+<span class="block font-timer-display text-timer-display text-orange-500">142</span>
+<span class="block text-label-caps text-slate-500">DAYS</span>
+</div>
+<div class="space-y-2">
+<span class="block font-timer-display text-timer-display text-white">14</span>
+<span class="block text-label-caps text-slate-500">HOURS</span>
+</div>
+<div class="space-y-2">
+<span class="block font-timer-display text-timer-display text-white">38</span>
+<span class="block text-label-caps text-slate-500">MINS</span>
+</div>
+<div class="space-y-2">
+<span class="block font-timer-display text-timer-display text-white opacity-60">55</span>
+<span class="block text-label-caps text-slate-500">SECS</span>
+</div>
+</div>
+</div>
+</div>
 </section>
-
-<!-- GUIDE SECTION -->
-<div class="section" id="guideSection">
-  <div class="sec-head">
-    <div class="sec-title">Complete <em>Study Guide</em></div>
-    <div class="divider"></div>
-    <div class="sec-sub">Your full roadmap — exam info, strategy, and book recommendations</div>
-  </div>
-  <div class="guide-grid">
-    <div class="guide-card"><div class="icon">🎯</div><h3>BBA Exam Structure</h3><ul><li><strong>বাংলা</strong> — 20 MCQs</li><li><strong>English</strong> — 20 MCQs</li><li><strong>General Knowledge</strong> — 20 MCQs</li><li><strong>Accounting</strong> — 20 MCQs</li><li><strong>Management</strong> — 20 MCQs</li></ul></div>
-    <div class="guide-card"><div class="icon">📊</div><h3>200-Mark Merit Formula</h3><ul><li>Admission Test = 100 marks</li><li>SSC GPA × 40% → converted to marks</li><li>HSC GPA × 60% → converted to marks</li><li><strong>No negative marking — attempt ALL</strong></li><li>Pass mark = 35 / 100</li></ul></div>
-    <div class="guide-card"><div class="icon">📅</div><h3>Key Dates 2025–26</h3><ul><li>Circular: November 23, 2025</li><li>Application End: January 31, 2026</li><li>Admit Card: ~7 days before exam</li><li>Exam Date: <strong>April 25, 2026</strong></li><li>Results: nu.ac.bd/admissions</li></ul></div>
-    <div class="guide-card"><div class="icon">🌟</div><h3>Points & Star System</h3><ul><li>★★★ = Very high priority MCQ</li><li>★★ = Important, frequent</li><li>★ = Occasional appearance</li><li>Practice: +4 correct, -1 wrong</li><li><strong>Start with ★★★ stars first!</strong></li></ul></div>
-    <div class="guide-card"><div class="icon">📚</div><h3>Best Books for BBA</h3><ul><li>HSC NCTB Textbooks (all subjects)</li><li>Saifur's MCQ English</li><li>MP3 / Oracle General Knowledge</li><li>Udvash BBA Admission Guide</li><li>NU Past Papers (2019–2024)</li></ul></div>
-    <div class="guide-card"><div class="icon">🗓️</div><h3>30-Day Study Plan</h3><ul><li>Week 1: Accounting + Management chapters</li><li>Week 2: Bangla literature + English grammar</li><li>Week 3: GK — History, Geography, Current</li><li>Week 4: Daily full mock tests only</li><li>Day before: Light revision, sleep early</li></ul></div>
-    <div class="guide-card"><div class="icon">⚡</div><h3>Exam Hall Strategy</h3><ul><li>No negative marking → attempt every Q</li><li>Allocate 3 min per 20Q section</li><li>Answer known questions first</li><li>Eliminate 2 obviously wrong options</li><li>If unsure, pick B or C (statistically safe)</li></ul></div>
-    <div class="guide-card"><div class="icon">🔧</div><h3>How to Use This App</h3><ul><li>Click options — instant right/wrong feedback</li><li>Earn <strong>+4 pts</strong> correct, <strong>-1 pt</strong> wrong</li><li>Watch your score in the floating widget</li><li>Click 🎯 Test for timed mock exams</li><li>View your test history progress</li></ul></div>
-  </div>
+<!-- MIDDLE SECTION: BENTO GRID MOTIVATION & TIPS -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Daily Motivation -->
+<div class="md:col-span-8 group relative overflow-hidden bg-slate-900 border border-slate-800 rounded-3xl p-8 hover:shadow-2xl transition-all duration-300">
+<div class="flex justify-between items-start mb-6">
+<div class="bg-orange-500/10 p-3 rounded-2xl">
+<span class="material-symbols-outlined text-orange-500" data-icon="auto_awesome">auto_awesome</span>
 </div>
-
-<!-- SUBJECT AREA -->
-<div id="subjects">
-  <div class="tab-bar">
-    <button class="tab-btn active" id="tab-bangla" onclick="showSubject('bangla')">📖 বাংলা <span class="cnt" id="cnt-bangla">200+</span></button>
-    <button class="tab-btn" id="tab-gk" onclick="showSubject('gk')">🌍 General Knowledge <span class="cnt" id="cnt-gk">279</span></button>
-    <button class="tab-btn" id="tab-history" onclick="showSubject('history')">📜 Test History</button>
-  </div>
-
-  <!-- BANGLA PANEL -->
-  <div id="panel-bangla" class="subject-panel active">
-    <div class="subject-header">
-      <h2>📖 বাংলা — HSC 2025</h2>
-      <p>Board exam pattern analysis · গদ্য + পদ্য + নাটক + ব্যাকরণ</p>
-      <div class="subject-stats">
-        <div class="stat-pill"><strong>200+</strong> MCQs</div>
-        <div class="stat-pill"><strong>8</strong> Chapters</div>
-        <div class="stat-pill"><strong>20</strong> Marks in exam</div>
-        <div class="stat-pill">Based on HSC Board Pattern</div>
-      </div>
-    </div>
-
-    <div class="tips-box">
-      <h4>📋 How Bangla Questions Appear in NU Admission (Board Analysis)</h4>
-      <ol>
-        <li><strong>অপরিচিতা থেকে সবচেয়ে বেশি প্রশ্ন আসে (প্রায় ৩-৪টি):</strong> চরিত্রের নাম, ঘটনার বিবরণ, লেখকের পরিচয় — প্রতিটি বোর্ডেই আসে। রবীন্দ্রনাথের গল্প থেকে চরিত্র ও ঘটনাগুলো মুখস্থ রাখুন।</li>
-        <li><strong>ব্যাকরণ অংশে সন্ধি, সমাস ও কারক থেকে ৪-৫টি প্রশ্ন:</strong> ঢাকা বোর্ড ও চট্টগ্রাম বোর্ড উভয়েই এই তিনটি টপিক থেকে নিয়মিত প্রশ্ন আসে। নিয়মগুলো বুঝে মুখস্থ করুন।</li>
-        <li><strong>কবিতার রচয়িতা ও চরণ মেলানো:</strong> 'আঠারো বছর বয়স', 'ফেব্রুয়ারি ১৯৬৯', 'সোনার তরী' — এই কবিতাগুলোর রচয়িতার নাম ও বিখ্যাত পঙক্তি প্রায় প্রতিবারই আসে।</li>
-        <li><strong>নাটক থেকে 'সিরাজউদ্দৌলা':</strong> নাটকের লেখক, চরিত্র ও ঐতিহাসিক প্রেক্ষাপট থেকে প্রশ্ন আসে। পলাশীর যুদ্ধ ও মীর জাফরের ভূমিকা মুখস্থ রাখুন।</li>
-        <li><strong>বানান ও শুদ্ধ বাক্য থেকে ২-৩টি প্রশ্ন:</strong> রাজশাহী ও যশোর বোর্ডে বিশেষত বানান শুদ্ধিকরণ প্রশ্ন আসে। সচরাচর ভুল হওয়া বানানগুলো চর্চা করুন।</li>
-      </ol>
-    </div>
-
-    <div class="star-legend">
-      <div class="star-item">★★★ <strong>প্রতিবছর আসে</strong></div>
-      <div class="star-item">★★ <strong>প্রায়ই আসে</strong></div>
-      <div class="star-item">★ <strong>মাঝেমধ্যে আসে</strong></div>
-    </div>
-
-    <div class="chapter-list" id="bangla-chapters"></div>
-  </div>
-
-  <!-- GK PANEL -->
-  <div id="panel-gk" class="subject-panel">
-    <div class="subject-header">
-      <h2>🌍 General Knowledge — GK Mastery</h2>
-      <p>মুক্তিযুদ্ধ · ভূগোল · মেগাপ্রজেক্ট · আন্তর্জাতিক · সাম্প্রতিক ঘটনা</p>
-      <div class="subject-stats">
-        <div class="stat-pill"><strong>279</strong> MCQs</div>
-        <div class="stat-pill"><strong>5</strong> Chapters</div>
-        <div class="stat-pill"><strong>20</strong> Marks in exam</div>
-        <div class="stat-pill">★★★ = Must Know</div>
-      </div>
-    </div>
-
-    <div class="tips-box">
-      <h4>🎯 7 Proven GK Tips — Based on 10 Years of NU/DU/JnU Past Papers</h4>
-      <ol>
-        <li><strong>মুক্তিযুদ্ধের তারিখগুলো সংখ্যায় মুখস্থ করুন:</strong> ২৫ মার্চ (অপারেশন সার্চলাইট), ২৬ মার্চ (স্বাধীনতা দিবস), ১৭ এপ্রিল (মুজিবনগর), ১৬ ডিসেম্বর (বিজয় দিবস) — NU-তে প্রতিবছর অন্তত ২টি প্রশ্ন এই তারিখ থেকে আসে।</li>
-        <li><strong>বাংলাদেশের "সর্বোচ্চ/প্রথম/বৃহত্তম" তথ্যগুলো একসাথে মুখস্থ করুন:</strong> সর্বোচ্চ পর্বত = তাজিনডং, বৃহত্তম জেলা = রাঙ্গামাটি, বৃহত্তম নদী = মেঘনা — এই ধরনের "Firsts & Superlatives" থেকে DU ও NU উভয়েই প্রশ্ন আসে।</li>
-        <li><strong>মেগাপ্রজেক্টের সংখ্যা ঠিকঠাক মুখস্থ রাখুন:</strong> পদ্মা সেতু = ৬.১৫ কিমি, মেট্রোরেল স্টেশন = ১৭টি, বঙ্গবন্ধু টানেল = ৩,৩৭৫ মিটার — সংখ্যায় ভুল করলে ভুল উত্তর হবে।</li>
-        <li><strong>আন্তর্জাতিক সংস্থার সদর দপ্তর একটি তালিকায় শিখুন:</strong> জাতিসংঘ = নিউইয়র্ক, IMF = ওয়াশিংটন, WHO = জেনেভা, WTO = জেনেভা — JnU ও DU C-Unit-এ এই থেকে ২-৩টি প্রশ্ন প্রায় নিশ্চিত।</li>
-        <li><strong>২ বছরের কারেন্ট অ্যাফেয়ার্স নিয়ম মানুন:</strong> NU সাধারণত পরীক্ষার আগের ২ বছরের জাতীয় ঘটনা (নির্বাচন, আন্দোলন, মেগাপ্রজেক্ট উদ্বোধন) থেকে প্রশ্ন দেয়। ২০২৩-২০২৫ ভালোভাবে পড়ুন।</li>
-        <li><strong>Elimination পদ্ধতি ব্যবহার করুন:</strong> ৪টি অপশনের মধ্যে ২টি স্পষ্টত ভুল বাতিল করুন, বাকি ২টি থেকে সিলেক্ট করুন। Negative marking না থাকায় যেকোনো উত্তর দিন।</li>
-        <li><strong>সংবিধানের মূলনীতি ও গুরুত্বপূর্ণ অনুচ্ছেদ মুখস্থ করুন:</strong> ৪ মূলনীতি, সংসদ আসন = ৩০০+৫০, সংবিধান কার্যকর = ৪ নভেম্বর ১৯৭২ — এই তথ্যগুলো NU-তে বারবার আসে।</li>
-      </ol>
-    </div>
-
-    <div class="star-legend">
-      <div class="star-item">★★★ <strong>High Priority</strong> — প্রায় প্রতি NU/DU/JnU পরীক্ষায়</div>
-      <div class="star-item">★★ <strong>Important</strong> — ২-৩ বছরে একবার</div>
-      <div class="star-item">★ <strong>Good to Know</strong> — মাঝেমধ্যে</div>
-    </div>
-
-    <div class="chapter-list" id="gk-chapters"></div>
-  </div>
-
-  <!-- HISTORY PANEL -->
-  <div id="panel-history" class="subject-panel">
-    <div class="subject-header">
-      <h2>📜 Test History</h2>
-      <p>Your past test results and chapter-wise progress</p>
-    </div>
-    <div id="historyPanel">
-      <div class="hist-empty">No tests taken yet. Click <strong>🎯 Take Test</strong> to begin!</div>
-    </div>
-  </div>
+<span class="text-label-caps text-orange-500 bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">Daily Insight</span>
 </div>
-
-<footer>
-  <p>📚 <strong>Preparation for NU Admission</strong> · BBA Commerce Unit · Session 2025–2026<br>
-  Questions based on HSC Board Pattern (Dhaka, Chittagong, Rajshahi) & NU Past Papers 2015–2024<br>
-  <strong>Points: +4 correct · -1 wrong · আপনার জন্য শুভকামনা 🌟</strong></p>
-</footer>
-<script>
-// FORMAT: [question, [A,B,C,D], correctIndex(0-3), stars(1-3)]
-
-const SUBJECTS = {
-
-// ══════════════════════════════════════════════
-// BANGLA — 200+ MCQs, 8 Chapters
-// Based on HSC 2025 Board Pattern (Dhaka, Chittagong, Rajshahi)
-// ══════════════════════════════════════════════
-bangla:{
-  name:"বাংলা",icon:"📖",color:"#d4a843",
-  chapters:[
-    {
-      name:"গদ্য — অপরিচিতা (রবীন্দ্রনাথ ঠাকুর)",
-      mcqs:[
-        ["'অপরিচিতা' গল্পের লেখক কে?",["বঙ্কিমচন্দ্র চট্টোপাধ্যায়","রবীন্দ্রনাথ ঠাকুর","শরৎচন্দ্র চট্টোপাধ্যায়","মানিক বন্দ্যোপাধ্যায়"],1,3],
-        ["'অপরিচিতা' গল্পের কেন্দ্রীয় পুরুষ চরিত্র কে?",["বিনুদা","শম্ভুনাথ সেন","অনুপম","হরিশচন্দ্র"],2,3],
-        ["অনুপমের অভিভাবকের ভূমিকা পালন করেন কে?",["তার পিতা","তার মামা","তার বড় ভাই","তার চাচা"],1,3],
-        ["অনুপমের মামার পেশা কী?",["ডাক্তার","শিক্ষক","আইনজীবী (উকিল)","ব্যবসায়ী"],2,3],
-        ["কল্যাণীর পিতার নাম কী?",["হরিনাথ","শম্ভুনাথ সেন","রামচন্দ্র","বিনোদবিহারী"],1,3],
-        ["'অপরিচিতা' গল্পে বিবাহ কেন ভেঙে যায়?",["পাত্রীর অসম্মতিতে","পাত্রীর পিতা কনের গহনা পরীক্ষার অপমান সহ্য না করে বিবাহ ভাঙেন","পাত্রের অমত","ধর্মীয় কারণে"],1,3],
-        ["কল্যাণীর বয়স গল্পে কত উল্লেখ ছিল?",["পনেরো","ষোলো","সতেরো","আঠারো"],1,2],
-        ["গল্পের শেষে অনুপমের পরিণতি কী হয়?",["সে কল্যাণীকে বিয়ে করে","সে অন্য মেয়েকে বিয়ে করে","সে চিরকুমার থাকে","সে বিদেশে চলে যায়"],2,3],
-        ["'অপরিচিতা' গল্পটি রবীন্দ্রনাথের কোন গ্রন্থে সংকলিত?",["গল্পগুচ্ছ","সোনার তরী","চোখের বালি","ঘরে বাইরে"],0,2],
-        ["অনুপমের চরিত্রের মূল দুর্বলতা কোনটি?",["লোভ","মামার প্রতি অন্ধ আনুগত্য","কাপুরুষতা","অহংকার"],1,3],
-        ["'অপরিচিতা' গল্পে কল্যাণী কোন আদর্শে বিশ্বাসী?",["আধুনিক স্বাধীনতায়","নারীশিক্ষা ও সমাজসেবায়","বিবাহে বিশ্বাসী নন","ধর্মে"],1,3],
-        ["গল্পে অনুপমকে 'মামার হাতের পুতুল' বলা হয় কেন?",["সে মামার বাড়িতে থাকে","সে নিজের সিদ্ধান্ত নিতে পারে না","সে মামাকে ভয় পায়","সে মামার অর্থ নেয়"],1,3],
-        ["'অপরিচিতা' গল্পে 'স্টেশন' দৃশ্যে কী ঘটে?",["অনুপম কল্যাণীকে প্রত্যাখ্যান করে","অনুপম ক্ষমা চায়","অনুপম কল্যাণীকে দেখে বিস্মিত হয় ও অনুশোচনা করে","কল্যাণী অনুপমকে ক্ষমা করে"],2,3],
-        ["রবীন্দ্রনাথ ঠাকুর কত সালে নোবেল পুরস্কার পান?",["১৯১০","১৯১১","১৯১৩","১৯১৫"],2,2],
-        ["'অপরিচিতা' গল্পের বিষয়বস্তু কোন সমস্যাকে কেন্দ্র করে?",["বর্ণ বৈষম্য","যৌতুক প্রথা ও নারীর মর্যাদা","দারিদ্র্য","ধর্মীয় বিভেদ"],1,3],
-        ["অনুপমের মামা বিবাহে গহনার কী করেছিলেন?",["গহনা নষ্ট করেছিলেন","বিবাহে গহনা পরীক্ষা করতে সোনার কষ্টিপাথর দিয়ে যাচাই করেছিলেন","গহনা চুরি করেছিলেন","গহনা ফেরত দিয়েছিলেন"],1,3],
-        ["গল্পে কল্যাণীর পিতা শম্ভুনাথ সেন কোন পেশার মানুষ?",["ডাক্তার","শিক্ষক","উকিল","ডাক্তার"],2,2],
-        ["'অপরিচিতা' গল্পে অনুপম কোথায় ট্রেনে কল্যাণীকে দেখে?",["ঢাকা স্টেশনে","কানপুর স্টেশনে","কলকাতা স্টেশনে","বম্বে স্টেশনে"],1,2],
-      ]
-    },
-    {
-      name:"গদ্য — বিড়াল (বঙ্কিমচন্দ্র) ও মাসি-পিসি (মানিক)",
-      mcqs:[
-        ["'বিড়াল' রচনার লেখক কে?",["রবীন্দ্রনাথ ঠাকুর","বঙ্কিমচন্দ্র চট্টোপাধ্যায়","মাইকেল মধুসূদন দত্ত","শরৎচন্দ্র"],1,3],
-        ["'বিড়াল' রচনাটি কোন গ্রন্থে সংকলিত?",["লোকরহস্য","কমলাকান্তের দপ্তর","মুচিরাম গুড়ের জীবনচরিত","দেবী চৌধুরাণী"],1,3],
-        ["'বিড়াল' রচনায় বিড়ালের কণ্ঠে কোন দর্শন প্রকাশ পেয়েছে?",["জাতীয়তাবাদ","আদর্শবাদ","সাম্যবাদ","ধর্মবাদ"],2,3],
-        ["'বিড়াল' রচনায় 'কমলাকান্ত' কোন ব্যক্তির ছদ্মনাম?",["বঙ্কিমচন্দ্র নিজের","একজন বিড়ালপ্রেমীর","একজন দার্শনিকের","একজন পুলিশ অফিসারের"],0,2],
-        ["'বিড়াল' রচনায় বিড়াল কোন যুক্তিতে চুরি সমর্থন করে?",["ক্ষুধার্তের খাওয়া পাপ নয়","ধনীদের সম্পদে সবার সমান অধিকার","রাষ্ট্র সমান বণ্টন না করলে চুরি জায়েজ","তিনটিই"],3,3],
-        ["'মাসি-পিসি' গল্পের লেখক কে?",["শরৎচন্দ্র","মানিক বন্দ্যোপাধ্যায়","তারাশঙ্কর","বিভূতিভূষণ"],1,3],
-        ["'মাসি-পিসি' গল্পের কেন্দ্রীয় নারী চরিত্র কে?",["ময়না","আহ্লাদি","সুভাষিণী","রত্না"],1,3],
-        ["'মাসি-পিসি' গল্পে আহ্লাদির নির্যাতনকারী স্বামীর নাম কী?",["মতি","জগু","কান্তি","রাজু"],1,3],
-        ["'মাসি-পিসি' গল্পের মূল বিষয়বস্তু কী?",["প্রেমকাহিনি","নারীর সংগ্রাম ও প্রতিরোধ","কৃষিজীবন","ধর্মীয় আচার"],1,3],
-        ["'মাসি-পিসি' গল্পের শেষে কী ঘটে?",["আহ্লাদির বিয়ে হয়","মাসি-পিসি মিলে জগুকে প্রতিরোধ করে","আহ্লাদি মারা যায়","গ্রাম ছেড়ে চলে যায়"],1,3],
-        ["মানিক বন্দ্যোপাধ্যায়ের প্রকৃত নাম কী?",["প্রবোধকুমার বন্দ্যোপাধ্যায়","মানিককুমার বন্দ্যোপাধ্যায়","রবিকুমার বন্দ্যোপাধ্যায়","শরৎকুমার বন্দ্যোপাধ্যায়"],0,2],
-        ["বঙ্কিমচন্দ্রের প্রথম বাংলা উপন্যাস কোনটি?",["বিষবৃক্ষ","কপালকুণ্ডলা","দুর্গেশনন্দিনী","আনন্দমঠ"],2,2],
-        ["'বিড়াল' রচনায় কোন সামাজিক বৈষম্যের সমালোচনা আছে?",["লিঙ্গ বৈষম্য","ধনী-গরিব বৈষম্য","জাতি বৈষম্য","ধর্মীয় বৈষম্য"],1,3],
-        ["মানিক বন্দ্যোপাধ্যায়ের বিখ্যাত উপন্যাস 'পদ্মানদীর মাঝি'-র প্রধান চরিত্র কে?",["কুবের","ধীরেন","মতি","রাজু"],0,2],
-        ["'মাসি-পিসি' গল্পে 'মাসি' ও 'পিসি' আহ্লাদির কী হয়?",["তার মামি ও চাচি","তার মামা-পিসির স্ত্রী","তার মায়ের বোন ও বাবার বোন (আত্মীয়া)","প্রতিবেশী মহিলা"],2,2],
-      ]
-    },
-    {
-      name:"গদ্য — নেকলেস, আহ্বান ও শিক্ষা ও মনুষ্যত্ব",
-      mcqs:[
-        ["'নেকলেস' গল্পের মূল লেখক কে?",["চেখভ","তলস্তয়","গি দ্য মোপাসাঁ","বালজাক"],2,3],
-        ["'নেকলেস' গল্পটি মূলত কোন ভাষায় রচিত?",["ইংরেজি","জার্মান","ফরাসি","রুশ"],2,3],
-        ["'নেকলেস' গল্পের প্রধান নারী চরিত্রের নাম কী?",["মাদাম ফরেস্তিয়ে","মাতিলদ লোইসেল","মারিয়া","ভিক্টোরিয়া"],1,3],
-        ["'নেকলেস' গল্পে মাদাম লোইসেলের স্বামীর পেশা কী?",["ডাক্তার","সামরিক কর্মকর্তা","সরকারি কেরানি","ব্যবসায়ী"],2,3],
-        ["'নেকলেস' গল্পে হারানো হারের পরিবর্তে নতুন হার কিনতে কত টাকা লাগে?",["দশ হাজার ফ্রাঁ","আঠারো হাজার ফ্রাঁ","ছত্রিশ হাজার ফ্রাঁ","পঞ্চাশ হাজার ফ্রাঁ"],2,3],
-        ["'নেকলেস' গল্পে ঋণ শোধ করতে দম্পতি কত বছর কষ্ট করেন?",["পাঁচ বছর","দশ বছর","পনেরো বছর","বিশ বছর"],1,3],
-        ["'নেকলেস' গল্পের চমকপ্রদ সমাপ্তিতে কী জানা যায়?",["হার চুরি হয়েছিল","মাদাম ফরেস্তিয়ে মারা গেছেন","হারটি আসলে নকল ছিল","হার ফিরে পাওয়া গেছে"],2,3],
-        ["'আহ্বান' গল্পের লেখক কে?",["মানিক বন্দ্যোপাধ্যায়","শরৎচন্দ্র","বিভূতিভূষণ বন্দ্যোপাধ্যায়","রবীন্দ্রনাথ"],2,3],
-        ["'আহ্বান' গল্পের বৃদ্ধার নাম কী?",["রাহেলা","মেজবানু","ময়না","কোনো নাম নেই (লেখক 'বুড়ি' বলেছেন)"],3,2],
-        ["'শিক্ষা ও মনুষ্যত্ব' প্রবন্ধটি কার লেখা?",["আবুল ফজল","মুনীর চৌধুরী","মোতাহের হোসেন চৌধুরী","রশীদ করীম"],2,3],
-        ["'শিক্ষা ও মনুষ্যত্ব' প্রবন্ধে দুটি ক্ষুধার কথা বলা হয়েছে — এগুলো কী?",["অন্নের ক্ষুধা ও মনের ক্ষুধা","ঘুমের ও ভ্রমণের ক্ষুধা","জলের ও বায়ুর ক্ষুধা","সম্পদের ও ক্ষমতার ক্ষুধা"],0,3],
-        ["'শিক্ষা ও মনুষ্যত্ব' প্রবন্ধের মূল বক্তব্য কী?",["প্রযুক্তি শিক্ষার প্রয়োজনীয়তা","মানবিক গুণাবলি অর্জনই প্রকৃত শিক্ষার লক্ষ্য","বিজ্ঞান শিক্ষার গুরুত্ব","ধর্মীয় শিক্ষার প্রয়োজন"],1,3],
-        ["'শিক্ষা ও মনুষ্যত্ব' প্রবন্ধে 'অন্নবস্ত্রের সংস্থান' বলতে কী বোঝায়?",["বিলাসিতা","মৌলিক জৈবিক চাহিদা পূরণ","সামাজিক মর্যাদা","অর্থনৈতিক উন্নয়ন"],1,3],
-        ["মোতাহের হোসেন চৌধুরীর বিখ্যাত গ্রন্থ কোনটি?",["মনুষ্যত্বের কথা","সংস্কৃতির কথা","বাংলার কথা","শিক্ষার কথা"],1,2],
-        ["'আহ্বান' গল্পের পটভূমি কোথায়?",["শহরে","পাহাড়ে","গ্রামে","নদীতীরে"],2,2],
-      ]
-    },
-    {
-      name:"পদ্য — সোনার তরী, তাহারেই পড়ে মনে, আঠারো বছর বয়স",
-      mcqs:[
-        ["'সোনার তরী' কবিতার রচয়িতা কে?",["কাজী নজরুল ইসলাম","রবীন্দ্রনাথ ঠাকুর","সুফিয়া কামাল","জীবনানন্দ দাশ"],1,3],
-        ["'সোনার তরী' কবিতায় 'সোনার ধান' কীসের প্রতীক?",["প্রকৃতির দান","কবির সৃষ্টিকর্ম","সোনা রঙের ধান","সম্পদ"],1,3],
-        ["'সোনার তরী' কবিতায় 'ঠাঁই নাই, ঠাঁই নাই' এটি কার কথা?",["কৃষকের","মাঝির","কবির","নৌকার"],2,2],
-        ["'সোনার তরী' কবিতার মূল ভাব কী?",["সৃষ্টিকর্ম টিকে থাকলেও স্রষ্টা বিস্মৃত হন","নদীতে ভ্রমণ","প্রকৃতির সৌন্দর্য","কৃষকের জীবন"],0,3],
-        ["'তাহারেই পড়ে মনে' কবিতার রচয়িতা কে?",["মহাদেব সাহা","সুফিয়া কামাল","আসাদ চৌধুরী","নির্মলেন্দু গুণ"],1,3],
-        ["'তাহারেই পড়ে মনে' কবিতাটি কোন ঋতুর পটভূমিতে রচিত?",["বর্ষা","শীত","বসন্ত","গ্রীষ্ম"],2,3],
-        ["'তাহারেই পড়ে মনে' কবিতায় 'তাহার' বলতে কাকে বোঝানো হয়েছে?",["প্রিয় বান্ধবীকে","মৃত মাকে","মৃত স্বামীকে","হারানো সন্তানকে"],2,3],
-        ["'তাহারেই পড়ে মনে' কবিতায় বসন্তের আগমনে কবির মনে কেমন অনুভূতি?",["আনন্দের","বিষণ্ণতা ও বেদনার (স্মৃতিকাতরতা)","উত্তেজনার","নিস্পৃহতার"],1,3],
-        ["'আঠারো বছর বয়স' কবিতার রচয়িতা কে?",["রবীন্দ্রনাথ ঠাকুর","কাজী নজরুল ইসলাম","সুকান্ত ভট্টাচার্য","জীবনানন্দ দাশ"],2,3],
-        ["'আঠারো বছর বয়স' কবিতায় এই বয়সকে কীভাবে চিত্রিত করা হয়েছে?",["নিস্পৃহ ও দুর্বল","সাহসী, অদম্য ও ঝুঁকিপ্রিয়","শান্ত ও মনোযোগী","অলস ও বেপরোয়া"],1,3],
-        ["'আঠারো বছর বয়স' কবিতায় কয়টি স্তবক আছে?",["পাঁচটি","ছয়টি","সাতটি","আটটি"],1,2],
-        ["সুকান্ত ভট্টাচার্যকে কোন উপাধিতে ভূষিত করা হয়?",["বিদ্রোহী কবি","কিশোর কবি","মানবতার কবি","জাতীয় কবি"],1,2],
-        ["সুফিয়া কামাল কোন ক্ষেত্রে বিখ্যাত?",["শুধু কবিতায়","শুধু নাটকে","কবিতা ও নারী আন্দোলনে","শুধু প্রবন্ধে"],2,2],
-        ["'সোনার তরী' কোন ছন্দে রচিত?",["মাত্রাবৃত্ত","স্বরবৃত্ত","অক্ষরবৃত্ত","মুক্তক"],0,2],
-        ["'আঠারো বছর বয়স' কবিতায় 'বিপদের মুখে এ বয়স অগ্রণী' — এর অর্থ কী?",["এই বয়স বিপদ এড়িয়ে চলে","এই বয়স সবার আগে বিপদ মোকাবেলা করে","এই বয়স বিপদে পড়ে","এই বয়স বিপদ সৃষ্টি করে"],1,3],
-      ]
-    },
-    {
-      name:"পদ্য — বিভীষণের প্রতি মেঘনাদ, ফেব্রুয়ারি ১৯৬৯, আমার পরিচয়, সেই অস্ত্র",
-      mcqs:[
-        ["'বিভীষণের প্রতি মেঘনাদ' কবিতার রচয়িতা কে?",["রবীন্দ্রনাথ ঠাকুর","মাইকেল মধুসূদন দত্ত","কায়কোবাদ","হেমচন্দ্র বন্দ্যোপাধ্যায়"],1,3],
-        ["'বিভীষণের প্রতি মেঘনাদ' কবিতাটি কোন মহাকাব্যের অংশ?",["রামায়ণ","মহাভারত","মেঘনাদবধ কাব্য","পদ্মাবতী"],2,3],
-        ["'বিভীষণের প্রতি মেঘনাদ' কবিতায় মেঘনাদ কাকে বিশ্বাসঘাতক বলেছে?",["ইন্দ্রজিৎকে","লক্ষ্মণকে","বিভীষণকে","রাবণকে"],2,3],
-        ["মাইকেল মধুসূদন দত্তের জন্মসাল কত?",["১৮১৫","১৮২৪","১৮৩০","১৮৪০"],1,1],
-        ["মাইকেল মধুসূদন দত্ত বাংলা সাহিত্যে কোন ছন্দ প্রবর্তন করেন?",["স্বরবৃত্ত","মাত্রাবৃত্ত","অমিত্রাক্ষর ছন্দ (Blank Verse)","অক্ষরবৃত্ত"],2,3],
-        ["'ফেব্রুয়ারি ১৯৬৯' কবিতার রচয়িতা কে?",["সৈয়দ শামসুল হক","শামসুর রাহমান","আল মাহমুদ","আবুল হাসান"],1,3],
-        ["'ফেব্রুয়ারি ১৯৬৯' কবিতায় কোন ঘটনার পটভূমি?",["১৯৫২-এর ভাষা আন্দোলন","১৯৭১-এর মুক্তিযুদ্ধ","১৯৬৯-এর গণঅভ্যুত্থান","১৯৪৭-এর দেশভাগ"],2,3],
-        ["'ফেব্রুয়ারি ১৯৬৯' কবিতায় কোন শহীদের নাম উল্লেখ আছে?",["বরকত","জব্বার","আসাদ","রফিক"],2,3],
-        ["শামসুর রাহমানকে কোন উপাধি দেওয়া হয়?",["জাতীয় কবি","নাগরিক কবি","বিদ্রোহী কবি","মানবতার কবি"],1,2],
-        ["'আমার পরিচয়' কবিতার রচয়িতা কে?",["শামসুর রাহমান","আল মাহমুদ","সৈয়দ শামসুল হক","মহাদেব সাহা"],2,3],
-        ["'আমার পরিচয়' কবিতায় কবি নিজেকে কীসের উত্তরাধিকার বলেছেন?",["বাংলার ইতিহাস ও ঐতিহ্যের","প্রকৃতির","মুক্তিযুদ্ধের","ভাষা আন্দোলনের"],0,3],
-        ["'আমার পরিচয়' কবিতায় কোন যুদ্ধের কথা উল্লেখ আছে?",["পলাশীর যুদ্ধ","মুক্তিযুদ্ধ","১৮৫৭-এর বিদ্রোহ","সবগুলো"],3,3],
-        ["'সেই অস্ত্র' কবিতার রচয়িতা কে?",["আল মাহমুদ","শামসুর রাহমান","নির্মলেন্দু গুণ","হেলাল হাফিজ"],1,3],
-        ["'সেই অস্ত্র' কবিতায় 'অস্ত্র' বলতে কী বোঝানো হয়েছে?",["তলোয়ার","বন্দুক","কলম ও ভাষা","বোমা"],2,3],
-        ["সৈয়দ শামসুল হককে কোন উপাধিতে বলা হয়?",["সব্যসাচী লেখক","কিশোর কবি","বিদ্রোহী কবি","নাগরিক কবি"],0,2],
-      ]
-    },
-    {
-      name:"পদ্য — নূরলদীনের কথা মনে পড়ে যায় | নাটক — সিরাজউদ্দৌলা",
-      mcqs:[
-        ["'নূরলদীনের কথা মনে পড়ে যায়' কবিতার রচয়িতা কে?",["শামসুর রাহমান","আল মাহমুদ","সৈয়দ শামসুল হক","নির্মলেন্দু গুণ"],2,3],
-        ["'নূরলদীনের কথা মনে পড়ে যায়' — নূরলদীন কে ছিলেন?",["একজন মুক্তিযোদ্ধা","একজন ভাষাসৈনিক","ঐপনিবেশিক বিরোধী কিংবদন্তি নেতা","একজন কবি"],2,3],
-        ["'নূরলদীনের কথা মনে পড়ে যায়' কবিতায় কোন অঞ্চলের কথা বলা হয়েছে?",["ঢাকা","রংপুর-ময়মনসিংহ অঞ্চল","চট্টগ্রাম","সিলেট"],1,3],
-        ["'সিরাজউদ্দৌলা' নাটকের রচয়িতা কে?",["মুনীর চৌধুরী","সেলিম আল দীন","সিকান্দার আবু জাফর","আসকার ইবনে শাইখ"],2,3],
-        ["সিরাজউদ্দৌলা কত সালে বাংলার নবাব হন?",["১৭৫৪","১৭৫৫","১৭৫৬","১৭৫৭"],2,3],
-        ["পলাশীর যুদ্ধ কত সালে হয়?",["১৭৫৫","১৭৫৬","১৭৫৭","১৭৫৮"],2,3],
-        ["পলাশীর যুদ্ধে সিরাজউদ্দৌলাকে বিশ্বাসঘাতকতা করেন কে?",["মীর কাসিম","মীর জাফর","রাইদুর্লভ","মোহনলাল"],1,3],
-        ["'সিরাজউদ্দৌলা' নাটকে 'ঘসেটি বেগম' কে ছিলেন?",["সিরাজের স্ত্রী","সিরাজের মা","সিরাজের মামি","সিরাজের বোন"],2,3],
-        ["'সিরাজউদ্দৌলা' নাটকে 'লুৎফুন্নেসা' কে ছিলেন?",["সিরাজের মামি","সিরাজের বোন","সিরাজের স্ত্রী","সিরাজের সেনাপতির স্ত্রী"],2,3],
-        ["ইস্ট ইন্ডিয়া কোম্পানির পলাশী যুদ্ধে সেনাপতি কে ছিলেন?",["ওয়ারেন হেস্টিংস","রবার্ট ক্লাইভ","লর্ড কর্নওয়ালিস","লর্ড ডালহৌসি"],1,3],
-        ["সিরাজউদ্দৌলার রাজধানী কোথায় ছিল?",["কলকাতা","ঢাকা","মুর্শিদাবাদ","পাটনা"],2,3],
-        ["'সিরাজউদ্দৌলা' নাটকের মূল বিষয়বস্তু কী?",["প্রেমকাহিনি","বিশ্বাসঘাতকতা ও দেশপ্রেম","ধর্মীয় সংঘাত","অর্থনৈতিক সমস্যা"],1,3],
-        ["পলাশীর যুদ্ধের পরে বাংলার নবাব হন কে?",["মীর কাসিম","নজম উদ-দৌলা","মীর জাফর","রাইদুর্লভ"],2,3],
-        ["মুনীর চৌধুরীর বিখ্যাত নাটক কোনটি?",["কবর","রক্তাক্ত প্রান্তর","পায়ের আওয়াজ পাওয়া যায়","সিরাজউদ্দৌলা"],0,2],
-        ["সিকান্দার আবু জাফর মূলত কোন পরিচয়ে বিখ্যাত?",["শুধু নাট্যকার","কবি, নাট্যকার ও সম্পাদক (সমকাল)","শুধু ঔপন্যাসিক","শুধু সম্পাদক"],1,2],
-      ]
-    },
-    {
-      name:"বাংলা ব্যাকরণ — সন্ধি, সমাস ও কারক",
-      mcqs:[
-        ["'মহর্ষি' শব্দের সন্ধিবিচ্ছেদ কোনটি?",["মহ+ঋষি","মহা+ঋষি","মহা+রষি","মহঃ+ঋষি"],1,3],
-        ["'পরীক্ষা' শব্দের সন্ধিবিচ্ছেদ কোনটি?",["পরি+ক্ষা","পর+ইক্ষা","পরি+ইক্ষা","পর+ঈক্ষা"],0,3],
-        ["'দিগন্ত' শব্দের সন্ধিবিচ্ছেদ কোনটি?",["দিক+অন্ত","দিগ+অন্ত","দিক্+অন্ত","দিঃ+অন্ত"],0,3],
-        ["'মনোহর' শব্দের সন্ধিবিচ্ছেদ কোনটি?",["মনো+হর","মন+ওহর","মনঃ+হর","মন+হর"],2,3],
-        ["স্বরসন্ধির উদাহরণ কোনটি?",["দিগন্ত","পরিষ্কার","নরেন্দ্র","মহর্ষি"],2,3],
-        ["ব্যঞ্জনসন্ধির উদাহরণ কোনটি?",["হিমালয়","নরেশ","দিগন্ত","নরেন্দ্র"],2,2],
-        ["তৎপুরুষ সমাসের উদাহরণ কোনটি?",["নীলকমল","দশানন","মাতাপিতা","রাজপুত্র"],3,3],
-        ["বহুব্রীহি সমাসের উদাহরণ কোনটি?",["রাজপুত্র","নীলকমল","দশানন","মাতাপিতা"],2,3],
-        ["'দশানন' শব্দে কোন সমাস?",["তৎপুরুষ","কর্মধারয়","বহুব্রীহি","দ্বন্দ্ব"],2,3],
-        ["দ্বন্দ্ব সমাসের উদাহরণ কোনটি?",["মাতাপিতা","রাজপুত্র","দশানন","হস্তীমূর্খ"],0,3],
-        ["কর্মধারয় সমাসের উদাহরণ কোনটি?",["নীলকমল","মাতাপিতা","দশানন","রাজপুত্র"],0,3],
-        ["কর্তৃকারক প্রশ্নের উত্তর পেতে কী জিজ্ঞেস করতে হয়?",["কাকে / কী","কে / কারা","কার","কীভাবে"],1,3],
-        ["কর্মকারক কোন প্রশ্নের উত্তর দেয়?",["কে / কারা","কোথায়","কাকে / কী","কার"],2,3],
-        ["'হাতুড়ি দিয়ে পেরেক ঠোকে' — 'হাতুড়ি' কোন কারকে?",["কর্তৃকারক","কর্মকারক","করণকারক","অপাদানকারক"],2,3],
-        ["'অপাদান কারক' কোন বিভক্তি দিয়ে বোঝায়?",["এ, তে","কে, রে","র, এর","থেকে, হতে"],3,3],
-        ["'অধিকরণ কারক' কোন প্রশ্নের উত্তর দেয়?",["কে","কাকে","কোথায় / কখন","কীভাবে"],2,3],
-        ["'সম্প্রদান কারক' কোন বিভক্তি ব্যবহার করে?",["থেকে, হতে","কে, রে (দান অর্থে)","র, এর","এ, তে"],1,3],
-        ["'নীলকমল' সমাসবিগ্রহ কোনটি?",["নীল যে কমল","নীল ও কমল","কমলের মধ্যে নীল","নীলের মতো কমল"],0,3],
-        ["'প্রতিদিন' শব্দটিতে কোন সমাস?",["তৎপুরুষ","বহুব্রীহি","দ্বন্দ্ব","অব্যয়ীভাব"],3,3],
-        ["'সম্বন্ধ পদ' বলতে কী বোঝায়?",["ক্রিয়ার সাথে সম্পর্ক","বাক্যের বিশেষ্যের সাথে আর একটি বিশেষ্যের সম্পর্ক","বিশেষণের সম্পর্ক","অব্যয়ের সম্পর্ক"],1,2],
-      ]
-    },
-    {
-      name:"বাংলা ব্যাকরণ — পদ প্রকরণ, বাক্য, বানান ও ভাষাতত্ত্ব",
-      mcqs:[
-        ["বিশেষ্য পদের উদাহরণ কোনটি?",["সুন্দর","দৌড়ায়","বই","তাড়াতাড়ি"],2,3],
-        ["বিশেষণ পদের উদাহরণ কোনটি?",["বই","দৌড়ায়","সুন্দর","হঠাৎ"],2,3],
-        ["ক্রিয়া পদের উদাহরণ কোনটি?",["বই","সুন্দর","ঘর","দৌড়ায়"],3,3],
-        ["ক্রিয়াবিশেষণ পদের উদাহরণ কোনটি?",["সুন্দর","বই","তাড়াতাড়ি","লাল"],2,3],
-        ["অব্যয় পদের উদাহরণ কোনটি?",["বই","এবং","সুন্দর","দৌড়ায়"],1,3],
-        ["'সে দ্রুত দৌড়ায়' — এখানে 'দ্রুত' কোন পদ?",["বিশেষ্য","বিশেষণ","ক্রিয়াবিশেষণ","ক্রিয়া"],2,3],
-        ["সরল বাক্যের উদাহরণ কোনটি?",["রহিম এলে আমি যাব","সে সুন্দর কিন্তু অহংকারী","রাম বই পড়ে","যদি পড়ো তবে পাস করবে"],2,3],
-        ["যৌগিক বাক্যের উদাহরণ কোনটি?",["রাম বই পড়ে","রহিম এলে আমি যাব","সে সুন্দর কিন্তু অহংকারী","যদি মেহনত করো, পাস পাবে"],2,3],
-        ["জটিল বাক্যের উদাহরণ কোনটি?",["রাম পড়ে","সে গরিব কিন্তু সৎ","রহিম এলে আমি যাব","সে আসে এবং যায়"],2,3],
-        ["'তৎসম' শব্দ বলতে কী বোঝায়?",["আরবি থেকে আসা শব্দ","সংস্কৃত থেকে সরাসরি আসা শব্দ","ইংরেজি থেকে আসা শব্দ","পর্তুগিজ থেকে আসা শব্দ"],1,3],
-        ["'তদ্ভব' শব্দ বলতে কী বোঝায়?",["বিদেশি শব্দ","সংস্কৃত থেকে পরিবর্তিত হয়ে আসা শব্দ","তৎসম শব্দ","মিশ্র শব্দ"],1,3],
-        ["'আলু' শব্দটি কোন ভাষা থেকে এসেছে?",["আরবি","ইংরেজি","পর্তুগিজ","ফরাসি"],2,3],
-        ["'কলম' শব্দটি কোন ভাষার শব্দ?",["ফারসি","আরবি","তুর্কি","পর্তুগিজ"],1,3],
-        ["বাংলা স্বরবর্ণের সংখ্যা কত?",["১০","১১","১২","১৩"],1,3],
-        ["'মূর্ধন্য' বর্ণ কোনগুলো?",["চ, ছ, জ, ঝ, ঞ","ত, থ, দ, ধ, ন","ট, ঠ, ড, ঢ, ণ","ক, খ, গ, ঘ, ঙ"],2,3],
-        ["উপসর্গ শব্দের আগে বসে কী করে?",["অর্থ পরিবর্তন বা সম্প্রসারণ করে","শব্দ ছোট করে","অর্থহীন করে","শব্দ নষ্ট করে"],0,3],
-        ["'অকাল' শব্দে কোন উপসর্গ ব্যবহৃত হয়েছে?",["বি","সু","অ","কু"],2,3],
-        ["কৃৎ প্রত্যয়ের উদাহরণ কোনটি?",["লাজুক","শিক্ষক","পড়ুয়া","লেখক"],2,2],
-        ["'নিত্য সমাস'-এর উদাহরণ কোনটি?",["দেশান্তর","মাতাপিতা","দশানন","রাজপুত্র"],0,2],
-        ["শুদ্ধ বানান কোনটি?",["বিদ্যালয়","বিদ্যালয়","বিদ্যালয়","বিদ্যালয়"],0,2],
-        ["'সহকারী' শব্দের শুদ্ধ বানান কোনটি?",["সহকারি","সহকারী","সহকারী","সহকারীয়"],1,3],
-        ["শুদ্ধ বানান কোনটি?",["মুহূর্ত","মুহূর্ত","মুহূর্ত","মুহুর্ত"],0,3],
-        ["'পরিষ্কার' শব্দের সন্ধিবিচ্ছেদ কোনটি?",["পরি+স্কার","পরিঃ+কার","পরিষ+কার","পরিষ্+কার"],1,2],
-        ["বাংলা ভাষার উৎপত্তি হয়েছে কোন ভাষা থেকে?",["সংস্কৃত","পালি","প্রাকৃত / অপভ্রংশ","তামিল"],2,3],
-        ["'ধ্বনি' হলো ভাষার কোন একক?",["বৃহত্তম","মধ্যম","ক্ষুদ্রতম","চতুর্থ"],2,3],
-      ]
-    }
-  ]
-},// END bangla
-
-// ══════════════════════════════════════════════
-// GENERAL KNOWLEDGE — 279 MCQs, 5 Chapters
-// ══════════════════════════════════════════════
-gk:{
-  name:"General Knowledge",icon:"🌍",color:"#3ecf8e",
-  chapters:[
-    {
-      name:"মুক্তিযুদ্ধ ও বাংলাদেশের ইতিহাস (১৯৫২–১৯৭১)",
-      mcqs:[
-        ["বাংলাদেশের স্বাধীনতা দিবস কোন তারিখে?",["১৬ ডিসেম্বর","২৬ মার্চ","৭ মার্চ","২১ ফেব্রুয়ারি"],1,3],
-        ["বাংলাদেশের বিজয় দিবস কোন তারিখে?",["২৬ মার্চ","৭ মার্চ","১৪ ডিসেম্বর","১৬ ডিসেম্বর"],3,3],
-        ["'অপারেশন সার্চলাইট' কত তারিখে শুরু হয়?",["২৬ মার্চ ১৯৭১","৭ মার্চ ১৯৭১","২৫ মার্চ ১৯৭১","১৪ ডিসেম্বর ১৯৭১"],2,3],
-        ["ভাষা আন্দোলন কোন সালে হয়?",["১৯৪৮","১৯৫০","১৯৫২","১৯৫৪"],2,3],
-        ["২১ ফেব্রুয়ারি আন্তর্জাতিক মাতৃভাষা দিবস ঘোষণা হয় কত সালে?",["১৯৯৭","১৯৯৮","১৯৯৯","২০০০"],2,3],
-        ["মুক্তিযুদ্ধে সেক্টর সংখ্যা কত ছিল?",["৯","১০","১১","১২"],2,3],
-        ["মুক্তিযুদ্ধের সর্বাধিনায়ক কে ছিলেন?",["জিয়াউর রহমান","খালেদ মোশাররফ","এম.এ.জি. ওসমানী","কে.এম. সফিউল্লাহ"],2,3],
-        ["পাকিস্তানি বাহিনী কোথায় আত্মসমর্পণ করে?",["ঢাকা ক্যান্টনমেন্ট","পল্টন ময়দান","রেসকোর্স ময়দান (বর্তমান সোহরাওয়ার্দী উদ্যান)","জাতীয় সংসদ ভবন"],2,3],
-        ["পাকিস্তানি বাহিনীর পক্ষে আত্মসমর্পণে স্বাক্ষর করেন কে?",["ইয়াহিয়া খান","জুলফিকার ভুট্টো","লেফটেন্যান্ট জেনারেল নিয়াজি","আমির আবদুল্লাহ"],2,3],
-        ["ভারতীয় বাহিনীর পক্ষে আত্মসমর্পণে স্বাক্ষর করেন কে?",["ফিল্ড মার্শাল মানেকশ","জেনারেল জাকব","লেফটেন্যান্ট জেনারেল অরোরা","জেনারেল সাম"],2,3],
-        ["'মুজিবনগর সরকার' কবে গঠিত হয়?",["২৬ মার্চ ১৯৭১","১০ এপ্রিল ১৯৭১","১৭ এপ্রিল ১৯৭১","৭ মার্চ ১৯৭১"],2,3],
-        ["মুজিবনগর কোন জেলায়?",["কুষ্টিয়া","যশোর","মেহেরপুর","চুয়াডাঙ্গা"],2,3],
-        ["মুজিবনগর সরকারের প্রধানমন্ত্রী কে ছিলেন?",["শেখ মুজিবুর রহমান","সৈয়দ নজরুল ইসলাম","খন্দকার মোশতাক","তাজউদ্দীন আহমেদ"],3,3],
-        ["মুজিবনগর সরকারের অস্থায়ী রাষ্ট্রপতি কে ছিলেন?",["শেখ মুজিবুর রহমান","তাজউদ্দীন আহমেদ","মনসুর আলী","সৈয়দ নজরুল ইসলাম"],3,3],
-        ["বাংলাদেশকে প্রথম স্বীকৃতি দেয় কোন দেশ?",["ভারত","সোভিয়েত ইউনিয়ন","ভুটান","মায়ানমার"],2,3],
-        ["মুক্তিযুদ্ধে 'অপারেশন জ্যাকপট' কী?",["স্থলপথে আক্রমণ","বিমান হামলা","নৌ-গেরিলাদের বন্দর ধ্বংস অভিযান","ঢাকা মুক্ত করার অভিযান"],2,3],
-        ["১৯৫২ সালের ভাষা আন্দোলনে প্রথম শহীদ হন কে?",["আবুল বরকত","রফিকউদ্দিন আহমেদ","মো. সালাম","মো. জব্বার"],1,3],
-        ["বঙ্গবন্ধুর ৭ মার্চের ভাষণ ইউনেস্কোর 'বিশ্ব প্রামাণ্য ঐতিহ্য' হয় কত সালে?",["২০১৫","২০১৬","২০১৭","২০১৮"],2,3],
-        ["মুক্তিযুদ্ধে বীরশ্রেষ্ঠ খেতাব পান কতজন?",["৫","৬","৭","৮"],2,3],
-        ["মুক্তিযুদ্ধে শহীদের আনুমানিক সংখ্যা কত?",["১০ লক্ষ","২০ লক্ষ","৩০ লক্ষ","৪০ লক্ষ"],2,3],
-        ["'ছয় দফা' কর্মসূচি কত সালে ঘোষণা করা হয়?",["১৯৬৩","১৯৬৪","১৯৬৬","১৯৬৮"],2,3],
-        ["১৯৬৯-এর গণঅভ্যুত্থানে শহীদ ছাত্রনেতার নাম কী?",["বরকত","রফিক","আসাদুজ্জামান","জব্বার"],2,3],
-        ["বাংলাদেশের স্বাধীনতার ঘোষণা প্রথম কোথায় পাঠ করা হয়?",["ঢাকায়","কুমিল্লায়","রাজশাহীতে","চট্টগ্রামের কালুরঘাট বেতার কেন্দ্র থেকে"],3,3],
-        ["পলাশীর যুদ্ধ কত সালে সংঘটিত হয়?",["১৭৫৫","১৭৫৬","১৭৫৭","১৭৫৮"],2,3],
-        ["বাংলাদেশের প্রথম সংবিধান কার্যকর হয় কোন তারিখে?",["২৬ মার্চ ১৯৭২","১৬ ডিসেম্বর ১৯৭২","৪ নভেম্বর ১৯৭২","১৭ এপ্রিল ১৯৭২"],2,3],
-        ["বাংলাদেশ জাতিসংঘের সদস্যপদ পায় কত সালে?",["১৯৭২","১৯৭৩","১৯৭৪","১৯৭৫"],2,3],
-        ["বাংলাদেশের জাতীয় স্মৃতিসৌধ কোথায়?",["মিরপুরে","আজিমপুরে","সাভারে","ধানমন্ডিতে"],2,3],
-        ["জাতীয় স্মৃতিসৌধের স্থপতি কে?",["মাজহারুল ইসলাম","মোস্তফা হালিম","সৈয়দ মইনুল হোসেন","ফারুক আজম"],2,3],
-        ["বাংলাদেশের 'গণহত্যা দিবস' কোন তারিখে পালিত হয়?",["২৬ মার্চ","১৪ ডিসেম্বর","২৫ মার্চ","১৬ ডিসেম্বর"],2,3],
-        ["'শহীদ বুদ্ধিজীবী দিবস' কোন তারিখে পালিত হয়?",["১৫ ডিসেম্বর","১৪ ডিসেম্বর","১৩ ডিসেম্বর","১৬ ডিসেম্বর"],1,3],
-      ]
-    },
-    {
-      name:"বাংলাদেশের ভূগোল, জাতীয় প্রতীক ও সংবিধান",
-      mcqs:[
-        ["বাংলাদেশের মোট আয়তন কত বর্গকিলোমিটার?",["১৪৭,৫৭০","১৪৩,৯৯৮","১৩৫,৫৫০","১৫৬,০০০"],1,3],
-        ["বাংলাদেশের মোট বিভাগ কতটি?",["৬","৭","৮","৯"],2,3],
-        ["বাংলাদেশের মোট জেলা কতটি?",["৬১","৬২","৬৪","৬৬"],2,3],
-        ["বাংলাদেশের সর্ববৃহৎ জেলা (আয়তনে) কোনটি?",["ময়মনসিংহ","বান্দরবান","রাঙ্গামাটি","সিলেট"],2,3],
-        ["বাংলাদেশের ক্ষুদ্রতম জেলা (আয়তনে) কোনটি?",["নারায়ণগঞ্জ","নরসিংদী","মেহেরপুর","মুন্সীগঞ্জ"],2,3],
-        ["বাংলাদেশের সর্বোচ্চ পর্বতশৃঙ্গ কোনটি?",["কেওক্রাডং","চিম্বুক","তাজিনডং (বিজয়)","গারো পাহাড়"],2,3],
-        ["সুন্দরবন কোন জেলাসমূহে অবস্থিত?",["বাগেরহাট ও খুলনা","পটুয়াখালী","সাতক্ষীরা","খুলনা, সাতক্ষীরা ও বাগেরহাট"],3,3],
-        ["সুন্দরবনকে ইউনেস্কো 'বিশ্ব ঐতিহ্যবাহী স্থান' ঘোষণা করে কত সালে?",["১৯৯৫","১৯৯৭","১৯৯৯","২০০১"],1,3],
-        ["কক্সবাজার সমুদ্র সৈকতের দৈর্ঘ্য কত কিলোমিটার?",["প্রায় ১২০","প্রায় ১৫৫","প্রায় ১৮০","প্রায় ৯০"],0,3],
-        ["বাংলাদেশের জাতীয় ফুল কোনটি?",["পদ্ম","গোলাপ","শাপলা","চামেলি"],2,3],
-        ["বাংলাদেশের জাতীয় পাখি কোনটি?",["ময়না","শালিক","ঈগল","দোয়েল"],3,3],
-        ["বাংলাদেশের জাতীয় মাছ কোনটি?",["রুই","কাতলা","পাঙ্গাশ","ইলিশ"],3,3],
-        ["বাংলাদেশের জাতীয় ফল কোনটি?",["আম","কলা","লিচু","কাঁঠাল"],3,3],
-        ["বাংলাদেশের জাতীয় পশু কোনটি?",["হাতি","হরিণ","রয়েল বেঙ্গল টাইগার","গরু"],2,3],
-        ["বাংলাদেশের সংবিধানের মূলনীতি কয়টি?",["৩","৪","৫","৬"],1,3],
-        ["বাংলাদেশের সংবিধানের চারটি মূলনীতি কোনগুলো?",["গণতন্ত্র, ইসলাম, সমাজতন্ত্র, জাতীয়তাবাদ","জাতীয়তাবাদ, গণতন্ত্র, ধর্মনিরপেক্ষতা, সমাজতন্ত্র","গণতন্ত্র, ন্যায়বিচার, স্বাধীনতা, সমতা","জাতীয়তাবাদ, ঐক্য, অগ্রগতি, স্বাধীনতা"],1,3],
-        ["বাংলাদেশের জাতীয় সংসদে মোট আসন কত?",["৩০০","৩৫০","৩৫৩","৩০৩"],0,3],
-        ["বাংলাদেশের জাতীয় সংসদে নারীর জন্য সংরক্ষিত আসন কতটি?",["৪৫","৫০","৫৫","৬০"],1,3],
-        ["সংবিধানের কোন অনুচ্ছেদে বাংলাকে রাষ্ট্রভাষা ঘোষণা করা হয়েছে?",["২","৩","৪","৫"],1,3],
-        ["বাংলাদেশের সংসদীয় নির্বাচনে ভোট দেওয়ার ন্যূনতম বয়স কত?",["১৬","১৭","১৮","২১"],2,3],
-        ["পদ্মা নদীর উৎপত্তিস্থল কোথায়?",["তিব্বতের মানস সরোবর","হিমালয়ের গঙ্গোত্রী হিমবাহ","আসামের পাহাড়","ভারতের পশ্চিমবঙ্গ"],1,3],
-        ["বাংলাদেশের বৃহত্তম নদী কোনটি?",["পদ্মা","যমুনা","মেঘনা","ব্রহ্মপুত্র"],2,2],
-        ["বাংলাদেশের একমাত্র প্রবাল দ্বীপ কোনটি?",["মহেশখালী","সন্দ্বীপ","হাতিয়া","সেন্ট মার্টিন"],3,3],
-        ["বাংলাদেশের বৃহত্তম দ্বীপ কোনটি?",["মহেশখালী","সন্দ্বীপ","ভোলা","হাতিয়া"],2,3],
-        ["রূপপুর পারমাণবিক বিদ্যুৎকেন্দ্র কোথায়?",["ঈশ্বরদী, পাবনা","রাজশাহী","গোপালগঞ্জ","ময়মনসিংহ"],0,3],
-        ["বাংলাদেশের প্রধান রপ্তানি পণ্য কোনটি?",["পাট","চা","চিংড়ি","তৈরি পোশাক (RMG)"],3,3],
-        ["বাংলাদেশের জাতীয় সংসদ ভবনের স্থপতি কে?",["মাজহারুল ইসলাম","লুই আই. কান","ফ্রাঙ্ক লয়েড রাইট","রফিক আজম"],1,3],
-        ["বাংলাদেশে চা উৎপাদনে শীর্ষ জেলা কোনটি?",["সিলেট","হবিগঞ্জ","মৌলভীবাজার","ব্রাহ্মণবাড়িয়া"],2,3],
-        ["বিশ্বের বৃহত্তম ব-দ্বীপ কোনটি?",["নীল নদের ব-দ্বীপ","আমাজন ব-দ্বীপ","গঙ্গা-ব্রহ্মপুত্র ব-দ্বীপ (বাংলাদেশ)","মিসিসিপি ব-দ্বীপ"],2,3],
-        ["বাংলাদেশের মোট জনসংখ্যা (২০২৩ আদমশুমারি)?",["১৫ কোটি","১৬.৫১ কোটি","১৭ কোটি","১৮ কোটি"],1,3],
-      ]
-    },
-    {
-      name:"মেগাপ্রজেক্ট ও অবকাঠামো উন্নয়ন (২০২৪–২০২৫)",
-      mcqs:[
-        ["পদ্মা বহুমুখী সেতুর দৈর্ঘ্য কত কিলোমিটার?",["৪.৮","৫.৫","৬.১৫","৭.০"],2,3],
-        ["পদ্মা সেতু উদ্বোধন হয় কত তারিখে?",["২৬ মার্চ ২০২২","২৫ জুন ২০২২","১৬ ডিসেম্বর ২০২২","৭ জানুয়ারি ২০২৩"],1,3],
-        ["পদ্মা সেতুতে রেল লাইন কোন স্তরে?",["উপরে","মধ্যে","নিচে","পাশে"],2,3],
-        ["পদ্মা সেতুর নির্মাণকারী প্রতিষ্ঠান কোন দেশের?",["চীন","জাপান","দক্ষিণ কোরিয়া","ভারত"],0,3],
-        ["পদ্মা সেতু কোন দুটি প্রান্তকে সংযুক্ত করে?",["ঢাকা ও ফরিদপুর","মুন্সীগঞ্জ (মাওয়া) ও শরীয়তপুর (জাজিরা)","ঢাকা ও বরিশাল","মাদারীপুর ও ঢাকা"],1,3],
-        ["বঙ্গবন্ধু (কর্ণফুলী) টানেল কোন নদীর তলদেশে?",["পদ্মা","মেঘনা","বুড়িগঙ্গা","কর্ণফুলী"],3,3],
-        ["বঙ্গবন্ধু টানেলের দৈর্ঘ্য কত মিটার?",["৩,১০০","৩,৩৭৫","৪,০০০","৫,০০০"],1,3],
-        ["বঙ্গবন্ধু টানেল উদ্বোধন হয় কত সালে?",["২০২১","২০২২","২০২৩","২০২৪"],2,3],
-        ["ঢাকা মেট্রোরেল (MRT-6) প্রথম পর্বের উদ্বোধন হয় কত সালে?",["২০২১","২০২২","২০২৩","২০২৪"],1,3],
-        ["MRT-6-এর পূর্ণ রুট কোথা থেকে কোথা?",["মিরপুর থেকে মতিঝিল","উত্তরা উত্তর থেকে কমলাপুর","উত্তরা থেকে সদরঘাট","গাজীপুর থেকে মতিঝিল"],1,3],
-        ["MRT-6 তে মোট কতটি স্টেশন?",["১৬","১৭","২০","১৮"],1,3],
-        ["MRT মানে কী?",["Main Road Transit","Metro Rail Transit","Mass Rapid Transit","Modern Rail Transport"],2,3],
-        ["মাতারবাড়ী গভীর সমুদ্রবন্দর কোথায়?",["চট্টগ্রাম","পটুয়াখালী","কক্সবাজার জেলার মহেশখালী","খুলনা"],2,3],
-        ["মাতারবাড়ী বন্দর নির্মাণে সহায়তা করছে কোন দেশ?",["চীন","ভারত","জাপান","যুক্তরাষ্ট্র"],2,3],
-        ["হযরত শাহজালাল বিমানবন্দরের তৃতীয় টার্মিনাল উদ্বোধন হয় কত সালে?",["২০২২","২০২৩","২০২৪","২০২৫"],1,3],
-        ["তৃতীয় টার্মিনাল নির্মাণকারী কোম্পানি কোন দেশের?",["চীন","জাপান","দক্ষিণ কোরিয়া","ভারত"],1,3],
-        ["রূপপুর পারমাণবিক বিদ্যুৎকেন্দ্রের মোট উৎপাদন ক্ষমতা কত মেগাওয়াট?",["৮০০","১,২০০","২,৪০০","৩,৬০০"],2,3],
-        ["রূপপুর পারমাণবিক বিদ্যুৎকেন্দ্র নির্মাণে সহায়তাকারী দেশ?",["চীন","ভারত","রাশিয়া","যুক্তরাষ্ট্র"],2,3],
-        ["বঙ্গবন্ধু স্যাটেলাইট-১ উৎক্ষেপণ হয় কত সালে?",["২০১৭","২০১৮","২০১৯","২০২০"],1,3],
-        ["বঙ্গবন্ধু স্যাটেলাইট-১ কোথা থেকে উৎক্ষেপণ করা হয়?",["ভারত","রাশিয়া","চীন","মার্কিন যুক্তরাষ্ট্রের ফ্লোরিডা"],3,3],
-        ["ঢাকা এলিভেটেড এক্সপ্রেসওয়ের দৈর্ঘ্য কত কিলোমিটার?",["১৫","১৯.৭৩","২২.৫","২৫"],1,3],
-        ["মিরসরাই অর্থনৈতিক অঞ্চলের নাম কী?",["মিরসরাই ইপিজেড","বঙ্গবন্ধু শিল্পনগর","চট্টগ্রাম ইকোনমিক জোন","বে অব বেঙ্গল ইন্ডাস্ট্রিয়াল জোন"],1,3],
-        ["বাংলাদেশে ৪জি ইন্টারনেট সেবা চালু হয় কত সালে?",["২০১৬","২০১৭","২০১৮","২০১৯"],2,3],
-        ["বাংলাদেশে পরীক্ষামূলক ৫জি সেবা চালু হয় কত সালে?",["২০২১","২০২২","২০২৩","২০২৪"],2,3],
-        ["বাংলাদেশে বিদ্যুৎ সংযোগের হার (২০২৪)?",["৮০%","৯০%","৯৫%","১০০% (সর্বজনীন)"],3,3],
-        ["পদ্মা সেতুতে রেল সংযোগ চালু হয় কত সালে?",["২০২২","২০২৩","২০২৪","২০২৫"],1,3],
-        ["বাংলাদেশে মেট্রোরেল মোট কত লাইনে হবে (পরিকল্পনা)?",["৩টি","৪টি","৬টি","৮টি"],2,2],
-        ["পায়রা সমুদ্রবন্দর কোথায়?",["খুলনা","বরিশাল","পটুয়াখালীতে","ভোলায়"],2,3],
-        ["জাতীয় ডেটা সেন্টার স্থাপিত হয়েছে কোথায়?",["গাজীপুর","আগারগাঁও","কালিয়াকৈর","ধানমন্ডি"],2,3],
-        ["বাংলাদেশের রপ্তানি প্রক্রিয়াকরণ অঞ্চল (EPZ) কতটি?",["৬","৮","৯","১০"],1,3],
-      ]
-    },
-    {
-      name:"আন্তর্জাতিক বিষয়াবলি, সংস্থা ও অর্থনীতি",
-      mcqs:[
-        ["জাতিসংঘের সদর দপ্তর কোথায়?",["লন্ডন","জেনেভা","প্যারিস","নিউইয়র্ক"],3,3],
-        ["জাতিসংঘ প্রতিষ্ঠিত হয় কত সালে?",["১৯৪৩","১৯৪৪","১৯৪৫","১৯৪৬"],2,3],
-        ["জাতিসংঘের বর্তমান সদস্যদেশ কতটি?",["১৯১","১৯২","১৯৩","১৯৫"],2,3],
-        ["জাতিসংঘের নিরাপত্তা পরিষদের স্থায়ী সদস্য কতটি?",["৩","৪","৫","৬"],2,3],
-        ["নিরাপত্তা পরিষদের স্থায়ী সদস্যরা কোন কোন দেশ?",["যুক্তরাষ্ট্র, যুক্তরাজ্য, ফ্রান্স, রাশিয়া, চীন","যুক্তরাষ্ট্র, যুক্তরাজ্য, রাশিয়া, ভারত, চীন","যুক্তরাষ্ট্র, ফ্রান্স, জার্মানি, রাশিয়া, চীন","যুক্তরাষ্ট্র, যুক্তরাজ্য, ফ্রান্স, জার্মানি, জাপান"],0,3],
-        ["WHO-র সদর দপ্তর কোথায়?",["নিউইয়র্ক","লন্ডন","জেনেভা","প্যারিস"],2,3],
-        ["IMF-এর সদর দপ্তর কোথায়?",["নিউইয়র্ক","ওয়াশিংটন ডিসি","লন্ডন","জেনেভা"],1,3],
-        ["বিশ্বব্যাংকের সদর দপ্তর কোথায়?",["নিউইয়র্ক","লন্ডন","ওয়াশিংটন ডিসি","টোকিও"],2,3],
-        ["WTO-র সদর দপ্তর কোথায়?",["নিউইয়র্ক","ব্রাসেলস","লন্ডন","জেনেভা"],3,3],
-        ["OIC-র সদর দপ্তর কোথায়?",["রিয়াদ","মক্কা","আঙ্কারা","জেদ্দা"],3,3],
-        ["SAARC-এর সদর দপ্তর কোথায়?",["নয়াদিল্লি","ঢাকা","ইসলামাবাদ","কাঠমান্ডু"],3,3],
-        ["SAARC-এর সদস্যদেশ কতটি?",["৬","৭","৮","৯"],2,3],
-        ["G-20 কী?",["২০টি দেশের সামরিক জোট","বিশ্বের ২০টি বৃহৎ অর্থনীতির ফোরাম","জাতিসংঘের উপসংস্থা","ওপেকের বিকল্প"],1,3],
-        ["BRICS-এ বর্তমানে কতটি সদস্যদেশ (২০২৪ সম্প্রসারণের পর)?",["৫","৮","১০","১২"],2,3],
-        ["BRICS-এর নতুন সদস্য (২০২৪)?",["পাকিস্তান, নাইজেরিয়া","ইরান, ইথিওপিয়া, মিসর, UAE, সৌদি আরব","বাংলাদেশ, ভিয়েতনাম","ইন্দোনেশিয়া, আর্জেন্টিনা"],1,3],
-        ["জলবায়ু পরিবর্তন সংক্রান্ত প্যারিস চুক্তি স্বাক্ষরিত হয় কত সালে?",["২০১৩","২০১৪","২০১৫","২০১৬"],2,3],
-        ["COP29 জলবায়ু সম্মেলন কোথায় অনুষ্ঠিত হয়?",["দুবাই","মিসর","বাকু, আজারবাইজান","ব্রাজিল"],2,3],
-        ["জাতিসংঘের মহাসচিব (২০২৪) কে?",["বান কি মুন","কফি আনান","আন্তোনিও গুতেরেস","তেড্রোস"],2,3],
-        ["বাংলাদেশ LDC থেকে উত্তরণ করবে কত সালে?",["২০২৫","২০২৬","২০২৭","২০২৮"],2,3],
-        ["বিশ্বে তৈরি পোশাক রপ্তানিতে বাংলাদেশ কততম?",["প্রথম","দ্বিতীয়","তৃতীয়","চতুর্থ"],1,3],
-        ["বাংলাদেশ কোন দেশে সবচেয়ে বেশি রপ্তানি করে?",["জার্মানি","যুক্তরাজ্য","যুক্তরাষ্ট্র","ফ্রান্স"],2,3],
-        ["বাংলাদেশ কোন দেশ থেকে সবচেয়ে বেশি আমদানি করে?",["ভারত","চীন","মালয়েশিয়া","জাপান"],1,3],
-        ["বিশ্বব্যাংক বাংলাদেশকে কোন শ্রেণিতে রাখে?",["নিম্ন আয়ের দেশ","নিম্নমধ্যম আয়ের দেশ","উচ্চমধ্যম আয়ের দেশ","উচ্চ আয়ের দেশ"],1,3],
-        ["SDG-এর লক্ষ্যমাত্রা কতটি?",["১৫","১৭","১৯","২১"],1,3],
-        ["SDG বাস্তবায়নের সময়সীমা কত?",["২০২৫","২০৩০","২০৩৫","২০৫০"],1,3],
-        ["আইএমএফ বর্তমানে বাংলাদেশকে ঋণ দিচ্ছে কত বিলিয়ন ডলার?",["২ বিলিয়ন","৩.৩ বিলিয়ন","৪.৫ বিলিয়ন","৫ বিলিয়ন"],1,3],
-        ["বাংলাদেশ থেকে প্রবাসী আয় সবচেয়ে বেশি আসে কোথা থেকে?",["মধ্যপ্রাচ্য","মার্কিন যুক্তরাষ্ট্র","ইউরোপ","দক্ষিণ-পূর্ব এশিয়া"],0,3],
-        ["পৃথিবীর সর্বোচ্চ পর্বতশৃঙ্গ কোনটি?",["কে-টু","কাঞ্চনজঙ্ঘা","লোৎসে","মাউন্ট এভারেস্ট"],3,3],
-        ["পৃথিবীর বৃহত্তম মহাদেশ কোনটি?",["আফ্রিকা","উত্তর আমেরিকা","ইউরোপ","এশিয়া"],3,3],
-        ["বিশ্বের বৃহত্তম মহাসাগর কোনটি?",["আটলান্টিক","ভারত","আর্কটিক","প্রশান্ত"],3,3],
-        ["ড. মুহাম্মদ ইউনূস কত সালে নোবেল পুরস্কার পান?",["২০০৪","২০০৫","২০০৬","২০০৭"],2,3],
-      ]
-    },
-    {
-      name:"বাংলাদেশের সাম্প্রতিক ঘটনাবলি ২০২৩–২০২৫",
-      mcqs:[
-        ["জুলাই ২০২৪-এ বাংলাদেশে কোন আন্দোলন শুরু হয়?",["শ্রমিক আন্দোলন","কোটা সংস্কার আন্দোলন","কৃষক আন্দোলন","শিক্ষা সংস্কার আন্দোলন"],1,3],
-        ["জুলাই-আগস্ট ২০২৪ গণ-অভ্যুত্থানের পর গঠিত অন্তর্বর্তী সরকারের প্রধান উপদেষ্টা কে?",["তারেক রহমান","খালেদা জিয়া","ড. মুহাম্মদ ইউনূস","মাহমুদুর রহমান মান্না"],2,3],
-        ["অন্তর্বর্তী সরকার কখন দায়িত্ব গ্রহণ করে?",["৫ আগস্ট ২০২৪","৮ আগস্ট ২০২৪","১৫ আগস্ট ২০২৪","১ সেপ্টেম্বর ২০২৪"],1,3],
-        ["জুলাই-আগস্ট ২০২৪ অভ্যুত্থানে কোন নেত্রী দেশ ছেড়ে চলে যান?",["খালেদা জিয়া","রওশন এরশাদ","শেখ হাসিনা","দিলারা চৌধুরী"],2,3],
-        ["১২তম জাতীয় সংসদ নির্বাচন কত তারিখে অনুষ্ঠিত হয়?",["৭ ডিসেম্বর ২০২৩","৭ জানুয়ারি ২০২৪","৭ ফেব্রুয়ারি ২০২৪","২৮ জানুয়ারি ২০২৪"],1,3],
-        ["জুলাই ২০২৪ আন্দোলনে শহীদ হওয়া যার নাম সবচেয়ে আলোচিত?",["মুগ্ধ","নাঈম","রিফাত","আবু সাঈদ"],3,3],
-        ["অন্তর্বর্তী সরকার গঠনের পর কোন কমিশন গঠিত হয়?",["সংস্কার কমিশন","জাতীয় সংলাপ কমিটি","আলী রীয়াজ নেতৃত্বাধীন সংবিধান সংস্কার কমিশন","বিচার বিভাগ সংস্কার কমিশন"],2,3],
-        ["২০২৪ সালে বাংলাদেশের বৈদেশিক মুদ্রার রিজার্ভ কত পর্যায়ে ছিল?",["৩০ বিলিয়ন ডলার","২০ বিলিয়ন ডলার","১৫-১৮ বিলিয়ন ডলার (আইএমএফ হিসাবে)","৫ বিলিয়ন ডলার"],2,3],
-        ["বাংলাদেশ ব্যাংকের গভর্নর (২০২৪-২৫) কে?",["আব্দুর রউফ তালুকদার","ফজলে কবির","আতিউর রহমান","আহসান এইচ মনসুর"],3,3],
-        ["২০২৩-২৪ সালে বাংলাদেশের প্রবাসী আয় (রেমিট্যান্স) কত?",["$১৬ বিলিয়ন","$২১.৯ বিলিয়ন","$২৫ বিলিয়ন","$৩০ বিলিয়ন"],1,3],
-        ["২০২৩ SAFF চ্যাম্পিয়নশিপে ফুটবলে চ্যাম্পিয়ন কে?",["বাংলাদেশ","পাকিস্তান","নেপাল","ভারত"],3,3],
-        ["২০২৪ T20 বিশ্বকাপ কোথায় অনুষ্ঠিত হয়?",["অস্ট্রেলিয়া","ওয়েস্ট ইন্ডিজ ও যুক্তরাষ্ট্র","ইংল্যান্ড","ভারত"],1,3],
-        ["২০২৪ T20 বিশ্বকাপ কে জিতেছে?",["ওয়েস্ট ইন্ডিজ","অস্ট্রেলিয়া","ইংল্যান্ড","ভারত"],3,3],
-        ["২০২৩ একদিনের বিশ্বকাপ কে জিতেছে?",["ভারত","ইংল্যান্ড","দক্ষিণ আফ্রিকা","অস্ট্রেলিয়া"],3,3],
-        ["প্যারিস অলিম্পিক ২০২৪ কোন সালে?",["২০২৩","২০২৪","২০২৫","২০২৬"],1,3],
-        ["২০২৪-২৫ অর্থবছরে বাংলাদেশের জাতীয় বাজেটের আকার কত?",["৫ লক্ষ কোটি টাকা","৭ লক্ষ ৯৭ হাজার কোটি টাকা","৯ লক্ষ কোটি টাকা","৪ লক্ষ কোটি টাকা"],1,3],
-        ["বাংলাদেশের বর্তমান মাথাপিছু আয় (২০২৪-২৫)?",["$১,৫০০","$২,০০০","$২,৭৬৪","$৩,৫০০"],2,3],
-        ["বাংলাদেশে গার্মেন্টস খাতে ন্যূনতম মজুরি (২০২৩-২৪)?",["৮,০০০ টাকা","১০,০০০ টাকা","১২,৫০০ টাকা","১৫,০০০ টাকা"],2,3],
-        ["বাংলাদেশে 'ডিজিটাল নিরাপত্তা আইন' বাতিল করে কোন আইন করা হয়?",["সাইবার নিরাপত্তা আইন","ডেটা সুরক্ষা আইন","তথ্য প্রযুক্তি আইন","ইন্টারনেট নিরাপত্তা আইন"],0,3],
-        ["বাংলাদেশের বর্তমান রাষ্ট্রপতি (২০২৫) কে?",["আবদুল হামিদ","শেখ হাসিনা","মোঃ সাহাবুদ্দিন","মির্জা ফখরুল ইসলাম"],2,3],
-        ["গ্রামীণ ব্যাংকের প্রতিষ্ঠাতা কে?",["ড. ফজলে হাসান আবেদ","ড. মুহাম্মদ ইউনূস","ড. আতিউর রহমান","ড. ওয়াহিদউদ্দিন মাহমুদ"],1,3],
-        ["বাংলাদেশে মোবাইল ব্যাংকিং ব্যবহারকারী কত কোটির বেশি (২০২৪)?",["৩ কোটি","৬ কোটি","১০ কোটি","২০ কোটি"],2,3],
-        ["২০২৪ সালে বাংলাদেশের সবচেয়ে ক্ষতিগ্রস্ত বন্যা এলাকা কোনটি?",["রাজশাহী","ময়মনসিংহ","ফেনী, নোয়াখালী ও কুমিল্লা","বরিশাল"],2,3],
-        ["বাংলাদেশে ই-পাসপোর্ট চালু হয় কত সালে?",["২০১৮","২০২০","২০২১","২০২২"],1,3],
-        ["বাংলাদেশ থেকে সবচেয়ে বেশি প্রবাসী শ্রমিক কোন দেশে?",["UAE","কুয়েত","মালয়েশিয়া","সৌদি আরব"],3,3],
-        ["বাংলাদেশে 'স্মার্ট বাংলাদেশ' ভিশন ২০৪১ কোন সালে ঘোষণা?",["২০২০","২০২১","২০২২","২০২৩"],2,2],
-        ["বাংলাদেশে ২০২৩ সালে যে নতুন শিক্ষাক্রম চালু হয়েছে, তার মূল বৈশিষ্ট্য কী?",["মুখস্থনির্ভর পরীক্ষা","দক্ষতাভিত্তিক ও অভিজ্ঞতামূলক শিক্ষা","পুরনো পাঠ্যক্রম বহাল","শুধু মাধ্যমিকে পরিবর্তন"],1,2],
-        ["বাংলাদেশ T20 বিশ্বকাপ ২০২৪-এ কোন পর্যায়ে বিদায় নেয়?",["প্রথম রাউন্ডে","সুপার ৮-এ","সেমিফাইনালে","ফাইনালে"],1,3],
-        ["২০২৩ সালে ক্রিকেট বিশ্বকাপে বাংলাদেশ কোন দলকে হারায়?",["ভারত","পাকিস্তান","ইংল্যান্ড","অস্ট্রেলিয়া"],2,3],
-        ["বাংলাদেশ টেস্ট দলের বর্তমান অধিনায়ক কে (২০২৫)?",["শাকিব আল হাসান","মুশফিকুর রহিম","নজমুল হোসেন শান্ত","মেহেদী হাসান মিরাজ"],2,3],
-      ]
-    }
-  ]
-}// END gk
-};// END SUBJECTS
-</script>
-<script>
-// ══════════════════════════════════════════════
-//  STATE
-// ══════════════════════════════════════════════
-let practiceScore = 0, practiceCorrect = 0, practiceWrong = 0;
-let testState = null; // {questions, answers, current, timer, subject, startTime}
-let testHistory = JSON.parse(localStorage.getItem('nu_test_history')||'[]');
-
-// ══════════════════════════════════════════════
-//  UTILITY
-// ══════════════════════════════════════════════
-function stars(n){
-  const colors = ['#8a9ab5','#60a5fa','#f59e0b'];
-  const s = n===3?'★★★':n===2?'★★':'★';
-  return `<span style="color:${colors[n-1]}">${s}</span>`;
-}
-function optLetters(i){return ['A','B','C','D'][i]}
-function formatTime(s){const m=Math.floor(s/60);const sec=s%60;return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`}
-function gradeLabel(pct){
-  if(pct>=85)return{txt:'A+ Excellent!',cls:'grade-a'};
-  if(pct>=70)return{txt:'A Good Job!',cls:'grade-a'};
-  if(pct>=55)return{txt:'B Average',cls:'grade-b'};
-  if(pct>=40)return{txt:'C Below Average',cls:'grade-c'};
-  return{txt:'D Needs More Practice',cls:'grade-d'};
-}
-
-// ══════════════════════════════════════════════
-//  PRACTICE POINTS SYSTEM
-// ══════════════════════════════════════════════
-function updateScoreWidget(){
-  const w = document.getElementById('scoreWidget');
-  const sc = document.getElementById('swScore');
-  const det = document.getElementById('swDetail');
-  w.classList.add('show');
-  sc.textContent = practiceScore;
-  sc.classList.add('score-pop');
-  setTimeout(()=>sc.classList.remove('score-pop'),300);
-  det.innerHTML = `✓ ${practiceCorrect} &nbsp; ✗ ${practiceWrong}`;
-}
-function resetScore(){
-  practiceScore=0;practiceCorrect=0;practiceWrong=0;
-  document.getElementById('scoreWidget').classList.remove('show');
-}
-function handlePracticeOpt(btn){
-  const qid = btn.dataset.qid;
-  const oi = parseInt(btn.dataset.oi);
-  const correct = parseInt(btn.dataset.correct);
-  const container = document.getElementById('mcq_'+qid);
-  if(container.classList.contains('locked')) return;
-  container.classList.add('locked');
-
-  const allOpts = container.querySelectorAll('.opt');
-  allOpts.forEach(b=>b.disabled=true);
-
-  const footer = container.querySelector('.mcq-footer');
-  if(oi===correct){
-    btn.classList.add('correct');
-    practiceScore+=4; practiceCorrect++;
-    const pop = document.createElement('span');
-    pop.className='point-pop plus'; pop.textContent='+4';
-    footer.appendChild(pop);
-    setTimeout(()=>pop.remove(),1500);
-    container.classList.add('correct-answered');
-  } else {
-    btn.classList.add('wrong');
-    allOpts[correct].classList.add('reveal-correct');
-    practiceScore-=1; practiceWrong++;
-    const pop = document.createElement('span');
-    pop.className='point-pop minus'; pop.textContent='-1';
-    footer.appendChild(pop);
-    setTimeout(()=>pop.remove(),1500);
-    container.classList.add('wrong-answered');
-  }
-  updateScoreWidget();
-  // Update chapter progress
-  updateChapterProgress(qid.split('_')[0]);
-}
-function revealPracticeAns(qid, correct){
-  const container = document.getElementById('mcq_'+qid);
-  if(container.classList.contains('locked')) return;
-  container.classList.add('locked');
-  const allOpts = container.querySelectorAll('.opt');
-  allOpts.forEach(b=>b.disabled=true);
-  allOpts[parseInt(correct)].classList.add('reveal-correct');
-  const el = document.getElementById('anstxt_'+qid);
-  if(el) el.classList.add('show');
-}
-function updateChapterProgress(chKey){
-  const cells = document.querySelectorAll(`[data-qid^="${chKey}_"]`);
-  const total = new Set();
-  const done = new Set();
-  cells.forEach(c=>{
-    const qid = c.dataset.qid;
-    total.add(qid);
-    const box = document.getElementById('mcq_'+qid);
-    if(box&&box.classList.contains('locked')) done.add(qid);
-  });
-  const pct = total.size?Math.round(done.size/total.size*100):0;
-  const bar = document.getElementById('prog_'+chKey);
-  if(bar) bar.style.width = pct+'%';
-}
-
-// ══════════════════════════════════════════════
-//  RENDER PRACTICE MCQs
-// ══════════════════════════════════════════════
-function renderChapter(subjectKey, chIdx){
-  const ch = SUBJECTS[subjectKey].chapters[chIdx];
-  const chKey = `${subjectKey}_ch${chIdx}`;
-  const container = document.getElementById(`mcqs_${chKey}`);
-  const keyContainer = document.getElementById(`key_${chKey}`);
-  if(!container||container.innerHTML!=='') return;
-
-  let html='', keyHtml='<h5>📋 Answer Key</h5><div class="ans-key-grid">';
-  ch.mcqs.forEach((q,i)=>{
-    const [question,opts,correct,starCnt]=q;
-    const qid=`${chKey}_${i}`;
-    html+=`<div class="mcq" id="mcq_${qid}">
-      <div class="mcq-top">
-        <span class="mcq-qnum">Q${i+1}</span>
-        <span class="mcq-stars">${stars(starCnt)}</span>
-        <span class="mcq-q">${question}</span>
-      </div>
-      <div class="mcq-opts">
-        ${opts.map((o,oi)=>`<button class="opt" data-qid="${qid}" data-oi="${oi}" data-correct="${correct}" onclick="handlePracticeOpt(this)">${optLetters(oi)}) ${o}</button>`).join('')}
-      </div>
-      <div class="mcq-footer">
-        <button class="reveal-btn" onclick="revealPracticeAns('${qid}','${correct}')">Show Answer</button>
-        <span class="mcq-ans-txt" id="anstxt_${qid}">✓ ${opts[correct]}</span>
-      </div>
-    </div>`;
-    keyHtml+=`<div class="ans-pill">Q${i+1}: <span>${optLetters(correct)}</span></div>`;
-  });
-  keyHtml+='</div>';
-  container.innerHTML=html;
-  keyContainer.innerHTML=keyHtml;
-}
-
-// ══════════════════════════════════════════════
-//  BUILD SUBJECT CHAPTERS
-// ══════════════════════════════════════════════
-function buildSubjectChapters(subjectKey){
-  const subj = SUBJECTS[subjectKey];
-  const container = document.getElementById(`${subjectKey}-chapters`);
-  if(!container||container.innerHTML!=='') return;
-  let html='';
-  subj.chapters.forEach((ch,i)=>{
-    const chKey=`${subjectKey}_ch${i}`;
-    html+=`<div class="chapter" id="chap_${chKey}">
-      <div class="chapter-header" onclick="toggleChapter('${chKey}','${subjectKey}',${i})">
-        <span class="ch-num">${String(i+1).padStart(2,'0')}</span>
-        <span class="ch-name">${ch.name}</span>
-        <div class="ch-meta">
-          <span class="ch-count">${ch.mcqs.length} MCQs</span>
-          <div class="ch-progress-wrap"><div class="ch-progress-fill" id="prog_${chKey}"></div></div>
-          <span class="ch-arrow">▼</span>
-        </div>
-      </div>
-      <div class="chapter-body">
-        <div class="mcq-grid" id="mcqs_${chKey}"></div>
-        <div class="ans-key" id="key_${chKey}"></div>
-      </div>
-    </div>`;
-  });
-  container.innerHTML=html;
-}
-function toggleChapter(chKey, subjectKey, chIdx){
-  const ch = document.getElementById(`chap_${chKey}`);
-  const wasOpen = ch.classList.contains('open');
-  ch.classList.toggle('open');
-  if(!wasOpen) renderChapter(subjectKey, chIdx);
-}
-
-// ══════════════════════════════════════════════
-//  TAB NAVIGATION
-// ══════════════════════════════════════════════
-function showSubject(name){
-  document.querySelectorAll('.subject-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('panel-'+name).classList.add('active');
-  document.getElementById('tab-'+name).classList.add('active');
-  if(name==='bangla') buildSubjectChapters('bangla');
-  if(name==='gk') buildSubjectChapters('gk');
-  if(name==='history') renderHistory();
-}
-
-// ══════════════════════════════════════════════
-//  TEST MODE
-// ══════════════════════════════════════════════
-function openTestModal(){
-  document.getElementById('testModal').classList.add('open');
-  document.getElementById('testConfig').style.display='block';
-  document.getElementById('activeTest').style.display='none';
-  document.getElementById('testResults').style.display='none';
-  document.getElementById('modalTitle').textContent='🎯 Configure Your Test';
-  updateTestChapters();
-}
-function closeTest(){
-  if(testState&&testState.timerInterval) clearInterval(testState.timerInterval);
-  testState=null;
-  document.getElementById('testModal').classList.remove('open');
-}
-function updateTestChapters(){
-  const subj = document.getElementById('testSubjectSel').value;
-  const grid = document.getElementById('testChapChecks');
-  const chapters = SUBJECTS[subj].chapters;
-  grid.innerHTML = chapters.map((ch,i)=>`
-    <label class="chap-check-label" id="chklbl_${i}" onclick="this.classList.toggle('checked')">
-      <input type="checkbox" value="${i}" checked> ${ch.name.substring(0,45)}${ch.name.length>45?'...':''}
-    </label>`).join('');
-}
-function startTest(){
-  const subj = document.getElementById('testSubjectSel').value;
-  const qCount = Math.max(5,Math.min(100,parseInt(document.getElementById('testQCount').value)||20));
-  const timeMin = Math.max(5,Math.min(120,parseInt(document.getElementById('testTime').value)||30));
-  const order = document.getElementById('testOrder').value;
-
-  const selected = [...document.querySelectorAll('#testChapChecks input:checked')].map(i=>parseInt(i.value));
-  if(selected.length===0){alert('Please select at least one chapter.');return;}
-
-  // Gather questions
-  let pool=[];
-  selected.forEach(ci=>{
-    const ch=SUBJECTS[subj].chapters[ci];
-    ch.mcqs.forEach((q,qi)=>pool.push({...{q,qi,ci,subj},chapName:ch.name.substring(0,30)}));
-  });
-  if(order==='random') pool.sort(()=>Math.random()-0.5);
-  const questions = pool.slice(0,qCount);
-
-  testState = {
-    questions, answers: new Array(questions.length).fill(null),
-    current:0, totalTime:timeMin*60, timeLeft:timeMin*60,
-    subject:subj, subjectName:SUBJECTS[subj].name,
-    chapNames: selected.map(ci=>SUBJECTS[subj].chapters[ci].name.substring(0,30)),
-    startTime: Date.now(), timerInterval:null
-  };
-
-  document.getElementById('testConfig').style.display='none';
-  document.getElementById('activeTest').style.display='block';
-  document.getElementById('testResults').style.display='none';
-  document.getElementById('modalTitle').textContent=`🎯 ${SUBJECTS[subj].name} Test`;
-
-  testState.timerInterval = setInterval(tickTimer,1000);
-  renderTestQuestion();
-}
-function tickTimer(){
-  if(!testState) return;
-  testState.timeLeft--;
-  const el = document.getElementById('testTimer');
-  if(el) el.textContent = formatTime(testState.timeLeft);
-  if(testState.timeLeft<=60) el&&el.classList.add('urgent');
-  if(testState.timeLeft<=0){clearInterval(testState.timerInterval);submitTest();}
-}
-function renderTestQuestion(){
-  if(!testState) return;
-  const {questions,answers,current} = testState;
-  const total = questions.length;
-  const {q,chapName} = questions[current];
-  const [question,opts,correct,starCnt] = q;
-  const ans = answers[current];
-
-  document.getElementById('testProgressTxt').textContent = `Q ${current+1} / ${total}`;
-  document.getElementById('testProgressBar').style.width = `${((current+1)/total*100)}%`;
-
-  // Live score (already answered)
-  let liveScore=0;
-  answers.forEach((a,i)=>{
-    if(a===null) return;
-    liveScore += (a===questions[i].q[2])?4:-1;
-  });
-  document.getElementById('testScoreLive').textContent=`Score: ${liveScore}`;
-
-  document.getElementById('btnPrev').disabled = current===0;
-  document.getElementById('btnNext').textContent = current===total-1?'Last →':'Next →';
-
-  document.getElementById('testQContainer').innerHTML=`
-    <div class="test-q-card">
-      <div class="test-q-num">Q${current+1} · ${chapName} · ${stars(starCnt)}</div>
-      <div class="test-q-txt">${question}</div>
-      <div class="test-opts">
-        ${opts.map((o,oi)=>`
-          <button class="test-opt ${ans===oi?'t-selected':''}" 
-            onclick="selectTestOpt(${oi})">${optLetters(oi)}) ${o}</button>
-        `).join('')}
-      </div>
-    </div>`;
-}
-function selectTestOpt(oi){
-  if(!testState) return;
-  testState.answers[testState.current] = oi;
-  renderTestQuestion();
-}
-function testNav(dir){
-  if(!testState) return;
-  const next = testState.current+dir;
-  if(next<0||next>=testState.questions.length) return;
-  testState.current=next;
-  renderTestQuestion();
-}
-function submitTest(){
-  if(!testState) return;
-  clearInterval(testState.timerInterval);
-  const {questions,answers,subject,subjectName,chapNames} = testState;
-
-  let correct=0,wrong=0,skip=0,score=0;
-  const chapStats={};
-  questions.forEach(({q,chapName},i)=>{
-    const ans=answers[i];
-    const rightAns=q[2];
-    if(!chapStats[chapName]) chapStats[chapName]={correct:0,wrong:0,skip:0,total:0};
-    chapStats[chapName].total++;
-    if(ans===null){skip++;chapStats[chapName].skip++;}
-    else if(ans===rightAns){correct++;score+=4;chapStats[chapName].correct++;}
-    else{wrong++;score-=1;chapStats[chapName].wrong++;}
-  });
-  const maxScore=questions.length*4;
-  const accuracy=correct+wrong>0?Math.round(correct/(correct+wrong)*100):0;
-  const pct=Math.round((score/maxScore)*100);
-  const grade=gradeLabel(accuracy);
-
-  document.getElementById('activeTest').style.display='none';
-  document.getElementById('testResults').style.display='block';
-  document.getElementById('resultScoreBig').textContent=score;
-  document.getElementById('resultMaxScore').textContent=maxScore;
-  document.getElementById('resCorrect').textContent=correct;
-  document.getElementById('resWrong').textContent=wrong;
-  document.getElementById('resSkip').textContent=skip;
-  document.getElementById('resAccuracy').textContent=accuracy+'%';
-  const grEl=document.getElementById('resultGrade');
-  grEl.textContent=grade.txt; grEl.className='result-grade '+grade.cls;
-
-  // Chapter breakdown
-  let bHtml='';
-  Object.entries(chapStats).forEach(([name,stat])=>{
-    const p=stat.total?Math.round(stat.correct/stat.total*100):0;
-    const color=p>=70?'var(--green)':p>=40?'var(--gold)':'var(--red)';
-    bHtml+=`<div class="chap-row">
-      <span class="chap-row-name">${name}</span>
-      <div class="chap-row-bar-wrap"><div class="chap-row-bar" style="width:${p}%;background:${color}"></div></div>
-      <span class="chap-row-pct">${p}%</span>
-      <span class="chap-row-correct text-green">✓${stat.correct}</span>
-      <span class="chap-row-wrong text-red">✗${stat.wrong}</span>
-    </div>`;
-  });
-  document.getElementById('chapBreakdown').innerHTML=bHtml;
-
-  // Save to history
-  const histEntry={
-    date:new Date().toLocaleString('en-BD',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}),
-    subject:subjectName, total:questions.length, correct, wrong, skip, score, maxScore,
-    accuracy, chapStats
-  };
-  testHistory.unshift(histEntry);
-  if(testHistory.length>50) testHistory=testHistory.slice(0,50);
-  localStorage.setItem('nu_test_history',JSON.stringify(testHistory));
-}
-function retryTest(){
-  document.getElementById('testResults').style.display='none';
-  document.getElementById('testConfig').style.display='block';
-  document.getElementById('modalTitle').textContent='🎯 Configure Your Test';
-  testState=null;
-}
-
-// ══════════════════════════════════════════════
-//  TEST HISTORY
-// ══════════════════════════════════════════════
-function renderHistory(){
-  const panel = document.getElementById('historyPanel');
-  if(!testHistory.length){
-    panel.innerHTML='<div class="hist-empty">No tests yet. Click <strong>🎯 Take Test</strong> to begin your first test!</div>';
-    return;
-  }
-  let html='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem"><span style="font-family:Playfair Display,serif;font-size:1rem;color:#fff">Your Test History</span><button onclick="clearHistory()" style="background:none;border:1px solid var(--border);color:var(--muted);font-size:.75rem;padding:.2rem .6rem;border-radius:4px;cursor:pointer">Clear All</button></div><div class="hist-list">';
-  testHistory.forEach((h,idx)=>{
-    const cls = h.accuracy>=70?'good':h.accuracy>=45?'avg':'low';
-    const badge = `${h.score}/${h.maxScore}`;
-    html+=`<div class="hist-item" id="hist_${idx}">
-      <div class="hist-item-head" onclick="toggleHistItem(${idx})">
-        <span class="hist-date">${h.date}</span>
-        <span class="hist-subject">${h.subject} (${h.total}Q)</span>
-        <span class="hist-score-badge ${cls}">${badge} · ${h.accuracy}%</span>
-      </div>
-      <div class="hist-item-body">
-        <div style="display:flex;gap:1rem;font-size:.78rem;margin-bottom:.6rem;flex-wrap:wrap">
-          <span class="text-green">✓ ${h.correct} correct</span>
-          <span class="text-red">✗ ${h.wrong} wrong</span>
-          <span class="text-muted">— ${h.skip} skipped</span>
-        </div>
-        ${Object.entries(h.chapStats||{}).map(([name,s])=>`
-          <div class="hist-chap-row">
-            <span class="hist-chap-name">${name.substring(0,40)}</span>
-            <span class="hist-chap-correct">✓${s.correct}</span>
-            <span class="hist-chap-wrong">✗${s.wrong}</span>
-            <span class="text-muted">/${s.total}</span>
-          </div>`).join('')}
-      </div>
-    </div>`;
-  });
-  html+='</div>';
-  panel.innerHTML=html;
-}
-function toggleHistItem(idx){
-  document.getElementById('hist_'+idx).classList.toggle('open');
-}
-function clearHistory(){
-  if(confirm('Clear all test history?')){testHistory=[];localStorage.removeItem('nu_test_history');renderHistory();}
-}
-
-// ══════════════════════════════════════════════
-//  INIT
-// ══════════════════════════════════════════════
-window.addEventListener('DOMContentLoaded',()=>{
-  // Build default subject (bangla)
-  buildSubjectChapters('bangla');
-  // Auto-open first bangla chapter
-  const firstChap = document.getElementById('chap_bangla_ch0');
-  if(firstChap){
-    firstChap.classList.add('open');
-    renderChapter('bangla',0);
-  }
-});
-</script>
-</body>
-</html>
+<h2 class="font-display-lg text-title-sm mb-4 text-white">"The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice."</h2>
+<p class="text-slate-400 font-body-base leading-relaxed max-w-2xl mb-8">Remember, excellence is not a singular act, but a habit. Today's focus is the foundation for tomorrow's brilliance. Stay in the flow.</p>
+<div class="relative h-48 w-full rounded-2xl overflow-hidden">
+<img alt="Motivation Image" class="w-full h-full object-cover grayscale opacity-20 group-hover:grayscale-0 group-hover:opacity-40 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI2NlBB4rkAQKdvyWa_Dm-Bca2dVUQ15FQuxAftoFOv5MXCcK_GHSZ9nkirIkyBdZhARSAoUn-TFRptaRSRVPmyvm1k1xX5xsU96ffVfvA6Qg9s3UlucN431OaSHpwr18e-c4vuho8Rt9fnoMI50-KXOHMlh1qTTcNqiCNLKiNw5usKJKeNTOsFNP9SId-WLnfw2erjpkE0Dm_ZnFLo1ISMHdwN0SxFgwan0D7eUcqfFChFnyXKEg7FjRVaYvZIeOgohdpbCykxA"/>
+</div>
+</div>
+<!-- Pro Tips -->
+<div class="md:col-span-4 bg-slate-900 border border-slate-800 rounded-3xl p-8 flex flex-col justify-between hover:shadow-2xl transition-all duration-300">
+<div>
+<div class="flex items-center gap-3 mb-6">
+<div class="bg-blue-500/10 p-3 rounded-2xl">
+<span class="material-symbols-outlined text-blue-500" data-icon="tips_and_updates">tips_and_updates</span>
+</div>
+<h3 class="font-headline-md text-title-sm text-white">Pro Tips</h3>
+</div>
+<ul class="space-y-6">
+<li class="flex gap-4">
+<div class="mt-1 w-2 h-2 rounded-full bg-orange-500 flex-shrink-0"></div>
+<p class="font-body-base text-sm text-slate-300 font-medium">Use the <span class="text-orange-500">Active Recall</span> method for Physics derivations.</p>
+</li>
+<li class="flex gap-4">
+<div class="mt-1 w-2 h-2 rounded-full bg-orange-500 flex-shrink-0"></div>
+<p class="font-body-base text-sm text-slate-300 font-medium">Solve at least one <span class="text-orange-500">Math HQ question</span> every 2 hours.</p>
+</li>
+<li class="flex gap-4">
+<div class="mt-1 w-2 h-2 rounded-full bg-orange-500 flex-shrink-0"></div>
+<p class="font-body-base text-sm text-slate-300 font-medium">Take 10-minute <span class="text-orange-500">Cognitive Breathers</span> between subjects.</p>
+</li>
+</ul>
+</div>
+<button class="mt-8 text-sm font-bold text-white flex items-center gap-2 group">
+                            Explore All Tips 
+                            <span class="material-symbols-outlined transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- BOTTOM SECTION: ROADMAP -->
+<section class="space-y-gutter">
+<div class="flex items-end justify-between px-2">
+<div class="space-y-2">
+<span class="text-label-caps text-orange-500">Academic Trajectory</span>
+<h2 class="font-display-lg text-headline-md text-white">Remaining Days Roadmap</h2>
+</div>
+<div class="text-right">
+<span class="block text-label-caps text-slate-500 mb-1">Overall Progress</span>
+<div class="flex items-center gap-4">
+<div class="w-48 h-2 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full w-[65%] bg-teal-500 shadow-[0_0_10px_rgba(20,184,166,0.5)]"></div>
+</div>
+<span class="font-bold text-white">65%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<!-- Roadmap Day 1 (Active) -->
+<div class="relative bg-slate-900 border-2 border-orange-500 rounded-3xl p-6 shadow-xl shadow-orange-500/10">
+<div class="absolute -top-3 left-6 px-3 py-1 bg-orange-500 text-white rounded-full text-[10px] font-bold uppercase tracking-widest">Today</div>
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-lexend font-bold text-white">Day 142</h4>
+<span class="material-symbols-outlined text-orange-500" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+<h5 class="text-sm font-bold text-slate-200 mb-2">Subject Category: Science</h5>
+<p class="text-xs text-slate-400 mb-6">Focus on Quantum Mechanics foundational laws &amp; equations.</p>
+<div class="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full w-full bg-orange-500"></div>
+</div>
+</div>
+<!-- Roadmap Day 2 -->
+<div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 hover:translate-y-[-4px] transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-lexend font-bold text-slate-500">Day 141</h4>
+<span class="material-symbols-outlined text-slate-700" data-icon="circle">circle</span>
+</div>
+<h5 class="text-sm font-bold text-slate-300 mb-2">Advanced Mathematics</h5>
+<p class="text-xs text-slate-500 mb-6">Calculus: Differentiation applications and real-world modeling.</p>
+<div class="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full w-0 bg-orange-500"></div>
+</div>
+</div>
+<!-- Roadmap Day 3 -->
+<div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 hover:translate-y-[-4px] transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-lexend font-bold text-slate-500">Day 140</h4>
+<span class="material-symbols-outlined text-slate-700" data-icon="circle">circle</span>
+</div>
+<h5 class="text-sm font-bold text-slate-300 mb-2">English Literature</h5>
+<p class="text-xs text-slate-500 mb-6">Critical analysis of Shakespearean themes &amp; modern context.</p>
+<div class="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full w-0 bg-orange-500"></div>
+</div>
+</div>
+<!-- Roadmap Day 4 -->
+<div class="bg-slate-900/50 border border-dashed border-slate-700 rounded-3xl p-6 flex flex-col items-center justify-center text-center space-y-4">
+<div class="w-10 h-10 rounded-full border-2 border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500" data-icon="calendar_month">calendar_month</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-500">Full Roadmap</h4>
+<p class="text-[10px] text-slate-600 uppercase tracking-widest mt-1">View All 142 Days</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>
