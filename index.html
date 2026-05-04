@@ -218,19 +218,19 @@
 <div class="flex-shrink-0 bg-slate-950/40 backdrop-blur-xl border border-slate-700 p-8 rounded-[2.5rem] shadow-2xl">
 <div class="grid grid-cols-4 gap-4 md:gap-8 text-center">
 <div class="space-y-2">
-<span class="block font-timer-display text-timer-display text-orange-500">142</span>
+<span id="cd-days" class="block font-timer-display text-timer-display text-orange-500">142</span>
 <span class="block text-label-caps text-slate-500">DAYS</span>
 </div>
 <div class="space-y-2">
-<span class="block font-timer-display text-timer-display text-white">14</span>
+<span id="cd-hours" class="block font-timer-display text-timer-display text-white">14</span>
 <span class="block text-label-caps text-slate-500">HOURS</span>
 </div>
 <div class="space-y-2">
-<span class="block font-timer-display text-timer-display text-white">38</span>
+<span id="cd-mins" class="block font-timer-display text-timer-display text-white">38</span>
 <span class="block text-label-caps text-slate-500">MINS</span>
 </div>
 <div class="space-y-2">
-<span class="block font-timer-display text-timer-display text-white opacity-60">55</span>
+<span id="cd-secs" class="block font-timer-display text-timer-display text-white opacity-60">55</span>
 <span class="block text-label-caps text-slate-500">SECS</span>
 </div>
 </div>
@@ -353,4 +353,45 @@
 </div>
 </main>
 </div>
+
+<script>
+// Live HSC countdown to Sep 1, 2026
+function updateCountdown() {
+    const examDate = new Date('2026-07-02T09:00:00');
+    const now = new Date();
+    const diff = examDate - now;
+    if (diff <= 0) {
+        document.getElementById('cd-days').textContent = '0';
+        document.getElementById('cd-hours').textContent = '0';
+        document.getElementById('cd-mins').textContent = '0';
+        document.getElementById('cd-secs').textContent = '0';
+        return;
+    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+    document.getElementById('cd-days').textContent = days;
+    document.getElementById('cd-hours').textContent = hours;
+    document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+    document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// Color theme switcher
+const themes = {orange:'#ea580c', blue:'#3b82f6', purple:'#a855f7', teal:'#14b8a6'};
+document.querySelectorAll('[title]').forEach(btn => {
+    const color = themes[btn.title.toLowerCase()];
+    if (!color) return;
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.text-orange-500, .border-orange-500, .bg-orange-600, .bg-orange-500, .shadow-orange-600\/20').forEach(el => {
+            el.style.setProperty('--accent', color);
+        });
+        document.querySelectorAll('.text-orange-500').forEach(el => el.style.color = color);
+        document.querySelectorAll('.bg-orange-600').forEach(el => el.style.backgroundColor = color);
+        document.querySelectorAll('.border-orange-500').forEach(el => el.style.borderColor = color);
+    });
+});
+</script>
 </body></html>
