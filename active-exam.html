@@ -7,7 +7,6 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -213,7 +212,7 @@
 </div>
 </main>
 <!-- BottomNavBar Shell Mapping -->
-<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 md:px-4 py-3 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hidden">
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 md:px-4 py-3 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
 <button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 md:px-6 py-2 hover:text-slate-900 dark:hover:text-white active:translate-y-0.5 duration-150 group">
 <span class="material-symbols-outlined mb-1 text-xl md:text-2xl" data-icon="arrow_back">arrow_back</span>
 <span class="font-lexend text-[10px] md:text-[12px] font-semibold uppercase tracking-wider">Previous</span>
@@ -227,4 +226,67 @@
 <span class="font-lexend text-[10px] md:text-[12px] font-semibold uppercase tracking-wider">Next</span>
 </button>
 </footer>
+
+<script>
+// Exam countdown timer - 25 minutes
+let totalSeconds = 25 * 60;
+let perQSeconds = 60;
+let answered = 1;
+const totalQ = 25;
+
+function fmtTime(s) {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+}
+
+// Main exam timer (top bar)
+const mainTimerEl = document.querySelector('.font-timer-display');
+const examInterval = setInterval(() => {
+    totalSeconds--;
+    if (totalSeconds <= 0) { clearInterval(examInterval); totalSeconds = 0; }
+    if (mainTimerEl) mainTimerEl.textContent = fmtTime(totalSeconds);
+}, 1000);
+
+// Per-question circular timer
+const circleEl = document.querySelector('circle.text-orange-500');
+const qTimerEl = document.querySelector('.absolute.font-timer-display');
+const circumference = 250; // stroke-dasharray value
+
+const qInterval = setInterval(() => {
+    perQSeconds--;
+    if (perQSeconds <= 0) { perQSeconds = 0; clearInterval(qInterval); }
+    if (qTimerEl) qTimerEl.textContent = perQSeconds;
+    if (circleEl) {
+        const offset = circumference * (1 - perQSeconds / 60);
+        circleEl.setAttribute('stroke-dashoffset', offset.toFixed(1));
+    }
+}, 1000);
+
+// Option selection interactivity
+document.querySelectorAll('main button:not([class*="bg-orange-6"])').forEach(btn => {
+    if (!btn.querySelector('[data-icon]')) {
+        btn.addEventListener('click', function() {
+            // Deselect all
+            document.querySelectorAll('main button').forEach(b => {
+                b.classList.remove('border-orange-600', 'bg-orange-950/20', 'border-2');
+                b.classList.add('border', 'border-slate-200', 'dark:border-slate-800');
+                const circle = b.querySelector('div.rounded-full');
+                if (circle) { circle.classList.remove('bg-orange-600', 'text-white', 'border-orange-600'); circle.classList.add('border-slate-700', 'text-slate-400'); }
+                const check = b.querySelector('[data-icon="check_circle"]');
+                if (check) check.remove();
+            });
+            // Select this
+            this.classList.add('border-2', 'border-orange-600', 'bg-orange-950/20');
+            this.classList.remove('border', 'border-slate-200');
+            const circle = this.querySelector('div.rounded-full');
+            if (circle) { circle.classList.add('bg-orange-600', 'text-white', 'border-orange-600'); circle.classList.remove('border-slate-700', 'text-slate-400'); }
+        });
+    }
+});
+
+// Progress bar update
+const progressBar = document.querySelector('.bg-orange-600.h-full');
+if (progressBar) progressBar.style.width = ((answered / totalQ) * 100) + '%';
+</script>
 </body></html>
