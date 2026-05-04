@@ -113,46 +113,92 @@
 </head>
 <body class="bg-slate-950 text-slate-200 font-body-base antialiased">
 <!-- TopAppBar -->
-<header class="sticky top-0 z-50 flex justify-between items-center w-full px-6 py-4 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
-<div class="flex items-center gap-8">
-<span class="text-xl font-black tracking-tighter text-white font-display-lg uppercase">HSC 2026 Elite</span>
-<nav class="hidden md:flex items-center gap-6">
-<a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="index.html">Home</a>
-<a class="text-orange-500 text-sm font-medium transition-colors" href="learn.html">Learn</a>
-<a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="exams.html">Exams</a>
-<a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="history.html">History</a>
-<a class="text-slate-400 hover:text-white text-sm font-medium transition-colors" href="about.html">About</a>
-</nav>
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-4 md:px-6 py-4 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+<div class="flex items-center gap-4">
+<span class="text-lg md:text-xl font-black tracking-tighter text-white font-display-lg uppercase">HSC 2026 Elite</span>
 </div>
-<div class="flex-1 max-w-xl mx-8 hidden lg:block">
+<div class="flex-1 max-w-xl mx-8 hidden md:block">
 <div class="relative group">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-orange-500">search</span>
-<input class="w-full h-10 bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all font-body-base text-sm" placeholder="Search subjects, topics, or keywords..." type="text"/>
+<input class="w-full h-12 bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all font-body-base" placeholder="Search subjects, topics, or keywords..." type="text"/>
 </div>
 </div>
-<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 md:gap-4">
 <button class="p-2 text-slate-400 hover:text-orange-500 transition-colors active:scale-95 duration-200">
 <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
 </button>
-<button class="p-2 text-slate-400 hover:text-orange-500 transition-colors active:scale-95 duration-200">
+<button class="p-2 text-slate-400 hover:text-orange-500 transition-colors active:scale-95 duration-200 hidden sm:block">
 <span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
 </button>
-<div class="flex items-center gap-3 border-l border-slate-800 pl-4">
-<span class="text-sm font-medium text-slate-300 hidden sm:block">Waterflame</span>
-<div class="h-10 w-10 rounded-full bg-slate-800 overflow-hidden border-2 border-slate-700 shadow-sm bg-white">
-<img alt="Waterflame Profile" class="w-full h-full object-cover mix-blend-multiply" data-alt="Old-school male head silhouette" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQOmjnZcOhUVSd1QJaMkH6ez47UL2o7eobSTv6o2QJ3JdFE3QvxmMxYj0ASfB2AvZQDFvPyGYUzH7PFHDPgidJ8EABQx5oyJZhJRfhydgo4o4feb-dDX_v-gYZZPdu7kpQKUfRhTQ3KU05i8dPjGXc20QPK9nUy4HnEhsh-H23dnqEg9GBXO_qpLw9EM_tUQVm4v1Mmi_T_Sgc3mKPudaLGK_aK9eGJU2MrC3o-ZBlXGj0AsDp_e6Qjc-QcOqh56_z0hWnfGSEJQ"/>
-</div>
+<div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-slate-800 overflow-hidden border-2 border-slate-700 shadow-sm">
+<img alt="Student Profile" class="w-full h-full object-cover" data-alt="A professional portrait of a university student in a bright, modern campus setting. The lighting is soft and natural, emphasizing a high-performance academic environment. The student wears a clean, structured blazer, conveying competence and focus. The background features blurred architecture with a palette of crisp whites and soft blues, maintaining the corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyicT2yg_8wDGhC0xtKDPWVKMEFH0EqaiwcxhPoH1ZtuJNLP_UrwlTTtjeq-pEQL6Q25EbZbATP9CsCEA-qjd2Wu_lO0qpNlpV_NGUoy5tjxAr0P7b8Xd2QyHrb2abW0oUsE-apy-m8_5ZhqTnqR92smdqR81i0m7kZjafe9ht-YbMXTC0r8oSUi6ktUWCVlk0dtBF_SULFPnd6VQ2qFBrQsroYu41IpEe7qt6vyqeW9YaPYMLyfklt-B6oMqoaCW0DEco0y60Kw"/>
 </div>
 </div>
 </header>
-<div class="flex min-h-screen relative">
-<!-- Main Content Canvas -->
-<main class="flex-1 p-gutter max-w-7xl mx-auto w-full pb-20 bg-slate-950">
-<header class="mb-stack-lg">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-gutter">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full z-40 bg-slate-900 w-64 border-r border-slate-800 pt-20">
+<div class="px-6 py-6 border-b border-slate-800 mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">school</span>
+</div>
 <div>
-<h1 class="font-display-lg text-display-lg text-white mb-2">Academic Curriculum</h1>
-<p class="text-slate-400 font-body-base max-w-2xl">Tailored BBA-focused subjects for the HSC 2026 session. Master your coursework through focused Practice MCQs and intensive Short Question drills.</p>
+<h2 class="text-lg font-bold text-white font-display-lg leading-none">HSC BBA 2026</h2>
+<p class="text-[10px] text-slate-500 mt-1 uppercase tracking-widest font-bold font-label-caps">State of Flow</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 hover:translate-x-1 transition-all rounded-lg font-lexend text-sm" href="index.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-slate-800 text-orange-500 font-semibold active-nav-border font-lexend text-sm" href="learn.html">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+                    Curriculum
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 hover:translate-x-1 transition-all rounded-lg font-lexend text-sm" href="exams.html">
+<span class="material-symbols-outlined" data-icon="timer">timer</span>
+                    Exam Hall
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 hover:translate-x-1 transition-all rounded-lg font-lexend text-sm" href="history.html">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+                    Analytics
+                </a>
+</nav>
+<div class="p-4 border-t border-slate-800">
+<button class="w-full bg-orange-600 text-white py-3 rounded-xl font-bold text-sm hover:bg-orange-500 active:scale-95 transition-all shadow-lg shadow-orange-600/20">
+                    Start Daily Plan
+                </button>
+</div>
+<div class="px-4 py-4 space-y-1 border-t border-slate-800">
+<div class="px-4 mb-4">
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-3">Appearance</p>
+<div class="flex gap-2">
+<button class="w-6 h-6 rounded-full bg-orange-500 ring-2 ring-white ring-offset-2 ring-offset-slate-900 transition-transform hover:scale-110" title="Orange"></button>
+<button class="w-6 h-6 rounded-full bg-blue-500 hover:scale-110 transition-transform" title="Blue"></button>
+<button class="w-6 h-6 rounded-full bg-purple-500 hover:scale-110 transition-transform" title="Purple"></button>
+<button class="w-6 h-6 rounded-full bg-teal-500 hover:scale-110 transition-transform" title="Teal"></button>
+</div>
+</div>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:text-orange-500 transition-all rounded-lg font-lexend text-xs" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="settings">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:text-orange-500 transition-all rounded-lg font-lexend text-xs" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help_outline">help_outline</span>
+                    Support
+                </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 lg:ml-64 p-4 md:p-gutter max-w-7xl mx-auto w-full pb-32 lg:pb-12 bg-slate-950">
+<header class="mb-6 md:mb-stack-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-gutter">
+<div>
+<h1 class="font-display-lg text-3xl md:text-display-lg text-white mb-2">Academic Curriculum</h1>
+<p class="text-slate-400 text-sm md:text-base font-body-base max-w-2xl">Tailored BBA-focused subjects for the HSC 2026 session. Master your coursework through focused Practice MCQs and intensive Short Question drills.</p>
 </div>
 <div class="flex gap-3">
 <div class="px-4 py-2 bg-slate-900 border border-slate-800 rounded-full flex items-center gap-2">
@@ -163,7 +209,7 @@
 </div>
 </header>
 <!-- Bento Grid of Subjects -->
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8">
 <!-- Accounting Card -->
 <div class="subject-card group bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden transition-all flex flex-col h-full border-t-[4px] border-t-orange-600">
 <div class="p-6 flex-1">
@@ -173,15 +219,15 @@
 </div>
 <span class="text-[10px] font-bold font-label-caps bg-orange-500/20 text-orange-500 px-3 py-1 rounded-full uppercase border border-orange-500/20">82% Complete</span>
 </div>
-<h3 class="font-display-lg text-title-sm mb-2 text-white">Accounting</h3>
-<p class="text-slate-400 text-sm font-body-base mb-6">Financial statements, journal entries, and reconciliation principles for high-level business analysis.</p>
-<div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-8">
+<h3 class="font-display-lg text-lg md:text-title-sm mb-2 text-white">Accounting</h3>
+<p class="text-slate-400 text-xs md:text-sm font-body-base mb-6">Financial statements, journal entries, and reconciliation principles for high-level business analysis.</p>
+<div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-4 md:mb-8">
 <div class="bg-orange-600 h-full w-[82%] shadow-[0_0_8px_rgba(234,88,12,0.4)]"></div>
 </div>
 </div>
 <div class="p-4 bg-slate-950/50 grid grid-cols-2 gap-3 mt-auto border-t border-slate-800">
-<button class="bg-orange-600 text-white py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-orange-500 active:scale-95 transition-all text-center">Practice MCQs</button>
-<button class="border-2 border-slate-700 text-slate-300 py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-slate-800 hover:text-white active:scale-95 transition-all text-center">Subject GK</button>
+<button class="bg-orange-600 text-white py-4 md:py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-orange-500 active:scale-95 transition-all text-center min-h-[44px]">Practice MCQs</button>
+<button class="border-2 border-slate-700 text-slate-300 py-4 md:py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-slate-800 hover:text-white active:scale-95 transition-all text-center min-h-[44px]">Subject GK</button>
 </div>
 </div>
 <!-- Finance Card -->
@@ -193,15 +239,15 @@
 </div>
 <span class="text-[10px] font-bold font-label-caps bg-emerald-500/20 text-emerald-500 px-3 py-1 rounded-full uppercase border border-emerald-500/20">45% Complete</span>
 </div>
-<h3 class="font-display-lg text-title-sm mb-2 text-white">Finance &amp; Banking</h3>
-<p class="text-slate-400 text-sm font-body-base mb-6">Mastering monetary policy, corporate finance, and risk management fundamentals for modern markets.</p>
-<div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-8">
+<h3 class="font-display-lg text-lg md:text-title-sm mb-2 text-white">Finance &amp; Banking</h3>
+<p class="text-slate-400 text-xs md:text-sm font-body-base mb-6">Mastering monetary policy, corporate finance, and risk management fundamentals for modern markets.</p>
+<div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-4 md:mb-8">
 <div class="bg-emerald-600 h-full w-[45%] shadow-[0_0_8px_rgba(16,185,129,0.3)]"></div>
 </div>
 </div>
 <div class="p-4 bg-slate-950/50 grid grid-cols-2 gap-3 mt-auto border-t border-slate-800">
-<button class="bg-orange-600 text-white py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-orange-500 active:scale-95 transition-all text-center">Practice MCQs</button>
-<button class="border-2 border-slate-700 text-slate-300 py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-slate-800 hover:text-white active:scale-95 transition-all text-center">Subject GK</button>
+<button class="bg-orange-600 text-white py-4 md:py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-orange-500 active:scale-95 transition-all text-center min-h-[44px]">Practice MCQs</button>
+<button class="border-2 border-slate-700 text-slate-300 py-4 md:py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-slate-800 hover:text-white active:scale-95 transition-all text-center min-h-[44px]">Subject GK</button>
 </div>
 </div>
 <!-- Management Card -->
@@ -213,15 +259,15 @@
 </div>
 <span class="text-[10px] font-bold font-label-caps bg-blue-500/20 text-blue-600 px-3 py-1 rounded-full uppercase border border-blue-500/20">12% Complete</span>
 </div>
-<h3 class="font-display-lg text-title-sm mb-2 text-white">Management</h3>
-<p class="text-slate-400 text-sm font-body-base mb-6">Strategic planning, organizational behavior, and leadership theories for aspiring executives.</p>
-<div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-8">
+<h3 class="font-display-lg text-lg md:text-title-sm mb-2 text-white">Management</h3>
+<p class="text-slate-400 text-xs md:text-sm font-body-base mb-6">Strategic planning, organizational behavior, and leadership theories for aspiring executives.</p>
+<div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-4 md:mb-8">
 <div class="bg-blue-600 h-full w-[12%] shadow-[0_0_8px_rgba(37,99,235,0.3)]"></div>
 </div>
 </div>
 <div class="p-4 bg-slate-950/50 grid grid-cols-2 gap-3 mt-auto border-t border-slate-800">
-<button class="bg-orange-600 text-white py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-orange-500 active:scale-95 transition-all text-center">Practice MCQs</button>
-<button class="border-2 border-slate-700 text-slate-300 py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-slate-800 hover:text-white active:scale-95 transition-all text-center">Subject GK</button>
+<button class="bg-orange-600 text-white py-4 md:py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-orange-500 active:scale-95 transition-all text-center min-h-[44px]">Practice MCQs</button>
+<button class="border-2 border-slate-700 text-slate-300 py-4 md:py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-slate-800 hover:text-white active:scale-95 transition-all text-center min-h-[44px]">Subject GK</button>
 </div>
 </div>
 <!-- Economics Card -->
@@ -233,15 +279,15 @@
 </div>
 <span class="text-[10px] font-bold font-label-caps bg-purple-500/20 text-purple-500 px-3 py-1 rounded-full uppercase border border-purple-500/20">67% Complete</span>
 </div>
-<h3 class="font-display-lg text-title-sm mb-2 text-white">Economics</h3>
-<p class="text-slate-400 text-sm font-body-base mb-6">Micro and Macroeconomics, supply-demand curves, and international trade dynamics.</p>
-<div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-8">
+<h3 class="font-display-lg text-lg md:text-title-sm mb-2 text-white">Economics</h3>
+<p class="text-slate-400 text-xs md:text-sm font-body-base mb-6">Micro and Macroeconomics, supply-demand curves, and international trade dynamics.</p>
+<div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-4 md:mb-8">
 <div class="bg-purple-600 h-full w-[67%] shadow-[0_0_8px_rgba(147,51,234,0.3)]"></div>
 </div>
 </div>
 <div class="p-4 bg-slate-950/50 grid grid-cols-2 gap-3 mt-auto border-t border-slate-800">
-<button class="bg-orange-600 text-white py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-orange-500 active:scale-95 transition-all text-center">Practice MCQs</button>
-<button class="border-2 border-slate-700 text-slate-300 py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-slate-800 hover:text-white active:scale-95 transition-all text-center">Subject GK</button>
+<button class="bg-orange-600 text-white py-4 md:py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-orange-500 active:scale-95 transition-all text-center min-h-[44px]">Practice MCQs</button>
+<button class="border-2 border-slate-700 text-slate-300 py-4 md:py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-slate-800 hover:text-white active:scale-95 transition-all text-center min-h-[44px]">Subject GK</button>
 </div>
 </div>
 <!-- ICT Card -->
@@ -253,15 +299,15 @@
 </div>
 <span class="text-[10px] font-bold font-label-caps bg-cyan-500/20 text-cyan-500 px-3 py-1 rounded-full uppercase border border-cyan-500/20">95% Complete</span>
 </div>
-<h3 class="font-display-lg text-title-sm mb-2 text-white">ICT</h3>
-<p class="text-slate-400 text-sm font-body-base mb-6">Digital literacy, database systems, networking, and the foundations of computational thinking.</p>
-<div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-8">
+<h3 class="font-display-lg text-lg md:text-title-sm mb-2 text-white">ICT</h3>
+<p class="text-slate-400 text-xs md:text-sm font-body-base mb-6">Digital literacy, database systems, networking, and the foundations of computational thinking.</p>
+<div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-4 md:mb-8">
 <div class="bg-cyan-600 h-full w-[95%] shadow-[0_0_8px_rgba(8,145,178,0.4)]"></div>
 </div>
 </div>
 <div class="p-4 bg-slate-950/50 grid grid-cols-2 gap-3 mt-auto border-t border-slate-800">
-<button class="bg-orange-600 text-white py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-orange-500 active:scale-95 transition-all text-center">Practice MCQs</button>
-<button class="border-2 border-slate-700 text-slate-300 py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-slate-800 hover:text-white active:scale-95 transition-all text-center">Subject GK</button>
+<button class="bg-orange-600 text-white py-4 md:py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-orange-500 active:scale-95 transition-all text-center min-h-[44px]">Practice MCQs</button>
+<button class="border-2 border-slate-700 text-slate-300 py-4 md:py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-slate-800 hover:text-white active:scale-95 transition-all text-center min-h-[44px]">Subject GK</button>
 </div>
 </div>
 <!-- English Card -->
@@ -273,24 +319,24 @@
 </div>
 <span class="text-[10px] font-bold font-label-caps bg-red-500/20 text-red-500 px-3 py-1 rounded-full uppercase border border-red-500/20">31% Complete</span>
 </div>
-<h3 class="font-display-lg text-title-sm mb-2 text-white">English</h3>
-<p class="text-slate-400 text-sm font-body-base mb-6">Business communication, advanced grammar, and literature analysis for global proficiency.</p>
-<div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-8">
+<h3 class="font-display-lg text-lg md:text-title-sm mb-2 text-white">English</h3>
+<p class="text-slate-400 text-xs md:text-sm font-body-base mb-6">Business communication, advanced grammar, and literature analysis for global proficiency.</p>
+<div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden mb-4 md:mb-8">
 <div class="bg-red-600 h-full w-[31%] shadow-[0_0_8px_rgba(220,38,38,0.3)]"></div>
 </div>
 </div>
 <div class="p-4 bg-slate-950/50 grid grid-cols-2 gap-3 mt-auto border-t border-slate-800">
-<button class="bg-orange-600 text-white py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-orange-500 active:scale-95 transition-all text-center">Practice MCQs</button>
-<button class="border-2 border-slate-700 text-slate-300 py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-slate-800 hover:text-white active:scale-95 transition-all text-center">Subject GK</button>
+<button class="bg-orange-600 text-white py-4 md:py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-orange-500 active:scale-95 transition-all text-center min-h-[44px]">Practice MCQs</button>
+<button class="border-2 border-slate-700 text-slate-300 py-4 md:py-3 px-2 rounded-xl text-[12px] font-bold font-label-caps hover:bg-slate-800 hover:text-white active:scale-95 transition-all text-center min-h-[44px]">Subject GK</button>
 </div>
 </div>
 </div>
 <!-- Promotion / Action Section -->
-<section class="mt-stack-lg p-8 bg-slate-900 border border-slate-800 rounded-3xl relative overflow-hidden text-white flex flex-col lg:flex-row items-center gap-gutter">
-<div class="flex-1 z-10">
-<h2 class="font-display-lg text-headline-md mb-4">Ready for a Full Simulation?</h2>
-<p class="text-slate-400 font-body-base mb-6 max-w-lg">Test your readiness with our timed HSC mock exams. Get detailed performance reports and AI-driven recommendations based on your BBA track progress.</p>
-<button class="bg-orange-600 text-white px-8 py-4 rounded-xl font-bold font-label-caps shadow-lg shadow-orange-600/30 hover:bg-orange-500 hover:translate-y-[-2px] transition-all active:scale-95">TAKE MOCK EXAM NOW</button>
+<section class="mt-8 md:mt-stack-lg p-6 md:p-8 bg-slate-900 border border-slate-800 rounded-3xl relative overflow-hidden text-white flex flex-col lg:flex-row items-center gap-6 md:gap-gutter">
+<div class="flex-1 z-10 w-full">
+<h2 class="font-display-lg text-2xl md:text-headline-md mb-4">Ready for a Full Simulation?</h2>
+<p class="text-slate-400 text-sm md:text-base font-body-base mb-6 max-w-lg">Test your readiness with our timed HSC mock exams. Get detailed performance reports and AI-driven recommendations based on your BBA track progress.</p>
+<button class="w-full md:w-auto bg-orange-600 text-white px-8 py-4 rounded-xl font-bold font-label-caps shadow-lg shadow-orange-600/30 hover:bg-orange-500 hover:translate-y-[-2px] transition-all active:scale-95">TAKE MOCK EXAM NOW</button>
 </div>
 <div class="relative w-full lg:w-1/3 aspect-video lg:aspect-square bg-slate-950 rounded-2xl overflow-hidden z-10 border border-slate-800">
 <img alt="Study Station" class="w-full h-full object-cover opacity-60" data-alt="A cinematic, high-contrast shot of a sleek digital workstation with multiple monitors displaying complex business analytics and financial charts. The room is dimly lit with cool blue ambient tones, while a single desk lamp provides a warm focused light on a stack of textbooks. The overall atmosphere is one of intense focus, professional rigor, and high-performance study, aligned with the BBA track's corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzQq-MyvaiJ2p1m4flJdjDcGnXHxcqYh55r6Jsb4pjGVXB3MbQJUMh503an-_KiDEdy5D60xoDP_gjap1KI885kr9BVNg3YR4CBEZNhQQ164S5PAWyiPKB-fcZErCBZ34PiiQ_fgTyNoe8SjawWCnHcYnaFTnLUI2bT-TSKmpsxw41BmyECSHSE7_KaaecukOeFGAmrzb_suVRozZ7MBUt6n1W_-MEAK3jLzYHc-Co7fOyVvQevaOywol8igDmdntEOGDEgrPtIQ"/>
@@ -301,4 +347,24 @@
 </section>
 </main>
 </div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 lg:hidden flex justify-around items-center px-4 pb-4 pt-3 bg-slate-900/80 backdrop-blur-lg border-t border-slate-800/50 shadow-[0_-8px_30px_rgb(0,0,0,0.4)]">
+<a class="flex flex-col items-center justify-center gap-1 text-slate-400 hover:text-slate-200 transition-colors py-1" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="home">home</span>
+<span class="font-label-caps text-[10px] uppercase tracking-wider">Home</span></a>
+<a class="flex flex-col items-center justify-center gap-1 text-orange-500 py-1 relative" href="#">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-1 bg-orange-500 rounded-full shadow-[0_0_10px_rgba(249,115,22,0.5)]"></div>
+<span class="material-symbols-outlined text-[24px] shadow-orange-500/20" data-icon="import_contacts" style="font-variation-settings: 'FILL' 1;">import_contacts</span>
+<span class="font-label-caps text-[10px] font-bold uppercase tracking-wider">Learn</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-slate-400 hover:text-slate-200 transition-colors py-1" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="timer">timer</span>
+<span class="font-label-caps text-[10px] uppercase tracking-wider">Exams</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-slate-400 hover:text-slate-200 transition-colors py-1" href="#">
+<span class="material-symbols-outlined text-[24px]" data-icon="leaderboard">leaderboard</span>
+<span class="font-label-caps text-[10px] uppercase tracking-wider">History</span>
+</a>
+</nav>
 </body></html>
+
