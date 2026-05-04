@@ -228,65 +228,231 @@
 </footer>
 
 <script>
-// Exam countdown timer - 25 minutes
+// ── QUESTION BANK ─────────────────────────────────────────────
+const questions = [
+    { q: "Which of the following is considered a primary function of Management according to Henri Fayol?", opts: ["Planning","Marketing","Accounting","Manufacturing"], ans: 0, section: "Business Studies" },
+    { q: "What type of business organization offers limited liability to all its owners?", opts: ["Sole Proprietorship","Partnership","Corporation","Cooperative"], ans: 2, section: "Business Organization" },
+    { q: "Which financial statement shows a company's revenues and expenses over a period?", opts: ["Balance Sheet","Cash Flow Statement","Income Statement","Statement of Equity"], ans: 2, section: "Accounting" },
+    { q: "What does 'liquidity' refer to in finance?", opts: ["Long-term profitability","Ability to meet short-term obligations","Total assets of a company","Stock market valuation"], ans: 1, section: "Finance" },
+    { q: "The break-even point is where:", opts: ["Revenue exceeds costs","Total costs equal total revenue","Profit is maximized","Fixed costs are zero"], ans: 1, section: "Accounting" },
+    { q: "Which of these is a characteristic of a sole proprietorship?", opts: ["Unlimited liability","Limited liability","Shared ownership","Perpetual existence"], ans: 0, section: "Business Organization" },
+    { q: "What is the primary goal of financial management?", opts: ["Maximize revenue","Minimize costs","Maximize shareholder wealth","Maximize market share"], ans: 2, section: "Finance" },
+    { q: "Which document outlines the rules governing a company internally?", opts: ["Memorandum of Association","Articles of Association","Prospectus","Annual Report"], ans: 1, section: "Business Law" },
+    { q: "Depreciation is best described as:", opts: ["Cash expense","Non-cash expense","Revenue","Capital gain"], ans: 1, section: "Accounting" },
+    { q: "Which management level is responsible for day-to-day operations?", opts: ["Top management","Middle management","Lower/Supervisory management","Board of Directors"], ans: 2, section: "Business Studies" },
+    { q: "What is 'working capital'?", opts: ["Fixed assets minus liabilities","Current assets minus current liabilities","Total equity","Net profit"], ans: 1, section: "Finance" },
+    { q: "A partnership firm is dissolved automatically upon:", opts: ["Profit loss","Death of a partner","Change in market","New partner joining"], ans: 1, section: "Business Organization" },
+    { q: "Which of the following is NOT a function of a central bank?", opts: ["Issuing currency","Acting as lender of last resort","Accepting retail deposits","Regulating commercial banks"], ans: 2, section: "Finance & Banking" },
+    { q: "The term 'goodwill' in accounting refers to:", opts: ["Customer relationships","Intangible asset from brand/reputation","Cash reserves","Fixed assets"], ans: 1, section: "Accounting" },
+    { q: "Which pricing strategy sets a low initial price to gain market share?", opts: ["Price skimming","Penetration pricing","Cost-plus pricing","Premium pricing"], ans: 1, section: "Marketing" },
+    { q: "What does SWOT analysis stand for?", opts: ["Strengths, Weaknesses, Opportunities, Threats","Sales, Work, Operations, Targets","Strategy, Workforce, Output, Tactics","Strengths, Workforce, Opportunities, Threats"], ans: 0, section: "Business Studies" },
+    { q: "Which of the following is a long-term source of finance?", opts: ["Bank overdraft","Trade credit","Debentures","Creditors"], ans: 2, section: "Finance" },
+    { q: "The 4 Ps of marketing are:", opts: ["Product, Price, Place, Promotion","People, Price, Place, Profit","Product, Profit, Place, Promotion","Product, Price, People, Profit"], ans: 0, section: "Marketing" },
+    { q: "What is a 'debenture'?", opts: ["Share in a company","Long-term debt instrument","Bank deposit","Type of insurance"], ans: 1, section: "Finance" },
+    { q: "Which inventory method assumes the first items purchased are the first sold?", opts: ["LIFO","FIFO","Weighted Average","Specific Identification"], ans: 1, section: "Accounting" },
+    { q: "What does 'elasticity of demand' measure?", opts: ["Total demand in a market","Responsiveness of demand to price changes","Production capacity","Profit margins"], ans: 1, section: "Economics" },
+    { q: "A company's 'equity' is:", opts: ["Total liabilities","Assets minus liabilities","Total revenue","Net sales"], ans: 1, section: "Accounting" },
+    { q: "Which type of insurance covers a business against employee theft?", opts: ["Fire insurance","Fidelity guarantee insurance","Marine insurance","Life insurance"], ans: 1, section: "Insurance" },
+    { q: "What is 'outsourcing'?", opts: ["Expanding operations internally","Hiring contract workers internally","Delegating functions to external firms","Merging with another company"], ans: 2, section: "Business Studies" },
+    { q: "The 'current ratio' is calculated as:", opts: ["Net profit / Revenue","Current assets / Current liabilities","Total assets / Total liabilities","Equity / Total assets"], ans: 1, section: "Accounting" },
+];
+
+let current = 0;
+let answers = new Array(questions.length).fill(null);
 let totalSeconds = 25 * 60;
 let perQSeconds = 60;
-let answered = 1;
-const totalQ = 25;
+let perQTimer = null;
+const circumference = 250;
+
+// ── DOM REFS ───────────────────────────────────────────────────
+const mainTimerEl  = document.querySelector('.font-timer-display');
+const qTimerEl     = document.querySelector('.absolute.font-timer-display');
+const circleEl     = document.querySelector('circle.text-orange-500');
+const sectionEl    = document.querySelector('h2.font-headline-md');
+const questionNumEl= document.querySelector('h1.font-headline-md');
+const questionTextEl = document.querySelector('.font-lexend.text-\[20px\], .font-lexend.text-\[32px\]') 
+                    || document.querySelector('p.font-lexend');
+const optButtons   = document.querySelectorAll('.grid.grid-cols-1.gap-3 button, .grid.grid-cols-1.gap-4 button');
+const progressBar  = document.querySelector('.bg-orange-600.h-full');
+const progressDot  = document.querySelector('.bg-orange-600.h-full .absolute');
 
 function fmtTime(s) {
-    const m = Math.floor(s / 60);
-    const sec = s % 60;
-    return String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+    return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
 }
 
-// Main exam timer (top bar)
-const mainTimerEl = document.querySelector('.font-timer-display');
-const examInterval = setInterval(() => {
-    totalSeconds--;
-    if (totalSeconds <= 0) { clearInterval(examInterval); totalSeconds = 0; }
-    if (mainTimerEl) mainTimerEl.textContent = fmtTime(totalSeconds);
-}, 1000);
+// ── RENDER QUESTION ────────────────────────────────────────────
+function renderQuestion() {
+    const q = questions[current];
+    if (sectionEl)    sectionEl.textContent = 'Section: ' + q.section;
+    if (questionNumEl) questionNumEl.textContent = 'Question ' + (current+1) + ' of ' + questions.length;
+    if (questionTextEl) questionTextEl.textContent = q.q;
 
-// Per-question circular timer
-const circleEl = document.querySelector('circle.text-orange-500');
-const qTimerEl = document.querySelector('.absolute.font-timer-display');
-const circumference = 250; // stroke-dasharray value
+    const labels = ['A','B','C','D'];
+    optButtons.forEach((btn, i) => {
+        const labelEl = btn.querySelector('div.rounded-full');
+        const textEl  = btn.querySelector('span.font-lexend, span.text-lg, span.text-xl');
+        const checkEl = btn.querySelector('[data-icon="check_circle"]');
+        if (checkEl) checkEl.remove();
+        if (labelEl) labelEl.textContent = labels[i];
+        if (textEl)  textEl.textContent = q.opts[i];
 
-const qInterval = setInterval(() => {
-    perQSeconds--;
-    if (perQSeconds <= 0) { perQSeconds = 0; clearInterval(qInterval); }
-    if (qTimerEl) qTimerEl.textContent = perQSeconds;
-    if (circleEl) {
-        const offset = circumference * (1 - perQSeconds / 60);
-        circleEl.setAttribute('stroke-dashoffset', offset.toFixed(1));
-    }
-}, 1000);
+        // Reset styles
+        btn.className = btn.className
+            .replace('border-2 border-orange-600 bg-orange-950/20','')
+            .replace('border-orange-600','border-slate-800')
+            .trim();
+        btn.style.borderColor = '';
+        btn.style.background = '';
+        if (labelEl) {
+            labelEl.style.background = '';
+            labelEl.style.color = '';
+            labelEl.style.borderColor = '';
+        }
 
-// Option selection interactivity
-document.querySelectorAll('main button:not([class*="bg-orange-6"])').forEach(btn => {
-    if (!btn.querySelector('[data-icon]')) {
-        btn.addEventListener('click', function() {
-            // Deselect all
-            document.querySelectorAll('main button').forEach(b => {
-                b.classList.remove('border-orange-600', 'bg-orange-950/20', 'border-2');
-                b.classList.add('border', 'border-slate-200', 'dark:border-slate-800');
-                const circle = b.querySelector('div.rounded-full');
-                if (circle) { circle.classList.remove('bg-orange-600', 'text-white', 'border-orange-600'); circle.classList.add('border-slate-700', 'text-slate-400'); }
-                const check = b.querySelector('[data-icon="check_circle"]');
-                if (check) check.remove();
-            });
-            // Select this
-            this.classList.add('border-2', 'border-orange-600', 'bg-orange-950/20');
-            this.classList.remove('border', 'border-slate-200');
-            const circle = this.querySelector('div.rounded-full');
-            if (circle) { circle.classList.add('bg-orange-600', 'text-white', 'border-orange-600'); circle.classList.remove('border-slate-700', 'text-slate-400'); }
+        // Show saved answer
+        if (answers[current] === i) {
+            btn.style.borderColor = '#ea580c';
+            btn.style.background = 'rgba(234,88,12,0.1)';
+            if (labelEl) { labelEl.style.background='#ea580c'; labelEl.style.color='white'; }
+        }
+    });
+
+    // Update progress bar
+    const pct = ((current+1) / questions.length) * 100;
+    if (progressBar) progressBar.style.width = pct + '%';
+
+    // Reset per-question timer
+    resetPerQTimer();
+}
+
+// ── OPTION CLICK ───────────────────────────────────────────────
+optButtons.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+        answers[current] = i;
+        optButtons.forEach((b, j) => {
+            const labelEl = b.querySelector('div.rounded-full');
+            b.style.borderColor = j === i ? '#ea580c' : '';
+            b.style.background  = j === i ? 'rgba(234,88,12,0.1)' : '';
+            if (labelEl) {
+                labelEl.style.background  = j === i ? '#ea580c' : '';
+                labelEl.style.color       = j === i ? 'white'    : '';
+                labelEl.style.borderColor = j === i ? '#ea580c'  : '';
+            }
+            const existingCheck = b.querySelector('[data-icon="check_circle"]');
+            if (existingCheck) existingCheck.remove();
         });
+    });
+});
+
+// ── NAVIGATION ─────────────────────────────────────────────────
+document.querySelectorAll('footer button').forEach(btn => {
+    const icon = btn.querySelector('[data-icon]');
+    if (!icon) return;
+    if (icon.dataset.icon === 'arrow_back') {
+        btn.addEventListener('click', () => {
+            if (current > 0) { current--; renderQuestion(); }
+        });
+    }
+    if (icon.dataset.icon === 'arrow_forward') {
+        btn.addEventListener('click', () => {
+            if (current < questions.length - 1) { current++; renderQuestion(); }
+            else { finishExam(); }
+        });
+    }
+    if (icon.dataset.icon === 'list_alt') {
+        btn.addEventListener('click', () => showReviewPanel());
     }
 });
 
-// Progress bar update
-const progressBar = document.querySelector('.bg-orange-600.h-full');
-if (progressBar) progressBar.style.width = ((answered / totalQ) * 100) + '%';
+// ── FINISH EXAM ────────────────────────────────────────────────
+document.querySelector('header button.bg-orange-600')?.addEventListener('click', finishExam);
+
+function finishExam() {
+    clearInterval(examInterval);
+    clearInterval(perQTimer);
+    const correct = answers.filter((a, i) => a === questions[i].ans).length;
+    const total = questions.length;
+    const attempted = answers.filter(a => a !== null).length;
+    const pct = Math.round((correct / total) * 100);
+    
+    document.querySelector('main').innerHTML = `
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;padding:24px;text-align:center;">
+            <div style="background:#1e293b;border:1px solid #334155;border-radius:24px;padding:48px;max-width:500px;width:100%;">
+                <div style="font-size:64px;margin-bottom:16px;">${pct >= 80 ? '🏆' : pct >= 60 ? '✅' : '📚'}</div>
+                <h1 style="font-size:32px;font-weight:800;color:white;margin-bottom:8px;">Exam Complete!</h1>
+                <p style="color:#94a3b8;margin-bottom:32px;">Here's how you performed</p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;">
+                    <div style="background:#0f172a;border-radius:16px;padding:20px;">
+                        <div style="font-size:40px;font-weight:800;color:#ea580c;">${correct}</div>
+                        <div style="color:#64748b;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;">Correct</div>
+                    </div>
+                    <div style="background:#0f172a;border-radius:16px;padding:20px;">
+                        <div style="font-size:40px;font-weight:800;color:white;">${total - correct}</div>
+                        <div style="color:#64748b;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;">Wrong</div>
+                    </div>
+                    <div style="background:#0f172a;border-radius:16px;padding:20px;">
+                        <div style="font-size:40px;font-weight:800;color:#14b8a6;">${pct}%</div>
+                        <div style="color:#64748b;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;">Score</div>
+                    </div>
+                    <div style="background:#0f172a;border-radius:16px;padding:20px;">
+                        <div style="font-size:40px;font-weight:800;color:#94a3b8;">${attempted}</div>
+                        <div style="color:#64748b;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;">Attempted</div>
+                    </div>
+                </div>
+                <button onclick="window.location.href='exams.html'" style="width:100%;padding:16px;background:#ea580c;color:white;border:none;border-radius:12px;font-size:16px;font-weight:800;cursor:pointer;">Back to Exams</button>
+            </div>
+        </div>`;
+}
+
+// ── REVIEW PANEL ────────────────────────────────────────────────
+function showReviewPanel() {
+    const panel = document.createElement('div');
+    panel.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;';
+    let dots = questions.map((q,i) => {
+        const isAns = answers[i] !== null;
+        const col = i === current ? '#ea580c' : isAns ? '#14b8a6' : '#334155';
+        return `<button onclick="document.body.removeChild(this.closest('[style*=fixed]'));current=${i};renderQuestion();" style="width:40px;height:40px;border-radius:8px;background:${col};color:white;font-weight:700;border:none;cursor:pointer;font-size:14px;">${i+1}</button>`;
+    }).join('');
+    panel.innerHTML = `<div style="background:#1e293b;border-radius:24px;padding:32px;max-width:480px;width:100%;max-height:80vh;overflow-y:auto;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+            <h2 style="color:white;font-size:20px;font-weight:700;">Question Review</h2>
+            <button onclick="document.body.removeChild(this.closest('[style*=fixed]'))" style="background:#334155;border:none;color:white;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:18px;">✕</button>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">${dots}</div>
+        <div style="display:flex;gap:16px;font-size:12px;color:#64748b;">
+            <span>🟠 Current</span><span style="color:#14b8a6">■ Answered</span><span style="color:#334155">■ Unanswered</span>
+        </div>
+    </div>`;
+    document.body.appendChild(panel);
+}
+
+// ── MAIN EXAM TIMER ────────────────────────────────────────────
+const examInterval = setInterval(() => {
+    totalSeconds--;
+    if (totalSeconds <= 0) { clearInterval(examInterval); finishExam(); return; }
+    if (mainTimerEl) mainTimerEl.textContent = fmtTime(totalSeconds);
+}, 1000);
+
+// ── PER-QUESTION TIMER ─────────────────────────────────────────
+function resetPerQTimer() {
+    clearInterval(perQTimer);
+    perQSeconds = 60;
+    perQTimer = setInterval(() => {
+        perQSeconds--;
+        if (qTimerEl) qTimerEl.textContent = perQSeconds;
+        if (circleEl) {
+            const offset = circumference * (perQSeconds / 60);
+            circleEl.setAttribute('stroke-dashoffset', offset.toFixed(1));
+        }
+        if (perQSeconds <= 0) {
+            clearInterval(perQTimer);
+            if (current < questions.length - 1) { current++; renderQuestion(); }
+            else finishExam();
+        }
+    }, 1000);
+}
+
+// ── INIT ───────────────────────────────────────────────────────
+renderQuestion();
 </script>
 </body></html>
