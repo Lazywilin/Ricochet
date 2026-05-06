@@ -228,7 +228,6 @@
 </footer>
 
 <script>
-// ── QUESTION BANK ───────────────────────────────────────────────
 const questions = [
     { q:"Which of the following is a primary function of Management according to Henri Fayol?", opts:["Planning","Marketing","Accounting","Manufacturing"], ans:0, sec:"Management" },
     { q:"What type of business organization offers limited liability to ALL its owners?", opts:["Sole Proprietorship","Partnership","Corporation","Cooperative"], ans:2, sec:"Business Organization" },
@@ -262,98 +261,87 @@ let answers = new Array(questions.length).fill(null);
 let totalSeconds = 25 * 60;
 let perQSeconds = 60;
 let perQTimer = null;
-const circumference = 250;
 
-// ── DOM REFS (using exact classes found in HTML) ─────────────────
-const mainTimerEl   = document.querySelector('.font-timer-display');
-const qTimerEl      = document.querySelector('.absolute.font-timer-display');
+// ── CORRECT DOM SELECTORS ──────────────────────────────────────
+// The timer in the header is inside: div.flex > span.font-timer-display
+// We want the second one (first is tailwind config script tag area)
+const allTimerEls = document.querySelectorAll('.font-timer-display');
+// allTimerEls[0] = header main timer (24:15), allTimerEls[1] = circular timer (60)
+const mainTimerEl = allTimerEls[0] || null;
+const qTimerEl    = allTimerEls[1] || null;
+
 const circleEl      = document.querySelector('circle.text-orange-500');
 const sectionEl     = document.querySelector('h2.font-headline-md');
 const questionNumEl = document.querySelector('h1.font-headline-md');
-const questionTextEl= document.querySelector('.font-lexend.text-\\[20px\\]');
-const optButtons    = Array.from(document.querySelectorAll('.grid.grid-cols-1 button'));
-const progressBar   = document.querySelector('.bg-orange-600.h-full');
+
+// Question text: find the <p> inside the question card
+const questionTextEl = document.querySelector('main p.font-lexend');
+
+// Option buttons: all 4 buttons inside the options grid
+const optionGrid = document.querySelector('.grid.grid-cols-1');
+const optButtons = optionGrid ? Array.from(optionGrid.querySelectorAll('button')) : [];
+
+const progressBar = document.querySelector('.bg-orange-600.h-full');
 
 function fmtTime(s) {
     return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
 }
 
 function showToast(msg) {
+    const old = document.getElementById('_toast');
+    if (old) old.remove();
     const t = document.createElement('div');
+    t.id = '_toast';
     t.textContent = msg;
     t.style.cssText = 'position:fixed;top:80px;right:24px;background:#1e293b;color:white;padding:12px 20px;border-radius:12px;font-size:14px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.4);transition:opacity 0.5s';
     document.body.appendChild(t);
-    setTimeout(() => { t.style.opacity='0'; setTimeout(()=>t.remove(),500); }, 2500);
+    setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 500); }, 2500);
 }
 
-// ── RENDER QUESTION ─────────────────────────────────────────────
 function renderQuestion() {
     const q = questions[current];
-
-    if (sectionEl)     sectionEl.textContent = 'Section: ' + q.sec;
-    if (questionNumEl) questionNumEl.textContent = 'Question ' + (current+1) + ' of ' + questions.length;
+    if (sectionEl)      sectionEl.textContent  = 'Section: ' + q.sec;
+    if (questionNumEl)  questionNumEl.textContent = 'Question ' + (current+1) + ' of ' + questions.length;
     if (questionTextEl) questionTextEl.textContent = q.q;
 
     optButtons.forEach((btn, i) => {
-        // Update text
-        const textEl = btn.querySelector('span.font-lexend');
-        if (textEl) textEl.textContent = q.opts[i];
-
-        // Update label letter
+        const textEl  = btn.querySelector('span.font-lexend');
         const labelEl = btn.querySelector('div.rounded-full');
+        if (textEl)  textEl.textContent = q.opts[i];
         if (labelEl) labelEl.textContent = ['A','B','C','D'][i];
 
-        // Remove old check icon
+        // Remove check icons
         btn.querySelectorAll('[data-icon="check_circle"]').forEach(el => el.remove());
 
-        // Reset styles
-        btn.style.borderColor = '';
-        btn.style.background = '';
-        btn.style.border = '';
-        if (labelEl) {
-            labelEl.style.background = '';
-            labelEl.style.color = '';
-            labelEl.style.borderColor = '';
-        }
+        // Reset visual state
+        btn.style.cssText = '';
+        if (labelEl) { labelEl.style.background=''; labelEl.style.color=''; labelEl.style.borderColor=''; }
 
-        // Apply saved answer style
-        if (answers[current] === i) {
-            applySelected(btn, labelEl);
-        }
+        // Restore saved answer highlight
+        if (answers[current] === i) styleSelected(btn, labelEl);
     });
 
-    // Update progress bar
     if (progressBar) progressBar.style.width = (((current+1) / questions.length) * 100) + '%';
-
     resetPerQTimer();
 }
 
-function applySelected(btn, labelEl) {
-    btn.style.borderColor = '#ea580c';
-    btn.style.background = 'rgba(234,88,12,0.08)';
-    btn.style.outline = '2px solid #ea580c';
-    if (labelEl) {
-        labelEl.style.background = '#ea580c';
-        labelEl.style.color = 'white';
-        labelEl.style.borderColor = '#ea580c';
-    }
+function styleSelected(btn, labelEl) {
+    btn.style.border = '2px solid #ea580c';
+    btn.style.background = 'rgba(234,88,12,0.1)';
+    if (labelEl) { labelEl.style.background='#ea580c'; labelEl.style.color='white'; labelEl.style.borderColor='#ea580c'; }
 }
 
-// ── OPTION CLICK ────────────────────────────────────────────────
+// ── ANSWER BUTTONS ──────────────────────────────────────────────
 optButtons.forEach((btn, i) => {
     btn.addEventListener('click', () => {
         answers[current] = i;
         optButtons.forEach((b, j) => {
             const lbl = b.querySelector('div.rounded-full');
-            b.style.borderColor = '';
-            b.style.background = '';
-            b.style.outline = '';
+            b.style.cssText = '';
             if (lbl) { lbl.style.background=''; lbl.style.color=''; lbl.style.borderColor=''; }
             b.querySelectorAll('[data-icon="check_circle"]').forEach(el => el.remove());
         });
-        const labelEl = btn.querySelector('div.rounded-full');
-        applySelected(btn, labelEl);
-        // Add check icon
+        styleSelected(btn, btn.querySelector('div.rounded-full'));
         const check = document.createElement('span');
         check.className = 'material-symbols-outlined ml-auto text-orange-500';
         check.dataset.icon = 'check_circle';
@@ -363,14 +351,14 @@ optButtons.forEach((btn, i) => {
     });
 });
 
-// ── FOOTER NAV BUTTONS ───────────────────────────────────────────
+// ── FOOTER BUTTONS ──────────────────────────────────────────────
 document.querySelectorAll('footer button').forEach(btn => {
     const icon = btn.querySelector('[data-icon]');
     if (!icon) return;
     if (icon.dataset.icon === 'arrow_back') {
         btn.addEventListener('click', () => {
             if (current > 0) { current--; renderQuestion(); }
-            else showToast('This is the first question');
+            else showToast('Already on question 1');
         });
     }
     if (icon.dataset.icon === 'arrow_forward') {
@@ -384,98 +372,89 @@ document.querySelectorAll('footer button').forEach(btn => {
     }
 });
 
-// ── FINISH BUTTON ────────────────────────────────────────────────
+// ── FINISH BUTTON (header) ──────────────────────────────────────
 document.querySelectorAll('header button').forEach(btn => {
-    const t = btn.textContent.trim().toLowerCase();
-    if (t.includes('finish') || t.includes('submit') || t.includes('end')) {
+    if (btn.textContent.toLowerCase().includes('finish')) {
         btn.addEventListener('click', finishExam);
     }
 });
-// Also match by class bg-orange-600 in header
-document.querySelector('header .bg-orange-600')?.addEventListener('click', finishExam);
 
-// ── FINISH EXAM ──────────────────────────────────────────────────
+// ── FINISH EXAM ─────────────────────────────────────────────────
 function finishExam() {
     clearInterval(examInterval);
     clearInterval(perQTimer);
-    const correct  = answers.filter((a,i) => a === questions[i].ans).length;
-    const total    = questions.length;
-    const attempted= answers.filter(a => a !== null).length;
-    const pct      = Math.round((correct / total) * 100);
-    const grade    = pct >= 80 ? 'A' : pct >= 65 ? 'B' : pct >= 50 ? 'C' : 'D';
-    const emoji    = pct >= 80 ? '🏆' : pct >= 65 ? '✅' : pct >= 50 ? '📚' : '💪';
-
+    const correct   = answers.filter((a,i) => a === questions[i].ans).length;
+    const total     = questions.length;
+    const attempted = answers.filter(a => a !== null).length;
+    const pct       = Math.round((correct / total) * 100);
+    const grade     = pct >= 80 ? 'A+' : pct >= 65 ? 'B' : pct >= 50 ? 'C' : 'D';
+    const emoji     = pct >= 80 ? '🏆' : pct >= 65 ? '✅' : '📚';
     document.querySelector('main').innerHTML = `
-    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;padding:24px;text-align:center;font-family:sans-serif;">
-        <div style="background:#1e293b;border:1px solid #334155;border-radius:24px;padding:40px 32px;max-width:480px;width:100%;">
-            <div style="font-size:64px;margin-bottom:12px;">${emoji}</div>
-            <h1 style="font-size:28px;font-weight:800;color:white;margin:0 0 6px;">Exam Complete!</h1>
-            <p style="color:#64748b;margin:0 0 28px;font-size:14px;">Grade: <strong style="color:#ea580c">${grade}</strong></p>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px;">
-                <div style="background:#0f172a;border-radius:16px;padding:20px;"><div style="font-size:36px;font-weight:800;color:#ea580c;">${correct}</div><div style="color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Correct</div></div>
-                <div style="background:#0f172a;border-radius:16px;padding:20px;"><div style="font-size:36px;font-weight:800;color:#f87171;">${total-correct}</div><div style="color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Wrong</div></div>
-                <div style="background:#0f172a;border-radius:16px;padding:20px;"><div style="font-size:36px;font-weight:800;color:#14b8a6;">${pct}%</div><div style="color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Score</div></div>
-                <div style="background:#0f172a;border-radius:16px;padding:20px;"><div style="font-size:36px;font-weight:800;color:#94a3b8;">${attempted}/${total}</div><div style="color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Attempted</div></div>
+        <div style="display:flex;align-items:center;justify-content:center;min-height:80vh;padding:24px;text-align:center;">
+            <div style="background:#1e293b;border:1px solid #334155;border-radius:24px;padding:40px 32px;max-width:440px;width:100%;">
+                <div style="font-size:60px;margin-bottom:12px;">${emoji}</div>
+                <h1 style="font-size:26px;font-weight:800;color:white;margin:0 0 4px;">Exam Complete!</h1>
+                <p style="color:#64748b;margin:0 0 24px;">Grade: <strong style="color:#ea580c;">${grade}</strong></p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;">
+                    <div style="background:#0f172a;border-radius:12px;padding:18px;"><div style="font-size:34px;font-weight:800;color:#ea580c;">${correct}</div><div style="color:#64748b;font-size:11px;letter-spacing:.1em;margin-top:4px;">CORRECT</div></div>
+                    <div style="background:#0f172a;border-radius:12px;padding:18px;"><div style="font-size:34px;font-weight:800;color:#f87171;">${total-correct}</div><div style="color:#64748b;font-size:11px;letter-spacing:.1em;margin-top:4px;">WRONG</div></div>
+                    <div style="background:#0f172a;border-radius:12px;padding:18px;"><div style="font-size:34px;font-weight:800;color:#14b8a6;">${pct}%</div><div style="color:#64748b;font-size:11px;letter-spacing:.1em;margin-top:4px;">SCORE</div></div>
+                    <div style="background:#0f172a;border-radius:12px;padding:18px;"><div style="font-size:34px;font-weight:800;color:#94a3b8;">${attempted}/${total}</div><div style="color:#64748b;font-size:11px;letter-spacing:.1em;margin-top:4px;">ATTEMPTED</div></div>
+                </div>
+                <button onclick="location.href='exams.html'" style="width:100%;padding:14px;background:#ea580c;color:white;border:none;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;">Back to Exams</button>
             </div>
-            <button onclick="location.href='exams.html'" style="width:100%;padding:14px;background:#ea580c;color:white;border:none;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.05em;">Back to Exams</button>
-        </div>
-    </div>`;
+        </div>`;
 }
 
-// ── REVIEW PANEL ─────────────────────────────────────────────────
+// ── REVIEW PANEL ────────────────────────────────────────────────
 function showReviewPanel() {
-    const existing = document.getElementById('review-panel');
-    if (existing) existing.remove();
+    const existing = document.getElementById('_review');
+    if (existing) { existing.remove(); return; }
     const panel = document.createElement('div');
-    panel.id = 'review-panel';
-    panel.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;';
+    panel.id = '_review';
+    panel.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
     const dots = questions.map((q,i) => {
-        const col = i === current ? '#ea580c' : answers[i] !== null ? '#14b8a6' : '#334155';
-        return `<button onclick="document.getElementById('review-panel').remove();current=${i};renderQuestion();" style="width:40px;height:40px;border-radius:8px;background:${col};color:white;font-weight:700;border:none;cursor:pointer;font-size:13px;">${i+1}</button>`;
+        const bg = i===current ? '#ea580c' : answers[i]!==null ? '#14b8a6' : '#334155';
+        return `<button onclick="document.getElementById('_review').remove();current=${i};renderQuestion();" style="width:38px;height:38px;border-radius:8px;background:${bg};color:white;font-weight:700;border:none;cursor:pointer;font-size:13px;">${i+1}</button>`;
     }).join('');
-    panel.innerHTML = `
-    <div style="background:#1e293b;border-radius:20px;padding:28px;max-width:460px;width:100%;max-height:85vh;overflow-y:auto;font-family:sans-serif;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-            <h2 style="color:white;font-size:18px;font-weight:700;margin:0;">Question Map</h2>
-            <button onclick="document.getElementById('review-panel').remove()" style="background:#334155;border:none;color:white;width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;">✕</button>
+    panel.innerHTML = `<div style="background:#1e293b;border-radius:20px;padding:28px;max-width:440px;width:100%;max-height:85vh;overflow-y:auto;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <h2 style="color:white;font-size:17px;font-weight:700;margin:0;">Question Map</h2>
+            <button onclick="document.getElementById('_review').remove()" style="background:#334155;border:none;color:white;width:28px;height:28px;border-radius:8px;cursor:pointer;">✕</button>
         </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">${dots}</div>
-        <div style="display:flex;gap:16px;font-size:11px;color:#64748b;flex-wrap:wrap;">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">${dots}</div>
+        <div style="font-size:11px;color:#64748b;display:flex;gap:12px;flex-wrap:wrap;">
             <span>🟠 Current</span>
-            <span><span style="color:#14b8a6">■</span> Answered (${answers.filter(a=>a!==null).length})</span>
-            <span><span style="color:#334155">■</span> Skipped (${answers.filter(a=>a===null).length})</span>
+            <span style="color:#14b8a6">■ Answered (${answers.filter(a=>a!==null).length})</span>
+            <span style="color:#334155">■ Skipped (${answers.filter(a=>a===null).length})</span>
         </div>
     </div>`;
     document.body.appendChild(panel);
 }
 
-// ── MAIN TIMER ───────────────────────────────────────────────────
+// ── MAIN EXAM TIMER ─────────────────────────────────────────────
 const examInterval = setInterval(() => {
-    totalSeconds--;
-    if (totalSeconds <= 0) { clearInterval(examInterval); finishExam(); return; }
+    if (--totalSeconds <= 0) { clearInterval(examInterval); finishExam(); return; }
     if (mainTimerEl) mainTimerEl.textContent = fmtTime(totalSeconds);
 }, 1000);
 
-// ── PER-QUESTION TIMER ────────────────────────────────────────────
+// ── PER-QUESTION TIMER ──────────────────────────────────────────
 function resetPerQTimer() {
     clearInterval(perQTimer);
     perQSeconds = 60;
     perQTimer = setInterval(() => {
         perQSeconds--;
         if (qTimerEl)  qTimerEl.textContent = perQSeconds;
-        if (circleEl) {
-            const offset = circumference * (perQSeconds / 60);
-            circleEl.setAttribute('stroke-dashoffset', offset.toFixed(1));
-        }
+        if (circleEl)  circleEl.setAttribute('stroke-dashoffset', (250 * perQSeconds / 60).toFixed(1));
         if (perQSeconds <= 0) {
             clearInterval(perQTimer);
-            if (current < questions.length - 1) { current++; renderQuestion(); }
+            if (current < questions.length-1) { current++; renderQuestion(); }
             else finishExam();
         }
     }, 1000);
 }
 
-// ── INIT ─────────────────────────────────────────────────────────
 renderQuestion();
 </script>
-</body></html>
+</body>
+  </html>
