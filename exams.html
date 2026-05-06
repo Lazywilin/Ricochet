@@ -372,41 +372,69 @@
 </div>
 
 <script>
-// ── START EXAM SESSION button ──────────────────────────────────
-document.querySelectorAll('a[href="active-exam.html"]').forEach(a => {
-    a.addEventListener('click', (e) => {
-        // just let it navigate normally - already correct href
-    });
-});
-
-// ── EXAM MODE CARD SELECTION ────────────────────────────────────
-document.querySelectorAll('.grid.grid-cols-1.md\\:grid-cols-3 > div').forEach(card => {
-    card.addEventListener('click', () => {
-        document.querySelectorAll('.grid.grid-cols-1.md\\:grid-cols-3 > div').forEach(c => {
-            c.style.borderColor = '';
-            c.style.boxShadow = '';
-            const radio = c.querySelector('[data-icon="radio_button_unchecked"]');
-            const checked = c.querySelector('[data-icon="radio_button_checked"]');
-            if (checked) { checked.textContent = 'radio_button_unchecked'; checked.dataset.icon = 'radio_button_unchecked'; }
-        });
-        card.style.borderColor = '#ea580c';
-        card.style.boxShadow = '0 0 20px rgba(234,88,12,0.2)';
-        const radio = card.querySelector('[data-icon="radio_button_unchecked"]');
-        if (radio) { radio.textContent = 'radio_button_checked'; radio.dataset.icon = 'radio_button_checked'; radio.style.color = '#ea580c'; }
-    });
-});
-
-// ── NOTIFICATIONS ───────────────────────────────────────────────
 function showToast(msg) {
+    const existing = document.getElementById('ricochet-toast');
+    if (existing) existing.remove();
     const t = document.createElement('div');
+    t.id = 'ricochet-toast';
     t.textContent = msg;
-    t.style.cssText = 'position:fixed;top:80px;right:24px;background:#1e293b;color:white;padding:12px 20px;border-radius:12px;font-size:14px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.4);transition:opacity 0.5s';
+    t.style.cssText = 'position:fixed;top:80px;right:24px;background:#1e293b;color:white;padding:12px 20px;border-radius:12px;font-size:14px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.4);opacity:1;transition:opacity 0.5s';
     document.body.appendChild(t);
     setTimeout(() => { t.style.opacity='0'; setTimeout(()=>t.remove(),500); }, 2500);
 }
 
-document.querySelectorAll('[data-icon="notifications"]').forEach(el => {
-    el.closest('span')?.addEventListener('click', () => showToast('🔔 No new notifications'));
+// ── EXAM MODE CARD SELECTION ─────────────────────────────────────
+const modeCards = document.querySelectorAll('main .rounded-2xl, main .rounded-xl');
+modeCards.forEach(card => {
+    // Only make clickable cards that contain radio buttons or mode text
+    if (!card.querySelector('[data-icon*="radio"]') && !card.textContent.includes('Quick') && !card.textContent.includes('Full') && !card.textContent.includes('Timed')) return;
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+        modeCards.forEach(c => {
+            c.style.borderColor = '';
+            c.style.boxShadow = '';
+            c.querySelectorAll('[data-icon]').forEach(icon => {
+                if (icon.dataset.icon === 'radio_button_checked') {
+                    icon.textContent = 'radio_button_unchecked';
+                    icon.dataset.icon = 'radio_button_unchecked';
+                    icon.style.color = '';
+                }
+            });
+        });
+        card.style.borderColor = '#ea580c';
+        card.style.boxShadow = '0 0 20px rgba(234,88,12,0.2)';
+        card.querySelectorAll('[data-icon]').forEach(icon => {
+            if (icon.dataset.icon === 'radio_button_unchecked') {
+                icon.textContent = 'radio_button_checked';
+                icon.dataset.icon = 'radio_button_checked';
+                icon.style.color = '#ea580c';
+            }
+        });
+    });
+});
+
+// ── ALL BUTTONS ──────────────────────────────────────────────────
+document.querySelectorAll('button, a').forEach(el => {
+    const t = el.textContent.trim().replace(/\s+/g,' ');
+    // Start exam
+    if (t.includes('Start Exam') || t.includes('Begin Exam') || t.includes('Start Session')) {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            location.href = 'active-exam.html';
+        });
+    }
+    // Notifications
+    if (el.querySelector && el.querySelector('[data-icon="notifications"]')) {
+        el.addEventListener('click', () => showToast('🔔 No new notifications'));
+    }
+});
+
+// ── DIRECT LINK FIX ──────────────────────────────────────────────
+document.querySelectorAll('a[href="active-exam.html"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+        e.preventDefault();
+        location.href = 'active-exam.html';
+    });
 });
 </script>
 </body></html>
