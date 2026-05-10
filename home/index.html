@@ -368,6 +368,7 @@ main{margin-left:220px;margin-top:56px;padding:32px;min-height:calc(100vh - 56px
   main{padding:16px}
 }
 </style>
+<script src="../theme.js"></script>
 </head>
 <body>
 
@@ -401,15 +402,15 @@ main{margin-left:220px;margin-top:56px;padding:32px;min-height:calc(100vh - 56px
   <div class="side-section">
     <div class="side-label">Appearance</div>
     <div class="theme-row">
-      <div class="theme-dot active" style="background:#b4ff39" title="acid" onclick="setTheme('#b4ff39','#7fff00')"></div>
-      <div class="theme-dot" style="background:#3b9eff" title="blue" onclick="setTheme('#3b9eff','#1a7fe0')"></div>
-      <div class="theme-dot" style="background:#ff3b9a" title="pink" onclick="setTheme('#ff3b9a','#e0006e')"></div>
-      <div class="theme-dot" style="background:#ff8c00" title="orange" onclick="setTheme('#ff8c00','#e07000')"></div>
+      <div class="theme-dot active" style="background:#b4ff39" data-acid="#b4ff39" onclick="setTheme('#b4ff39','#7fff00')"></div>
+      <div class="theme-dot" style="background:#3b9eff" data-acid="#3b9eff" onclick="setTheme('#3b9eff','#1a7fe0')"></div>
+      <div class="theme-dot" style="background:#ff3b9a" data-acid="#ff3b9a" onclick="setTheme('#ff3b9a','#e0006e')"></div>
+      <div class="theme-dot" style="background:#ff8c00" data-acid="#ff8c00" onclick="setTheme('#ff8c00','#e07000')"></div>
     </div>
   </div>
   <div class="side-divider"></div>
   <div class="side-section">
-    <a class="side-link" href="#"><span class="side-icon">⚙</span> Settings</a>
+    <a class="side-link" href="/Ricochet/settings"><span class="side-icon">⚙</span> Settings</a>
     <a class="side-link" href="#"><span class="side-icon">?</span> Support</a>
   </div>
 </aside>
@@ -570,25 +571,10 @@ setInterval(updateCountdown,1000);
 updateCountdown();
 
 // ── TOAST ─────────────────────────────────────────────────────
-function showToast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
-}
+// Toast handled by theme.js
 document.getElementById('notif-btn').addEventListener('click',()=>showToast('[ NO NEW NOTIFICATIONS ]'));
 
-// ── THEME ─────────────────────────────────────────────────────
-function setTheme(acid, acid2){
-  document.documentElement.style.setProperty('--acid', acid);
-  document.documentElement.style.setProperty('--acid2', acid2);
-  document.querySelectorAll('.theme-dot').forEach(d=>{
-    d.style.border = d.title === document.title ? '2px solid white' : '2px solid transparent';
-    d.classList.remove('active');
-  });
-  event.target.classList.add('active');
-  event.target.style.border = '2px solid white';
-}
+// Theme handled by theme.js
 
 // ── ANIMATE SUBJECT BARS ON LOAD ──────────────────────────────
 window.addEventListener('load',()=>{
