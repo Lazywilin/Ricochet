@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RICOCHET — ACTIVE EXAM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050508;--bg2:#0a0a10;--bg3:#0f0f18;--border:#1a1a2e;--border2:#252540;--acid:#b4ff39;--acid2:#7fff00;--red:#ff3b3b;--text:#e8e8f0;--muted:#5a5a7a;--mono:'Space Mono',monospace;--display:'Bebas Neue',sans-serif;--body:'DM Sans',sans-serif;}
+html,body{height:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--body);overflow:hidden;display:flex;flex-direction:column;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:9999;}
+
+/* HEADER */
+.exam-header{
+  height:52px;background:var(--bg2);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 24px;gap:20px;flex-shrink:0;
+}
+.hd-logo{font-family:var(--display);font-size:18px;letter-spacing:3px;color:var(--acid)}
+.hd-sep{width:1px;height:24px;background:var(--border2)}
+.hd-timer{
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--mono);
+}
+.hd-timer-label{font-size:8px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.hd-timer-val{font-family:var(--display);font-size:28px;color:var(--acid);letter-spacing:2px;line-height:1}
+.hd-timer-val.warning{color:var(--red);animation:blink .5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.5}}
+.hd-score{
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:9px;
+  color:var(--acid);letter-spacing:2px;
+  background:rgba(180,255,57,0.08);
+  border:1px solid rgba(180,255,57,0.2);
+  padding:4px 10px;
+}
+.hd-secure{
+  font-family:var(--mono);font-size:8px;
+  color:var(--muted);letter-spacing:2px;
+  display:flex;align-items:center;gap:6px;
+}
+.hd-secure::before{content:'●';color:#22c55e;font-size:8px}
+.hd-spacer{flex:1}
+.hd-flag{
+  width:32px;height:32px;background:var(--bg3);
+  border:1px solid var(--border2);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;color:var(--muted);
+  transition:all .15s;
+}
+.hd-flag:hover{border-color:var(--red);color:var(--red)}
+.hd-finish{
+  padding:8px 20px;background:var(--acid);
+  color:#050508;font-family:var(--mono);
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  border:none;cursor:pointer;font-weight:700;
+  transition:all .15s;
+}
+.hd-finish:hover{background:var(--acid2)}
+
+/* PROGRESS BAR */
+.exam-progress{
+  height:3px;background:var(--border);flex-shrink:0;position:relative;
+}
+.exam-progress-fill{
+  height:100%;background:var(--acid);
+  transition:width .5s ease;
+  box-shadow:0 0 8px rgba(180,255,57,0.5);
+}
+.exam-progress-label{
+  position:absolute;right:8px;top:6px;
+  font-family:var(--mono);font-size:8px;
+  color:var(--muted);letter-spacing:1px;
+}
+
+/* BODY */
+.exam-body{flex:1;display:flex;overflow:hidden}
+
+/* LEFT PANEL */
+.exam-left{
+  width:260px;background:var(--bg2);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;
+}
+.panel-section{padding:16px;border-bottom:1px solid var(--border)}
+.panel-label{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+
+/* Q number grid */
+.q-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.q-dot{
+  aspect-ratio:1;background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:9px;color:var(--muted);
+  cursor:pointer;transition:all .15s;
+}
+.q-dot:hover{border-color:var(--border2);color:var(--text)}
+.q-dot.answered{background:rgba(180,255,57,0.08);border-color:rgba(180,255,57,0.3);color:var(--acid)}
+.q-dot.current{background:var(--acid);color:#050508;border-color:var(--acid);font-weight:700}
+
+/* Per-Q timer */
+.ptimer{display:flex;align-items:center;justify-content:center;padding:16px}
+.ptimer-ring{position:relative;width:80px;height:80px}
+.ptimer-ring svg{width:80px;height:80px;transform:rotate(-90deg)}
+.ptimer-ring circle{fill:none;stroke-width:3}
+.ptimer-bg{stroke:var(--border2)}
+.ptimer-fill{stroke:var(--acid);stroke-dasharray:220;transition:stroke-dashoffset .9s linear;stroke-linecap:round}
+.ptimer-val{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:28px;color:var(--acid);letter-spacing:1px;
+}
+
+/* MAIN QUESTION AREA */
+.exam-main{flex:1;overflow-y:auto;padding:32px;display:flex;flex-direction:column;gap:24px}
+
+.q-meta{display:flex;align-items:baseline;gap:12px}
+.q-section{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase}
+.q-num{font-family:var(--mono);font-size:9px;color:var(--acid);letter-spacing:2px}
+
+.q-card{background:var(--bg2);border:1px solid var(--border);padding:28px}
+.q-text{font-family:var(--body);font-size:18px;color:var(--text);line-height:1.6;font-weight:500}
+
+.q-options{display:flex;flex-direction:column;gap:8px}
+.q-opt{
+  display:flex;align-items:center;gap:16px;
+  padding:14px 18px;background:var(--bg3);
+  border:1px solid var(--border);cursor:pointer;
+  transition:all .15s;
+}
+.q-opt:hover{border-color:var(--border2);background:rgba(255,255,255,0.02)}
+.q-opt.selected{border-color:var(--acid);background:rgba(180,255,57,0.06)}
+.q-opt-letter{
+  font-family:var(--mono);font-size:11px;color:var(--muted);
+  min-width:28px;height:28px;border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .15s;flex-shrink:0;
+}
+.q-opt.selected .q-opt-letter{background:var(--acid);color:#050508;border-color:var(--acid);font-weight:700}
+.q-opt-text{font-size:14px;color:var(--muted);transition:color .15s}
+.q-opt.selected .q-opt-text{color:var(--text)}
+.q-opt-check{margin-left:auto;color:var(--acid);font-size:16px;opacity:0;transition:opacity .15s}
+.q-opt.selected .q-opt-check{opacity:1}
+
+/* FOOTER NAV */
+.exam-footer{
+  height:56px;background:var(--bg2);border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;flex-shrink:0;
+}
+.foot-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 20px;background:var(--bg3);
+  border:1px solid var(--border2);color:var(--muted);
+  font-family:var(--mono);font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;cursor:pointer;transition:all .15s;
+}
+.foot-btn:hover{border-color:var(--acid);color:var(--acid)}
+.foot-next{background:rgba(180,255,57,0.1);border-color:rgba(180,255,57,0.3);color:var(--acid)}
+.foot-next:hover{background:rgba(180,255,57,0.2)}
+.foot-center{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px}
+
+/* RESULT SCREEN */
+.result-screen{
+  position:fixed;inset:0;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  z-index:1000;padding:24px;
+}
+.result-card{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:48px;max-width:480px;width:100%;text-align:center;
+}
+.result-score{font-family:var(--display);font-size:96px;line-height:1;margin-bottom:4px}
+.result-grade{font-family:var(--mono);font-size:12px;letter-spacing:4px;color:var(--muted);margin-bottom:32px}
+.result-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:32px}
+.result-stat{background:var(--bg3);padding:16px;border:1px solid var(--border)}
+.result-stat-val{font-family:var(--display);font-size:36px;color:var(--text)}
+.result-stat-label{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.result-back{
+  width:100%;padding:14px;background:var(--acid);
+  color:#050508;font-family:var(--mono);font-size:10px;
+  letter-spacing:2px;text-transform:uppercase;
+  border:none;cursor:pointer;font-weight:700;
+  transition:all .15s;
+}
+.result-back:hover{background:var(--acid2)}
+
+@media(max-width:900px){.exam-left{display:none}}
+@media(max-width:600px){.exam-main{padding:16px}.hd-score,.hd-secure{display:none}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="exam-header">
+  <div class="hd-logo">RICOCHET</div>
+  <div class="hd-sep"></div>
+  <div class="hd-timer">
+    <div>
+      <div class="hd-timer-label">TIME LEFT</div>
+      <div class="hd-timer-val" id="main-timer">25:00</div>
+    </div>
+  </div>
+  <div class="hd-score">+1.0 SCORE/CORRECT</div>
+  <div class="hd-sep"></div>
+  <div class="hd-secure">ENVIRONMENT SECURE</div>
+  <div class="hd-spacer"></div>
+  <button class="hd-flag" id="flag-btn" title="Flag question">⚑</button>
+  <button class="hd-finish" onclick="finishExam()">SUBMIT EXAM</button>
+</div>
+
+<!-- PROGRESS -->
+<div class="exam-progress">
+  <div class="exam-progress-fill" id="prog-bar" style="width:4%"></div>
+  <div class="exam-progress-label" id="prog-label">1 / 25</div>
+</div>
+
+<!-- BODY -->
+<div class="exam-body">
+
+  <!-- LEFT PANEL -->
+  <div class="exam-left">
+    <div class="panel-section">
+      <div class="panel-label">Per-Question Timer</div>
+      <div class="ptimer">
+        <div class="ptimer-ring">
+          <svg viewBox="0 0 80 80">
+            <circle class="ptimer-bg" cx="40" cy="40" r="35"/>
+            <circle class="ptimer-fill" id="ptimer-circle" cx="40" cy="40" r="35" stroke-dashoffset="0"/>
+          </svg>
+          <div class="ptimer-val" id="ptimer-val">60</div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-section" style="flex:1">
+      <div class="panel-label">Question Map</div>
+      <div class="q-grid" id="q-grid"></div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="exam-main">
+    <div class="q-meta">
+      <span class="q-section" id="q-section">SECTION: MANAGEMENT</span>
+      <span class="q-num" id="q-num">QUESTION 01 / 25</span>
+    </div>
+    <div class="q-card">
+      <p class="q-text" id="q-text">Loading question...</p>
+    </div>
+    <div class="q-options" id="q-options">
+      <div class="q-opt" data-i="0"><div class="q-opt-letter">A</div><div class="q-opt-text"></div><div class="q-opt-check">✓</div></div>
+      <div class="q-opt" data-i="1"><div class="q-opt-letter">B</div><div class="q-opt-text"></div><div class="q-opt-check">✓</div></div>
+      <div class="q-opt" data-i="2"><div class="q-opt-letter">C</div><div class="q-opt-text"></div><div class="q-opt-check">✓</div></div>
+      <div class="q-opt" data-i="3"><div class="q-opt-letter">D</div><div class="q-opt-text"></div><div class="q-opt-check">✓</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="exam-footer">
+  <button class="foot-btn" id="btn-prev">← PREVIOUS</button>
+  <div class="foot-center" id="foot-status">SELECT AN ANSWER TO CONTINUE</div>
+  <button class="foot-btn foot-next" id="btn-next">NEXT →</button>
+</div>
+
+<script>
+const questions=[
+  {q:"Which of the following is a primary function of Management according to Henri Fayol?",opts:["Planning","Marketing","Accounting","Manufacturing"],ans:0,sec:"MANAGEMENT"},
+  {q:"What type of business organization offers limited liability to ALL its owners?",opts:["Sole Proprietorship","Partnership","Corporation","Cooperative"],ans:2,sec:"BUSINESS ORGANIZATION"},
+  {q:"Which financial statement shows revenues and expenses over a period?",opts:["Balance Sheet","Cash Flow Statement","Income Statement","Statement of Equity"],ans:2,sec:"ACCOUNTING"},
+  {q:"What does 'liquidity' refer to in finance?",opts:["Long-term profitability","Ability to meet short-term obligations","Total assets","Stock market valuation"],ans:1,sec:"FINANCE"},
+  {q:"The break-even point is where:",opts:["Revenue exceeds costs","Total costs equal total revenue","Profit is maximized","Fixed costs are zero"],ans:1,sec:"ACCOUNTING"},
+  {q:"Which is a characteristic of a sole proprietorship?",opts:["Unlimited liability","Limited liability","Shared ownership","Perpetual existence"],ans:0,sec:"BUSINESS ORGANIZATION"},
+  {q:"What is the primary goal of financial management?",opts:["Maximize revenue","Minimize costs","Maximize shareholder wealth","Maximize market share"],ans:2,sec:"FINANCE"},
+  {q:"Which document outlines the internal rules governing a company?",opts:["Memorandum of Association","Articles of Association","Prospectus","Annual Report"],ans:1,sec:"BUSINESS LAW"},
+  {q:"Depreciation is best described as:",opts:["Cash expense","Non-cash expense","Revenue","Capital gain"],ans:1,sec:"ACCOUNTING"},
+  {q:"Which management level handles day-to-day operations?",opts:["Top management","Middle management","Supervisory management","Board of Directors"],ans:2,sec:"MANAGEMENT"},
+  {q:"What is 'working capital'?",opts:["Fixed assets minus liabilities","Current assets minus current liabilities","Total equity","Net profit"],ans:1,sec:"FINANCE"},
+  {q:"A partnership firm dissolves automatically upon:",opts:["Profit loss","Death of a partner","Market change","New partner joining"],ans:1,sec:"BUSINESS ORGANIZATION"},
+  {q:"Which is NOT a function of a central bank?",opts:["Issuing currency","Lender of last resort","Accepting retail deposits","Regulating commercial banks"],ans:2,sec:"BANKING"},
+  {q:"'Goodwill' in accounting refers to:",opts:["Customer relationships only","Intangible asset from brand/reputation","Cash reserves","Fixed assets"],ans:1,sec:"ACCOUNTING"},
+  {q:"Which pricing strategy sets a low initial price to gain market share?",opts:["Price skimming","Penetration pricing","Cost-plus pricing","Premium pricing"],ans:1,sec:"MARKETING"},
+  {q:"SWOT analysis stands for:",opts:["Strengths, Weaknesses, Opportunities, Threats","Sales, Work, Operations, Targets","Strategy, Workforce, Output, Tactics","Strengths, Workforce, Opportunities, Threats"],ans:0,sec:"STRATEGY"},
+  {q:"Which is a long-term source of finance?",opts:["Bank overdraft","Trade credit","Debentures","Creditors"],ans:2,sec:"FINANCE"},
+  {q:"The 4 Ps of marketing are:",opts:["Product, Price, Place, Promotion","People, Price, Place, Profit","Product, Profit, Place, Promotion","Product, Price, People, Profit"],ans:0,sec:"MARKETING"},
+  {q:"What is a 'debenture'?",opts:["Share in a company","Long-term debt instrument","Bank deposit","Type of insurance"],ans:1,sec:"FINANCE"},
+  {q:"Which inventory method assumes first items purchased are first sold?",opts:["LIFO","FIFO","Weighted Average","Specific Identification"],ans:1,sec:"ACCOUNTING"},
+  {q:"'Elasticity of demand' measures:",opts:["Total demand in a market","Responsiveness of demand to price changes","Production capacity","Profit margins"],ans:1,sec:"ECONOMICS"},
+  {q:"A company's 'equity' is:",opts:["Total liabilities","Assets minus liabilities","Total revenue","Net sales"],ans:1,sec:"ACCOUNTING"},
+  {q:"Which insurance covers a business against employee theft?",opts:["Fire insurance","Fidelity guarantee insurance","Marine insurance","Life insurance"],ans:1,sec:"INSURANCE"},
+  {q:"'Outsourcing' means:",opts:["Expanding operations internally","Hiring internal contract workers","Delegating functions to external firms","Merging with another company"],ans:2,sec:"MANAGEMENT"},
+  {q:"The 'current ratio' is calculated as:",opts:["Net profit / Revenue","Current assets / Current liabilities","Total assets / Total liabilities","Equity / Total assets"],ans:1,sec:"ACCOUNTING"},
+];
+
+let current=0, answers=new Array(questions.length).fill(null);
+let totalSecs=25*60, perQSecs=60, perQTimer=null, examInterval=null;
+let flagged=new Set();
+
+// ── DOM ────────────────────────────────────────────────────────
+const mainTimerEl=document.getElementById('main-timer');
+const ptimerVal=document.getElementById('ptimer-val');
+const ptimerCircle=document.getElementById('ptimer-circle');
+const progBar=document.getElementById('prog-bar');
+const progLabel=document.getElementById('prog-label');
+const qSection=document.getElementById('q-section');
+const qNum=document.getElementById('q-num');
+const qText=document.getElementById('q-text');
+const qOpts=document.querySelectorAll('.q-opt');
+const qGrid=document.getElementById('q-grid');
+const footStatus=document.getElementById('foot-status');
+const CIRC=2*Math.PI*35; // ~220
+
+// ── BUILD Q GRID ───────────────────────────────────────────────
+function buildGrid(){
+  qGrid.innerHTML='';
+  questions.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='q-dot'+(i===current?' current':answers[i]!==null?' answered':'');
+    d.textContent=String(i+1).padStart(2,'0');
+    d.onclick=()=>{current=i;render()};
+    qGrid.appendChild(d);
+  });
+}
+
+// ── RENDER ─────────────────────────────────────────────────────
+function render(){
+  const q=questions[current];
+  qSection.textContent='SECTION: '+q.sec;
+  qNum.textContent='QUESTION '+String(current+1).padStart(2,'0')+' / '+questions.length;
+  qText.textContent=q.q;
+
+  qOpts.forEach((opt,i)=>{
+    opt.querySelector('.q-opt-text').textContent=q.opts[i];
+    opt.className='q-opt'+(answers[current]===i?' selected':'');
+  });
+
+  const pct=((current+1)/questions.length)*100;
+  progBar.style.width=pct+'%';
+  progLabel.textContent=(current+1)+' / '+questions.length;
+
+  footStatus.textContent=answers[current]!==null?'ANSWER RECORDED — CONTINUE OR REVIEW':'SELECT AN ANSWER TO CONTINUE';
+
+  buildGrid();
+  resetPerQ();
+}
+
+// ── OPTION CLICK ───────────────────────────────────────────────
+qOpts.forEach((opt,i)=>{
+  opt.addEventListener('click',()=>{
+    answers[current]=i;
+    qOpts.forEach((o,j)=>o.className='q-opt'+(j===i?' selected':''));
+    footStatus.textContent='ANSWER RECORDED — CONTINUE OR REVIEW';
+    buildGrid();
+  });
+});
+
+// ── NAV ────────────────────────────────────────────────────────
+document.getElementById('btn-prev').addEventListener('click',()=>{
+  if(current>0){current--;render();}
+});
+document.getElementById('btn-next').addEventListener('click',()=>{
+  if(current<questions.length-1){current++;render();}
+  else finishExam();
+});
+document.getElementById('flag-btn').addEventListener('click',()=>{
+  if(flagged.has(current)){flagged.delete(current);}
+  else{flagged.add(current);}
+  document.getElementById('flag-btn').style.color=flagged.has(current)?'var(--red)':'var(--muted)';
+  document.getElementById('flag-btn').style.borderColor=flagged.has(current)?'var(--red)':'var(--border2)';
+});
+
+// ── MAIN TIMER ─────────────────────────────────────────────────
+function fmtTime(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+examInterval=setInterval(()=>{
+  if(--totalSecs<=0){clearInterval(examInterval);finishExam();return;}
+  mainTimerEl.textContent=fmtTime(totalSecs);
+  if(totalSecs<=300)mainTimerEl.classList.add('warning');
+},1000);
+
+// ── PER-Q TIMER ────────────────────────────────────────────────
+function resetPerQ(){
+  clearInterval(perQTimer);
+  perQSecs=60;
+  ptimerVal.textContent=60;
+  ptimerCircle.style.strokeDashoffset=0;
+  perQTimer=setInterval(()=>{
+    perQSecs--;
+    ptimerVal.textContent=perQSecs;
+    const offset=CIRC*(1-(perQSecs/60));
+    ptimerCircle.style.strokeDashoffset=offset;
+    if(perQSecs<=0){
+      clearInterval(perQTimer);
+      if(current<questions.length-1){current++;render();}
+      else finishExam();
+    }
+  },1000);
+}
+
+// ── FINISH ─────────────────────────────────────────────────────
+function finishExam(){
+  clearInterval(examInterval);clearInterval(perQTimer);
+  const correct=answers.filter((a,i)=>a===questions[i].ans).length;
+  const total=questions.length;
+  const attempted=answers.filter(a=>a!==null).length;
+  const pct=Math.round((correct/total)*100);
+  const grade=pct>=80?'A+':pct>=65?'B':pct>=50?'C':'D';
+  const col=pct>=80?'var(--acid)':pct>=65?'var(--blue)':'var(--red)';
+
+  const screen=document.createElement('div');
+  screen.className='result-screen';
+  screen.innerHTML=`
+    <div class="result-card">
+      <div class="result-score" style="color:${col}">${pct}%</div>
+      <div class="result-grade">GRADE: ${grade} &nbsp;|&nbsp; EXAM COMPLETE</div>
+      <div class="result-stats">
+        <div class="result-stat"><div class="result-stat-val" style="color:var(--acid)">${correct}</div><div class="result-stat-label">CORRECT</div></div>
+        <div class="result-stat"><div class="result-stat-val" style="color:var(--red)">${total-correct}</div><div class="result-stat-label">WRONG</div></div>
+        <div class="result-stat"><div class="result-stat-val">${attempted}/${total}</div><div class="result-stat-label">ATTEMPTED</div></div>
+      </div>
+      <button class="result-back" onclick="location.href='/Ricochet/exams'">← RETURN TO EXAM HALL</button>
+    </div>`;
+  document.body.appendChild(screen);
+}
+
+// ── INIT ───────────────────────────────────────────────────────
+render();
+</script>
+</body>
+</html>

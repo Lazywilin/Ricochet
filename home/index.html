@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RICOCHET — HSC 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050508;
+  --bg2:#0a0a10;
+  --bg3:#0f0f18;
+  --border:#1a1a2e;
+  --border2:#252540;
+  --acid:#b4ff39;
+  --acid2:#7fff00;
+  --red:#ff3b3b;
+  --blue:#3b9eff;
+  --text:#e8e8f0;
+  --muted:#5a5a7a;
+  --mono:'Space Mono',monospace;
+  --display:'Bebas Neue',sans-serif;
+  --body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden}
+
+/* Scanline overlay */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);
+  pointer-events:none;z-index:9999;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2)}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;height:56px;
+  background:rgba(5,5,8,0.92);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+}
+.nav-logo{
+  font-family:var(--display);
+  font-size:22px;letter-spacing:3px;
+  color:var(--acid);
+}
+.nav-logo span{color:var(--muted)}
+.nav-links{display:flex;gap:0;align-items:center}
+.nav-links a{
+  font-family:var(--mono);font-size:10px;
+  color:var(--muted);text-decoration:none;
+  padding:6px 14px;letter-spacing:2px;
+  text-transform:uppercase;
+  border-right:1px solid var(--border);
+  transition:color .15s,background .15s;
+}
+.nav-links a:first-child{border-left:1px solid var(--border)}
+.nav-links a:hover,.nav-links a.active{color:var(--acid);background:rgba(180,255,57,0.05)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-user{
+  font-family:var(--mono);font-size:10px;
+  color:var(--muted);letter-spacing:1px;
+  display:flex;align-items:center;gap:8px;
+}
+.nav-user::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--acid);box-shadow:0 0 8px var(--acid);
+}
+.nav-notif{
+  width:32px;height:32px;border:1px solid var(--border2);
+  background:var(--bg3);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);transition:all .15s;font-size:14px;
+}
+.nav-notif:hover{border-color:var(--acid);color:var(--acid)}
+
+/* SIDEBAR */
+aside{
+  position:fixed;left:0;top:56px;bottom:0;width:220px;
+  background:var(--bg2);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  padding:24px 0;z-index:90;
+  overflow-y:auto;
+}
+.side-section{
+  padding:0 16px;margin-bottom:24px;
+}
+.side-label{
+  font-family:var(--mono);font-size:9px;
+  color:var(--muted);letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:8px;
+  padding-left:8px;
+}
+.side-link{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 12px;font-family:var(--body);
+  font-size:13px;color:var(--muted);
+  text-decoration:none;border-left:2px solid transparent;
+  transition:all .15s;cursor:pointer;
+}
+.side-link:hover{color:var(--text);background:rgba(255,255,255,0.03)}
+.side-link.active{color:var(--acid);border-left-color:var(--acid);background:rgba(180,255,57,0.05)}
+.side-icon{font-size:13px;width:16px;text-align:center;opacity:.7}
+.side-divider{height:1px;background:var(--border);margin:8px 16px 16px}
+
+/* CTA button in sidebar */
+.side-cta{
+  margin:0 16px 24px;
+  padding:10px;
+  background:var(--acid);color:#050508;
+  font-family:var(--mono);font-size:10px;
+  letter-spacing:2px;text-transform:uppercase;
+  border:none;cursor:pointer;
+  font-weight:700;transition:all .15s;
+  text-align:center;
+}
+.side-cta:hover{background:var(--acid2);transform:translateY(-1px)}
+
+/* Theme dots */
+.theme-row{display:flex;gap:8px;padding:0 20px}
+.theme-dot{
+  width:18px;height:18px;border-radius:50%;
+  border:2px solid transparent;cursor:pointer;
+  transition:transform .15s;
+}
+.theme-dot:hover{transform:scale(1.2)}
+.theme-dot.active{border-color:white}
+
+/* MAIN */
+main{margin-left:220px;margin-top:56px;padding:32px;min-height:calc(100vh - 56px)}
+
+/* HERO SECTION */
+.hero{
+  display:grid;grid-template-columns:1fr 380px;
+  gap:32px;margin-bottom:32px;
+}
+.hero-left{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:40px;position:relative;overflow:hidden;
+}
+.hero-left::before{
+  content:'MISSION ACTIVE';
+  position:absolute;top:16px;right:16px;
+  font-family:var(--mono);font-size:8px;
+  color:var(--acid);letter-spacing:3px;
+  background:rgba(180,255,57,0.1);
+  padding:4px 8px;border:1px solid rgba(180,255,57,0.3);
+}
+.hero-tag{
+  font-family:var(--mono);font-size:9px;
+  color:var(--muted);letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-tag::before{content:'//';color:var(--acid)}
+.hero-title{
+  font-family:var(--display);
+  font-size:clamp(48px,6vw,80px);
+  line-height:.95;letter-spacing:2px;
+  color:var(--text);margin-bottom:8px;
+}
+.hero-title em{color:var(--acid);font-style:normal}
+.hero-sub{
+  font-size:14px;color:var(--muted);
+  max-width:440px;line-height:1.6;margin-bottom:28px;
+}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{
+  padding:12px 24px;background:var(--acid);
+  color:#050508;font-family:var(--mono);
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  border:none;cursor:pointer;font-weight:700;
+  transition:all .15s;text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{background:var(--acid2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(180,255,57,0.3)}
+.btn-ghost{
+  padding:12px 24px;background:transparent;
+  color:var(--text);font-family:var(--mono);
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  border:1px solid var(--border2);cursor:pointer;
+  transition:all .15s;text-decoration:none;
+  display:inline-flex;align-items:center;
+}
+.btn-ghost:hover{border-color:var(--acid);color:var(--acid)}
+
+/* Countdown */
+.countdown-card{
+  background:var(--bg3);border:1px solid var(--border);
+  padding:28px;position:relative;
+  display:flex;flex-direction:column;
+}
+.cd-label{
+  font-family:var(--mono);font-size:9px;
+  color:var(--muted);letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:20px;
+  display:flex;align-items:center;gap:8px;
+}
+.cd-label::before{
+  content:'';width:8px;height:8px;
+  background:var(--red);border-radius:50%;
+  animation:pulse-red 1s infinite;
+}
+@keyframes pulse-red{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,59,59,0.4)}50%{opacity:.8;box-shadow:0 0 0 6px rgba(255,59,59,0)}}
+.cd-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;flex:1}
+.cd-unit{
+  background:var(--bg2);padding:20px 16px;
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;position:relative;
+}
+.cd-num{
+  font-family:var(--display);font-size:52px;
+  line-height:1;color:var(--acid);
+  text-shadow:0 0 20px rgba(180,255,57,0.4);
+}
+.cd-unit-label{
+  font-family:var(--mono);font-size:8px;
+  color:var(--muted);letter-spacing:3px;
+  text-transform:uppercase;margin-top:4px;
+}
+.cd-date{
+  font-family:var(--mono);font-size:10px;
+  color:var(--muted);margin-top:16px;
+  padding-top:16px;border-top:1px solid var(--border);
+  letter-spacing:1px;text-align:center;
+}
+
+/* BENTO GRID */
+.bento{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:minmax(120px,auto);
+  gap:2px;margin-bottom:32px;
+}
+.bento-card{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:24px;position:relative;overflow:hidden;
+  transition:border-color .2s;
+}
+.bento-card:hover{border-color:var(--border2)}
+.bento-card.span-5{grid-column:span 5}
+.bento-card.span-4{grid-column:span 4}
+.bento-card.span-3{grid-column:span 3}
+.bento-card.span-7{grid-column:span 7}
+.bento-card.span-12{grid-column:span 12}
+.bento-card.span-6{grid-column:span 6}
+.bento-card.row-2{grid-row:span 2}
+
+.card-eyebrow{
+  font-family:var(--mono);font-size:8px;
+  color:var(--muted);letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:12px;
+  display:flex;align-items:center;gap:6px;
+}
+.card-eyebrow::before{content:'[ ';color:var(--acid)}
+.card-eyebrow::after{content:' ]';color:var(--acid)}
+.card-title{
+  font-family:var(--display);font-size:28px;
+  letter-spacing:1px;color:var(--text);
+  margin-bottom:8px;line-height:1.1;
+}
+.card-body{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* Quote card */
+.quote-card{background:rgba(180,255,57,0.03);border-color:rgba(180,255,57,0.15)}
+.quote-text{
+  font-family:var(--mono);font-size:13px;
+  color:var(--text);line-height:1.7;font-style:italic;
+}
+.quote-mark{
+  font-family:var(--display);font-size:80px;
+  color:rgba(180,255,57,0.1);line-height:.8;
+  margin-bottom:-16px;
+}
+
+/* Tip list */
+.tip-item{
+  display:flex;gap:12px;padding:10px 0;
+  border-bottom:1px solid var(--border);font-size:13px;
+}
+.tip-item:last-child{border-bottom:none}
+.tip-num{
+  font-family:var(--mono);font-size:10px;
+  color:var(--acid);min-width:24px;
+  padding-top:2px;
+}
+
+/* Progress subject cards */
+.subject-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;margin-bottom:32px;
+}
+.subj-card{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:20px;transition:border-color .2s;cursor:pointer;
+}
+.subj-card:hover{border-color:var(--border2)}
+.subj-name{
+  font-family:var(--mono);font-size:10px;
+  letter-spacing:2px;color:var(--text);
+  text-transform:uppercase;margin-bottom:4px;
+}
+.subj-pct{
+  font-family:var(--display);font-size:36px;
+  color:var(--acid);line-height:1;margin-bottom:8px;
+}
+.subj-bar{height:2px;background:var(--border);margin-bottom:8px}
+.subj-fill{height:100%;background:var(--acid);transition:width 1s ease}
+.subj-status{font-size:11px;color:var(--muted)}
+
+/* ROADMAP */
+.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:32px}
+.road-card{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:20px;position:relative;
+}
+.road-card.today{border-color:var(--acid);background:rgba(180,255,57,0.03)}
+.road-today-badge{
+  font-family:var(--mono);font-size:8px;
+  color:var(--bg);background:var(--acid);
+  padding:2px 8px;letter-spacing:2px;
+  position:absolute;top:-1px;left:20px;
+}
+.road-day{
+  font-family:var(--mono);font-size:10px;
+  color:var(--muted);letter-spacing:2px;margin-bottom:8px;
+}
+.road-subject{
+  font-family:var(--display);font-size:20px;
+  color:var(--text);letter-spacing:1px;margin-bottom:6px;
+}
+.road-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.road-progress{height:2px;background:var(--border);margin-top:16px}
+.road-prog-fill{height:100%;background:var(--acid)}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:24px;right:24px;
+  background:var(--bg3);border:1px solid var(--border2);
+  padding:12px 20px;font-family:var(--mono);
+  font-size:11px;letter-spacing:1px;
+  z-index:9999;transform:translateY(100px);opacity:0;
+  transition:all .3s;
+}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* Responsive */
+@media(max-width:1100px){
+  aside{display:none}
+  main{margin-left:0}
+  .hero{grid-template-columns:1fr}
+  .subject-row{grid-template-columns:repeat(2,1fr)}
+  .roadmap{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+  .bento-card.span-5,.bento-card.span-4,.bento-card.span-3,.bento-card.span-7,.bento-card.span-6{grid-column:span 12}
+  .subject-row,.roadmap{grid-template-columns:1fr}
+  .nav-links{display:none}
+  main{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">RICO<span>CHET</span></div>
+  <div class="nav-links">
+    <a href="/Ricochet/home" class="active">HOME</a>
+    <a href="/Ricochet/learn">LEARN</a>
+    <a href="/Ricochet/exams">EXAMS</a>
+    <a href="/Ricochet/history">HISTORY</a>
+    <a href="/Ricochet/about">ABOUT</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-notif" id="notif-btn">🔔</button>
+    <div class="nav-user">WATERFLAME // DEV</div>
+  </div>
+</nav>
+
+<!-- SIDEBAR -->
+<aside>
+  <div class="side-section">
+    <div class="side-label">Navigation</div>
+    <a class="side-link active" href="/Ricochet/home"><span class="side-icon">⬡</span> Dashboard</a>
+    <a class="side-link" href="/Ricochet/learn"><span class="side-icon">◈</span> Curriculum</a>
+    <a class="side-link" href="/Ricochet/exams"><span class="side-icon">◉</span> Exam Hall</a>
+    <a class="side-link" href="/Ricochet/history"><span class="side-icon">▤</span> Analytics</a>
+  </div>
+  <div class="side-divider"></div>
+  <button class="side-cta" onclick="location.href='/Ricochet/learn'">▶ START DAILY PLAN</button>
+  <div class="side-section">
+    <div class="side-label">Appearance</div>
+    <div class="theme-row">
+      <div class="theme-dot active" style="background:#b4ff39" title="acid" onclick="setTheme('#b4ff39','#7fff00')"></div>
+      <div class="theme-dot" style="background:#3b9eff" title="blue" onclick="setTheme('#3b9eff','#1a7fe0')"></div>
+      <div class="theme-dot" style="background:#ff3b9a" title="pink" onclick="setTheme('#ff3b9a','#e0006e')"></div>
+      <div class="theme-dot" style="background:#ff8c00" title="orange" onclick="setTheme('#ff8c00','#e07000')"></div>
+    </div>
+  </div>
+  <div class="side-divider"></div>
+  <div class="side-section">
+    <a class="side-link" href="#"><span class="side-icon">⚙</span> Settings</a>
+    <a class="side-link" href="#"><span class="side-icon">?</span> Support</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">HSC BBA 2026 // FINAL COUNTDOWN</div>
+      <h1 class="hero-title">THE FINAL<br>COUNT<em>DOWN</em><br>TO EXCELLENCE</h1>
+      <p class="hero-sub">Your journey to the HSC 2026 peak is in its defining moments. Every second spent in preparation is a second earned in the exam hall.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="location.href='/Ricochet/exams'">▶ VIEW EXAM ROUTINE</button>
+        <button class="btn-ghost" onclick="location.href='/Ricochet/about'">QUICK SCAN INFO</button>
+      </div>
+    </div>
+    <div class="countdown-card">
+      <div class="cd-label">EXAM COUNTDOWN</div>
+      <div class="cd-grid">
+        <div class="cd-unit"><div class="cd-num" id="cd-days">--</div><div class="cd-unit-label">DAYS</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-hours">--</div><div class="cd-unit-label">HOURS</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-mins">--</div><div class="cd-unit-label">MINS</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-secs" style="color:var(--text);opacity:.5">--</div><div class="cd-unit-label">SECS</div></div>
+      </div>
+      <div class="cd-date">TARGET: 02.07.2026 — HSC BBA EXAM</div>
+    </div>
+  </div>
+
+  <!-- BENTO -->
+  <div class="bento">
+    <!-- Daily Quote -->
+    <div class="bento-card span-7 quote-card">
+      <div class="card-eyebrow">DAILY INSIGHT</div>
+      <div class="quote-mark">"</div>
+      <div class="quote-text">"The capacity to learn is a gift; the ability to learn is a skill;<br>the willingness to learn is a choice."</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:12px;letter-spacing:2px;">— ACADEMIC PRINCIPLE #001</div>
+    </div>
+
+    <!-- Pro Tips -->
+    <div class="bento-card span-5 row-2">
+      <div class="card-eyebrow">PRO TIPS</div>
+      <div class="card-title" style="font-size:20px;margin-bottom:16px">TACTICAL<br>STUDY OPS</div>
+      <div class="tip-item"><span class="tip-num">01</span><span>Use <strong style="color:var(--text)">Active Recall</strong> for BBA definitions — write, don't just read.</span></div>
+      <div class="tip-item"><span class="tip-num">02</span><span>Solve at least <strong style="color:var(--text)">3 MCQs per topic</strong> before moving on.</span></div>
+      <div class="tip-item"><span class="tip-num">03</span><span>Take <strong style="color:var(--text)">10-min cognitive breaks</strong> every 45 mins of study.</span></div>
+      <div class="tip-item"><span class="tip-num">04</span><span>Review <strong style="color:var(--text)">weak chapters</strong> first — don't just practice what you know.</span></div>
+      <button class="btn-ghost" style="margin-top:16px;font-size:9px;padding:8px 16px" onclick="location.href='/Ricochet/learn'">EXPLORE ALL TIPS →</button>
+    </div>
+
+    <!-- Stats -->
+    <div class="bento-card span-3">
+      <div class="card-eyebrow">OVERALL</div>
+      <div class="card-title">65%</div>
+      <div class="card-body">Curriculum complete</div>
+      <div style="height:3px;background:var(--border);margin-top:12px">
+        <div style="height:100%;width:65%;background:var(--acid)"></div>
+      </div>
+    </div>
+    <div class="bento-card span-2">
+      <div class="card-eyebrow">EXAMS</div>
+      <div class="card-title">12</div>
+      <div class="card-body">Completed</div>
+    </div>
+    <div class="bento-card span-2">
+      <div class="card-eyebrow">AVG</div>
+      <div class="card-title">86%</div>
+      <div class="card-body">Score rate</div>
+    </div>
+  </div>
+
+  <!-- SUBJECT PROGRESS -->
+  <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">// SUBJECT PROGRESS</div>
+  <div class="subject-row">
+    <div class="subj-card" onclick="location.href='/Ricochet/learn'">
+      <div class="subj-name">Accounting</div>
+      <div class="subj-pct">82%</div>
+      <div class="subj-bar"><div class="subj-fill" style="width:82%"></div></div>
+      <div class="subj-status">Financial statements, journal entries</div>
+    </div>
+    <div class="subj-card" onclick="location.href='/Ricochet/learn'">
+      <div class="subj-name">Finance & Banking</div>
+      <div class="subj-pct">45%</div>
+      <div class="subj-bar"><div class="subj-fill" style="width:45%"></div></div>
+      <div class="subj-status">Monetary policy, corporate finance</div>
+    </div>
+    <div class="subj-card" onclick="location.href='/Ricochet/learn'">
+      <div class="subj-name">Management</div>
+      <div class="subj-pct">12%</div>
+      <div class="subj-bar"><div class="subj-fill" style="width:12%"></div></div>
+      <div class="subj-status">Strategic planning, org behavior</div>
+    </div>
+    <div class="subj-card" onclick="location.href='/Ricochet/learn'">
+      <div class="subj-name">Economics</div>
+      <div class="subj-pct">67%</div>
+      <div class="subj-bar"><div class="subj-fill" style="width:67%"></div></div>
+      <div class="subj-status">Micro & macro, supply-demand</div>
+    </div>
+    <div class="subj-card" onclick="location.href='/Ricochet/learn'">
+      <div class="subj-name">ICT</div>
+      <div class="subj-pct">95%</div>
+      <div class="subj-bar"><div class="subj-fill" style="width:95%;background:var(--acid2)"></div></div>
+      <div class="subj-status">Digital literacy, databases</div>
+    </div>
+    <div class="subj-card" onclick="location.href='/Ricochet/learn'">
+      <div class="subj-name">English</div>
+      <div class="subj-pct">31%</div>
+      <div class="subj-bar"><div class="subj-fill" style="width:31%"></div></div>
+      <div class="subj-status">Business communication, grammar</div>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">// DAYS ROADMAP</div>
+  <div class="roadmap">
+    <div class="road-card today">
+      <div class="road-today-badge">TODAY</div>
+      <div class="road-day" style="margin-top:12px">DAY 142</div>
+      <div class="road-subject">SCIENCE</div>
+      <div class="road-desc">Quantum Mechanics foundational laws & equations</div>
+      <div class="road-progress"><div class="road-prog-fill" style="width:100%"></div></div>
+    </div>
+    <div class="road-card">
+      <div class="road-day">DAY 141</div>
+      <div class="road-subject">MATH</div>
+      <div class="road-desc">Calculus: Differentiation applications & modeling</div>
+      <div class="road-progress"><div class="road-prog-fill" style="width:0%"></div></div>
+    </div>
+    <div class="road-card">
+      <div class="road-day">DAY 140</div>
+      <div class="road-subject">ENGLISH</div>
+      <div class="road-desc">Critical analysis of Shakespearean themes</div>
+      <div class="road-progress"><div class="road-prog-fill" style="width:0%"></div></div>
+    </div>
+    <div class="road-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;border-style:dashed;cursor:pointer" onclick="location.href='/Ricochet/learn'">
+      <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-align:center">VIEW ALL<br>142 DAYS →</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── COUNTDOWN ────────────────────────────────────────────────
+function updateCountdown(){
+  const exam = new Date('2026-07-02T09:00:00');
+  const diff = exam - new Date();
+  if(diff<=0) return;
+  document.getElementById('cd-days').textContent  = Math.floor(diff/86400000);
+  document.getElementById('cd-hours').textContent = Math.floor((diff%86400000)/3600000);
+  document.getElementById('cd-mins').textContent  = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  document.getElementById('cd-secs').textContent  = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+// ── TOAST ─────────────────────────────────────────────────────
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+document.getElementById('notif-btn').addEventListener('click',()=>showToast('[ NO NEW NOTIFICATIONS ]'));
+
+// ── THEME ─────────────────────────────────────────────────────
+function setTheme(acid, acid2){
+  document.documentElement.style.setProperty('--acid', acid);
+  document.documentElement.style.setProperty('--acid2', acid2);
+  document.querySelectorAll('.theme-dot').forEach(d=>{
+    d.style.border = d.title === document.title ? '2px solid white' : '2px solid transparent';
+    d.classList.remove('active');
+  });
+  event.target.classList.add('active');
+  event.target.style.border = '2px solid white';
+}
+
+// ── ANIMATE SUBJECT BARS ON LOAD ──────────────────────────────
+window.addEventListener('load',()=>{
+  document.querySelectorAll('.subj-fill').forEach(el=>{
+    const w = el.style.width;
+    el.style.width='0%';
+    setTimeout(()=>{ el.style.width=w; },300);
+  });
+});
+</script>
+</body>
+</html>

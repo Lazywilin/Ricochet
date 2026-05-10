@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RICOCHET — EXAM HALL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050508;--bg2:#0a0a10;--bg3:#0f0f18;--border:#1a1a2e;--border2:#252540;--acid:#b4ff39;--acid2:#7fff00;--red:#ff3b3b;--blue:#3b9eff;--text:#e8e8f0;--muted:#5a5a7a;--mono:'Space Mono',monospace;--display:'Bebas Neue',sans-serif;--body:'DM Sans',sans-serif;}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:9999;}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;background:rgba(5,5,8,0.92);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
+.nav-logo{font-family:var(--display);font-size:22px;letter-spacing:3px;color:var(--acid);}
+.nav-logo span{color:var(--muted)}
+.nav-links{display:flex;gap:0;align-items:center}
+.nav-links a{font-family:var(--mono);font-size:10px;color:var(--muted);text-decoration:none;padding:6px 14px;letter-spacing:2px;text-transform:uppercase;border-right:1px solid var(--border);transition:color .15s,background .15s;}
+.nav-links a:first-child{border-left:1px solid var(--border)}
+.nav-links a:hover,.nav-links a.active{color:var(--acid);background:rgba(180,255,57,0.05)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-user{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;display:flex;align-items:center;gap:8px;}
+.nav-user::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 8px var(--acid);}
+.nav-notif{width:32px;height:32px;border:1px solid var(--border2);background:var(--bg3);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .15s;font-size:14px;}
+.nav-notif:hover{border-color:var(--acid);color:var(--acid)}
+aside{position:fixed;left:0;top:56px;bottom:0;width:220px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:24px 0;z-index:90;overflow-y:auto;}
+.side-section{padding:0 16px;margin-bottom:24px;}
+.side-label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;padding-left:8px;}
+.side-link{display:flex;align-items:center;gap:10px;padding:8px 12px;font-family:var(--body);font-size:13px;color:var(--muted);text-decoration:none;border-left:2px solid transparent;transition:all .15s;cursor:pointer;}
+.side-link:hover{color:var(--text);background:rgba(255,255,255,0.03)}
+.side-link.active{color:var(--acid);border-left-color:var(--acid);background:rgba(180,255,57,0.05)}
+.side-icon{font-size:13px;width:16px;text-align:center;opacity:.7}
+.side-divider{height:1px;background:var(--border);margin:8px 16px 16px}
+.side-cta{margin:0 16px 24px;padding:10px;background:var(--acid);color:#050508;font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;font-weight:700;transition:all .15s;text-align:center;}
+.side-cta:hover{background:var(--acid2)}
+main{margin-left:220px;margin-top:56px;padding:32px;min-height:calc(100vh - 56px)}
+
+/* PAGE SPECIFIC */
+.page-header{margin-bottom:32px}
+.page-tag{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.page-tag::before{content:'//';color:var(--acid)}
+.page-title{font-family:var(--display);font-size:48px;letter-spacing:2px;line-height:1}
+.page-sub{font-size:13px;color:var(--muted);margin-top:8px;max-width:560px;line-height:1.6}
+
+/* MODE CARDS */
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:32px}
+.mode-card{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:28px;cursor:pointer;transition:all .2s;
+  position:relative;
+}
+.mode-card:hover{border-color:var(--border2)}
+.mode-card.selected{border-color:var(--acid);background:rgba(180,255,57,0.03)}
+.mode-card.selected::before{
+  content:'SELECTED';
+  position:absolute;top:12px;right:12px;
+  font-family:var(--mono);font-size:8px;
+  color:var(--acid);letter-spacing:2px;
+  background:rgba(180,255,57,0.1);
+  padding:3px 8px;border:1px solid rgba(180,255,57,0.2);
+}
+.mode-icon{font-size:24px;margin-bottom:12px}
+.mode-name{font-family:var(--display);font-size:28px;letter-spacing:1px;margin-bottom:4px}
+.mode-tag{font-family:var(--mono);font-size:9px;color:var(--acid);letter-spacing:2px;margin-bottom:12px;text-transform:uppercase}
+.mode-desc{font-size:13px;color:var(--muted);line-height:1.5}
+
+/* CONFIG PANEL */
+.config-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-bottom:32px}
+.config-block{background:var(--bg2);border:1px solid var(--border);padding:24px}
+.config-label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+.config-select{
+  width:100%;background:var(--bg3);border:1px solid var(--border2);
+  color:var(--text);font-family:var(--mono);font-size:11px;
+  padding:10px 12px;appearance:none;letter-spacing:1px;
+  cursor:pointer;
+}
+.config-select:focus{outline:none;border-color:var(--acid)}
+.config-select option{background:var(--bg3)}
+
+.num-control{display:flex;align-items:center;gap:0}
+.num-btn{
+  width:40px;height:40px;background:var(--bg3);
+  border:1px solid var(--border2);color:var(--text);
+  font-family:var(--mono);font-size:16px;
+  cursor:pointer;transition:all .15s;
+}
+.num-btn:hover{background:rgba(180,255,57,0.1);color:var(--acid);border-color:var(--acid)}
+.num-val{
+  flex:1;height:40px;background:var(--bg);
+  border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:28px;color:var(--acid);
+  letter-spacing:2px;
+}
+
+/* START BUTTON */
+.start-bar{
+  background:var(--acid);padding:0;
+  display:flex;align-items:stretch;
+  cursor:pointer;transition:all .2s;
+  text-decoration:none;
+}
+.start-bar:hover{background:var(--acid2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(180,255,57,0.3)}
+.start-main{
+  flex:1;padding:20px 32px;
+  font-family:var(--display);font-size:32px;
+  letter-spacing:3px;color:#050508;
+  display:flex;align-items:center;gap:16px;
+}
+.start-meta{
+  padding:20px 28px;border-left:2px solid rgba(0,0,0,0.2);
+  font-family:var(--mono);font-size:9px;
+  color:rgba(0,0,0,0.6);letter-spacing:2px;
+  display:flex;flex-direction:column;justify-content:center;gap:4px;
+}
+.start-meta span{color:rgba(0,0,0,0.8);font-weight:700}
+
+/* RECENT */
+.recent-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:32px}
+.recent-card{background:var(--bg2);border:1px solid var(--border);padding:16px}
+.recent-score{font-family:var(--display);font-size:36px;line-height:1}
+.recent-score.good{color:var(--acid)}
+.recent-score.ok{color:var(--blue)}
+.recent-score.bad{color:var(--red)}
+.recent-subject{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.recent-date{font-size:11px;color:var(--muted);margin-top:8px}
+
+.toast{position:fixed;bottom:24px;right:24px;background:var(--bg3);border:1px solid var(--border2);padding:12px 20px;font-family:var(--mono);font-size:11px;letter-spacing:1px;z-index:9999;transform:translateY(100px);opacity:0;transition:all .3s;}
+.toast.show{transform:translateY(0);opacity:1}
+
+@media(max-width:1100px){aside{display:none}main{margin-left:0}.modes{grid-template-columns:1fr}}
+@media(max-width:700px){.nav-links{display:none}.config-grid{grid-template-columns:1fr}.recent-grid{grid-template-columns:repeat(2,1fr)}main{padding:16px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">RICO<span>CHET</span></div>
+  <div class="nav-links">
+    <a href="/Ricochet/home">HOME</a>
+    <a href="/Ricochet/learn">LEARN</a>
+    <a href="/Ricochet/exams" class="active">EXAMS</a>
+    <a href="/Ricochet/history">HISTORY</a>
+    <a href="/Ricochet/about">ABOUT</a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-notif" id="notif-btn">🔔</button>
+    <div class="nav-user">WATERFLAME // DEV</div>
+  </div>
+</nav>
+<aside>
+  <div class="side-section">
+    <div class="side-label">Navigation</div>
+    <a class="side-link" href="/Ricochet/home"><span class="side-icon">⬡</span> Dashboard</a>
+    <a class="side-link" href="/Ricochet/learn"><span class="side-icon">◈</span> Curriculum</a>
+    <a class="side-link active" href="/Ricochet/exams"><span class="side-icon">◉</span> Exam Hall</a>
+    <a class="side-link" href="/Ricochet/history"><span class="side-icon">▤</span> Analytics</a>
+  </div>
+  <div class="side-divider"></div>
+  <button class="side-cta" onclick="location.href='/Ricochet/learn'">▶ START DAILY PLAN</button>
+  <div class="side-section">
+    <a class="side-link" href="#"><span class="side-icon">⚙</span> Settings</a>
+    <a class="side-link" href="#"><span class="side-icon">?</span> Support</a>
+  </div>
+</aside>
+<main>
+  <div class="page-header">
+    <div class="page-tag">EXAM HALL // MISSION SELECT</div>
+    <h1 class="page-title">EXAM HALL</h1>
+    <p class="page-sub">Select your mode, configure your session, and enter the simulation. Every exam is a step closer to July 2nd.</p>
+  </div>
+
+  <!-- MODE SELECT -->
+  <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">// SELECT MODE</div>
+  <div class="modes" id="mode-grid">
+    <div class="mode-card selected" data-mode="practice" onclick="selectMode(this)">
+      <div class="mode-icon">◎</div>
+      <div class="mode-name">PRACTICE</div>
+      <div class="mode-tag">SELF-PACED</div>
+      <div class="mode-desc">No time pressure. Review answers as you go. Perfect for building knowledge on new topics.</div>
+    </div>
+    <div class="mode-card" data-mode="timed" onclick="selectMode(this)">
+      <div class="mode-icon">⧖</div>
+      <div class="mode-name">TIMED</div>
+      <div class="mode-tag">FULL SIMULATION</div>
+      <div class="mode-desc">Full exam conditions. Timer counts down. Closest experience to the real HSC hall.</div>
+    </div>
+    <div class="mode-card" data-mode="blitz" onclick="selectMode(this)">
+      <div class="mode-icon">⚡</div>
+      <div class="mode-name">BLITZ</div>
+      <div class="mode-tag">RAPID FIRE</div>
+      <div class="mode-desc">10 questions. 30 seconds each. Maximum intensity for quick knowledge checks.</div>
+    </div>
+  </div>
+
+  <!-- CONFIG -->
+  <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">// CONFIGURE SESSION</div>
+  <div class="config-grid">
+    <div class="config-block">
+      <div class="config-label">Subject</div>
+      <select class="config-select" id="subject-sel">
+        <option value="all">ALL SUBJECTS</option>
+        <option value="bom">Business Organization & Management</option>
+        <option value="acc">Accounting</option>
+        <option value="fin">Finance, Banking & Insurance</option>
+        <option value="mkt">Production Management & Marketing</option>
+        <option value="eco">Economics</option>
+        <option value="ict">ICT</option>
+      </select>
+    </div>
+    <div class="config-block">
+      <div class="config-label">Chapter</div>
+      <select class="config-select" id="chapter-sel">
+        <option>ALL CHAPTERS</option>
+        <option>Chapter 1: Nature of Business</option>
+        <option>Chapter 2: Sole Proprietorship</option>
+        <option>Chapter 3: Partnership Business</option>
+        <option>Chapter 4: Joint Stock Company</option>
+      </select>
+    </div>
+    <div class="config-block">
+      <div class="config-label">Question Count</div>
+      <div class="num-control">
+        <button class="num-btn" onclick="adjustQ(-5)">−</button>
+        <div class="num-val" id="q-count">25</div>
+        <button class="num-btn" onclick="adjustQ(5)">+</button>
+      </div>
+    </div>
+    <div class="config-block">
+      <div class="config-label">Time Limit (Minutes)</div>
+      <div class="num-control">
+        <button class="num-btn" onclick="adjustT(-5)">−</button>
+        <div class="num-val" id="t-limit">25</div>
+        <button class="num-btn" onclick="adjustT(5)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- START -->
+  <a class="start-bar" href="/Ricochet/exam">
+    <div class="start-main">▶ &nbsp;ENTER EXAM HALL</div>
+    <div class="start-meta">
+      <div>MODE: <span id="mode-display">PRACTICE</span></div>
+      <div>QUESTIONS: <span id="q-display">25</span></div>
+      <div>DURATION: <span id="t-display">25 MIN</span></div>
+    </div>
+  </a>
+
+  <!-- RECENT -->
+  <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-top:32px;margin-bottom:12px">// RECENT SESSIONS</div>
+  <div class="recent-grid">
+    <div class="recent-card">
+      <div class="recent-score good">94%</div>
+      <div class="recent-subject">Advanced Math II</div>
+      <div class="recent-date">Oct 24, 2023 — HARD</div>
+    </div>
+    <div class="recent-card">
+      <div class="recent-score good">88%</div>
+      <div class="recent-subject">Physics</div>
+      <div class="recent-date">Oct 20, 2023 — MEDIUM</div>
+    </div>
+    <div class="recent-card">
+      <div class="recent-score ok">76%</div>
+      <div class="recent-subject">Org. Chemistry</div>
+      <div class="recent-date">Oct 15, 2023 — EASY</div>
+    </div>
+    <div class="recent-card" style="display:flex;align-items:center;justify-content:center;border-style:dashed;cursor:pointer" onclick="location.href='/Ricochet/history'">
+      <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:2px;text-align:center">VIEW ALL<br>HISTORY →</div>
+    </div>
+  </div>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+let qCount=25, tLimit=25, selectedMode='PRACTICE';
+
+function adjustQ(d){
+  qCount=Math.max(5,Math.min(50,qCount+d));
+  document.getElementById('q-count').textContent=qCount;
+  document.getElementById('q-display').textContent=qCount;
+}
+function adjustT(d){
+  tLimit=Math.max(5,Math.min(60,tLimit+d));
+  document.getElementById('t-limit').textContent=tLimit;
+  document.getElementById('t-display').textContent=tLimit+' MIN';
+}
+function selectMode(card){
+  document.querySelectorAll('.mode-card').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedMode=card.dataset.mode.toUpperCase();
+  document.getElementById('mode-display').textContent=selectedMode;
+}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+document.getElementById('notif-btn').addEventListener('click',()=>showToast('[ NO NEW NOTIFICATIONS ]'));
+</script>
+</body>
+</html>

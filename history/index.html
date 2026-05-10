@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RICOCHET — ANALYTICS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050508;--bg2:#0a0a10;--bg3:#0f0f18;--border:#1a1a2e;--border2:#252540;--acid:#b4ff39;--acid2:#7fff00;--red:#ff3b3b;--blue:#3b9eff;--text:#e8e8f0;--muted:#5a5a7a;--mono:'Space Mono',monospace;--display:'Bebas Neue',sans-serif;--body:'DM Sans',sans-serif;}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:9999;}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;background:rgba(5,5,8,0.92);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
+.nav-logo{font-family:var(--display);font-size:22px;letter-spacing:3px;color:var(--acid);}
+.nav-logo span{color:var(--muted)}
+.nav-links{display:flex;align-items:center}
+.nav-links a{font-family:var(--mono);font-size:10px;color:var(--muted);text-decoration:none;padding:6px 14px;letter-spacing:2px;text-transform:uppercase;border-right:1px solid var(--border);transition:color .15s,background .15s;}
+.nav-links a:first-child{border-left:1px solid var(--border)}
+.nav-links a:hover,.nav-links a.active{color:var(--acid);background:rgba(180,255,57,0.05)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-user{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;display:flex;align-items:center;gap:8px;}
+.nav-user::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 8px var(--acid);}
+aside{position:fixed;left:0;top:56px;bottom:0;width:220px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:24px 0;z-index:90;overflow-y:auto;}
+.side-section{padding:0 16px;margin-bottom:24px;}
+.side-label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;padding-left:8px;}
+.side-link{display:flex;align-items:center;gap:10px;padding:8px 12px;font-family:var(--body);font-size:13px;color:var(--muted);text-decoration:none;border-left:2px solid transparent;transition:all .15s;cursor:pointer;}
+.side-link:hover{color:var(--text);background:rgba(255,255,255,0.03)}
+.side-link.active{color:var(--acid);border-left-color:var(--acid);background:rgba(180,255,57,0.05)}
+.side-icon{font-size:13px;width:16px;text-align:center;opacity:.7}
+.side-divider{height:1px;background:var(--border);margin:8px 16px 16px}
+.side-cta{margin:0 16px 24px;padding:10px;background:var(--acid);color:#050508;font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;font-weight:700;transition:all .15s;text-align:center;}
+.side-cta:hover{background:var(--acid2)}
+main{margin-left:220px;margin-top:56px;padding:32px;min-height:calc(100vh - 56px)}
+.page-tag{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.page-tag::before{content:'//';color:var(--acid)}
+.page-title{font-family:var(--display);font-size:48px;letter-spacing:2px;line-height:1;margin-bottom:8px}
+.page-sub{font-size:13px;color:var(--muted);margin-bottom:32px;line-height:1.6}
+.eyebrow{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+.eyebrow::before{content:'// ';color:var(--acid)}
+
+/* STAT CARDS */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:32px}
+.stat-card{background:var(--bg2);border:1px solid var(--border);padding:20px}
+.stat-val{font-family:var(--display);font-size:40px;letter-spacing:1px;line-height:1;margin-bottom:4px}
+.stat-label{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:3px;text-transform:uppercase}
+.stat-delta{font-family:var(--mono);font-size:9px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.delta-up{color:var(--acid)}
+.delta-down{color:var(--red)}
+
+/* BAR CHART */
+.chart-card{background:var(--bg2);border:1px solid var(--border);padding:24px;margin-bottom:32px}
+.chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.chart-title{font-family:var(--display);font-size:22px;letter-spacing:1px}
+.chart-legend{display:flex;gap:16px}
+.leg-item{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px}
+.leg-dot{width:8px;height:8px}
+.bars{display:flex;align-items:flex-end;gap:3px;height:160px;padding-bottom:24px;position:relative;border-bottom:1px solid var(--border)}
+.bar-col{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
+.bar{width:100%;background:var(--acid);transition:height 1s ease;opacity:.9;min-height:2px;position:relative;cursor:pointer}
+.bar:hover{opacity:1}
+.bar-tooltip{position:absolute;top:-28px;left:50%;transform:translateX(-50%);background:var(--bg3);border:1px solid var(--border2);padding:3px 8px;font-family:var(--mono);font-size:9px;color:var(--acid);white-space:nowrap;opacity:0;transition:opacity .15s;pointer-events:none}
+.bar:hover .bar-tooltip{opacity:1}
+.bar-label{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:1px;margin-top:6px;text-align:center}
+
+/* SESSION TABLE */
+.session-table{width:100%;border-collapse:collapse;margin-bottom:32px}
+.session-table th{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);background:var(--bg2)}
+.session-table td{padding:12px;border-bottom:1px solid var(--border);font-size:13px;background:var(--bg2)}
+.session-table tr:hover td{background:rgba(255,255,255,0.02)}
+.score-pill{display:inline-flex;padding:2px 10px;font-family:var(--mono);font-size:10px;font-weight:700}
+.score-a{background:rgba(180,255,57,0.1);color:var(--acid);border:1px solid rgba(180,255,57,0.3)}
+.score-b{background:rgba(59,158,255,0.1);color:var(--blue);border:1px solid rgba(59,158,255,0.3)}
+.score-c{background:rgba(255,59,59,0.1);color:var(--red);border:1px solid rgba(255,59,59,0.3)}
+.mode-tag{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:1px}
+.replay-btn{padding:4px 12px;background:transparent;border:1px solid var(--border2);color:var(--muted);font-family:var(--mono);font-size:9px;letter-spacing:1px;cursor:pointer;transition:all .15s}
+.replay-btn:hover{border-color:var(--acid);color:var(--acid)}
+
+/* SUBJECT BREAKDOWN */
+.breakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:32px}
+.bk-card{background:var(--bg2);border:1px solid var(--border);padding:20px}
+.bk-name{font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--text);text-transform:uppercase;margin-bottom:8px}
+.bk-score{font-family:var(--display);font-size:36px;line-height:1;margin-bottom:8px}
+.bk-bar{height:2px;background:var(--border);margin-bottom:8px}
+.bk-fill{height:100%;transition:width 1.2s ease}
+.bk-meta{font-size:11px;color:var(--muted)}
+
+.toast{position:fixed;bottom:24px;right:24px;background:var(--bg3);border:1px solid var(--border2);padding:12px 20px;font-family:var(--mono);font-size:11px;letter-spacing:1px;z-index:9999;transform:translateY(100px);opacity:0;transition:all .3s;}
+.toast.show{transform:translateY(0);opacity:1}
+@media(max-width:1100px){aside{display:none}main{margin-left:0}.stat-grid{grid-template-columns:repeat(2,1fr)}.breakdown{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.nav-links{display:none}.stat-grid{grid-template-columns:1fr 1fr}.breakdown{grid-template-columns:1fr}main{padding:16px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">RICO<span>CHET</span></div>
+  <div class="nav-links">
+    <a href="/Ricochet/home">HOME</a>
+    <a href="/Ricochet/learn">LEARN</a>
+    <a href="/Ricochet/exams">EXAMS</a>
+    <a href="/Ricochet/history" class="active">HISTORY</a>
+    <a href="/Ricochet/about">ABOUT</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-user">WATERFLAME // DEV</div>
+  </div>
+</nav>
+<aside>
+  <div class="side-section">
+    <div class="side-label">Navigation</div>
+    <a class="side-link" href="/Ricochet/home"><span class="side-icon">⬡</span> Dashboard</a>
+    <a class="side-link" href="/Ricochet/learn"><span class="side-icon">◈</span> Curriculum</a>
+    <a class="side-link" href="/Ricochet/exams"><span class="side-icon">◉</span> Exam Hall</a>
+    <a class="side-link active" href="/Ricochet/history"><span class="side-icon">▤</span> Analytics</a>
+  </div>
+  <div class="side-divider"></div>
+  <button class="side-cta" onclick="location.href='/Ricochet/learn'">▶ START DAILY PLAN</button>
+  <div class="side-section">
+    <a class="side-link" href="#"><span class="side-icon">⚙</span> Settings</a>
+    <a class="side-link" href="#"><span class="side-icon">?</span> Support</a>
+  </div>
+</aside>
+<main>
+  <div class="page-tag">ANALYTICS // PERFORMANCE LOG</div>
+  <h1 class="page-title">ANALYTICS</h1>
+  <p class="page-sub">Full breakdown of your exam sessions, subject mastery, and performance trajectory toward HSC 2026.</p>
+
+  <!-- STATS -->
+  <div class="eyebrow">OVERALL STATS</div>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-val" style="color:var(--acid)">86%</div>
+      <div class="stat-label">Average Score</div>
+      <div class="stat-delta delta-up">↑ +4% this week</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val">12</div>
+      <div class="stat-label">Exams Completed</div>
+      <div class="stat-delta delta-up">↑ 3 this week</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val">142h</div>
+      <div class="stat-label">Time Invested</div>
+      <div class="stat-delta" style="color:var(--muted)">→ On track</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" style="color:var(--blue)">65%</div>
+      <div class="stat-label">Curriculum Done</div>
+      <div class="stat-delta delta-up">↑ 5% this week</div>
+    </div>
+  </div>
+
+  <!-- BAR CHART -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <div class="chart-title">SCORE HISTORY</div>
+      <div class="chart-legend">
+        <div class="leg-item"><div class="leg-dot" style="background:var(--acid)"></div>Score %</div>
+      </div>
+    </div>
+    <div class="bars" id="bar-chart"></div>
+  </div>
+
+  <!-- SUBJECT BREAKDOWN -->
+  <div class="eyebrow">SUBJECT MASTERY</div>
+  <div class="breakdown">
+    <div class="bk-card">
+      <div class="bk-name">Accounting</div>
+      <div class="bk-score" style="color:var(--acid)">82%</div>
+      <div class="bk-bar"><div class="bk-fill" style="width:0%;background:var(--acid)" data-w="82%"></div></div>
+      <div class="bk-meta">18 sessions · Avg 84%</div>
+    </div>
+    <div class="bk-card">
+      <div class="bk-name">Finance & Banking</div>
+      <div class="bk-score" style="color:var(--blue)">45%</div>
+      <div class="bk-bar"><div class="bk-fill" style="width:0%;background:var(--blue)" data-w="45%"></div></div>
+      <div class="bk-meta">6 sessions · Avg 47%</div>
+    </div>
+    <div class="bk-card">
+      <div class="bk-name">Management</div>
+      <div class="bk-score" style="color:var(--red)">12%</div>
+      <div class="bk-bar"><div class="bk-fill" style="width:0%;background:var(--red)" data-w="12%"></div></div>
+      <div class="bk-meta">2 sessions · Avg 11%</div>
+    </div>
+    <div class="bk-card">
+      <div class="bk-name">Economics</div>
+      <div class="bk-score" style="color:var(--acid)">67%</div>
+      <div class="bk-bar"><div class="bk-fill" style="width:0%;background:var(--acid)" data-w="67%"></div></div>
+      <div class="bk-meta">9 sessions · Avg 65%</div>
+    </div>
+    <div class="bk-card">
+      <div class="bk-name">ICT</div>
+      <div class="bk-score" style="color:var(--acid2)">95%</div>
+      <div class="bk-bar"><div class="bk-fill" style="width:0%;background:var(--acid2)" data-w="95%"></div></div>
+      <div class="bk-meta">22 sessions · Avg 93%</div>
+    </div>
+    <div class="bk-card">
+      <div class="bk-name">English</div>
+      <div class="bk-score" style="color:var(--blue)">31%</div>
+      <div class="bk-bar"><div class="bk-fill" style="width:0%;background:var(--blue)" data-w="31%"></div></div>
+      <div class="bk-meta">4 sessions · Avg 30%</div>
+    </div>
+  </div>
+
+  <!-- SESSION TABLE -->
+  <div class="eyebrow">SESSION LOG</div>
+  <table class="session-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Subject</th>
+        <th>Mode</th>
+        <th>Score</th>
+        <th>Questions</th>
+        <th>Duration</th>
+        <th>Date</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="session-tbody"></tbody>
+  </table>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+const sessions=[
+  {sub:'Advanced Math II',mode:'HARD',score:94,q:25,dur:'22:14',date:'Oct 24, 2023'},
+  {sub:'Physics',mode:'MEDIUM',score:88,q:25,dur:'20:51',date:'Oct 20, 2023'},
+  {sub:'Org. Chemistry',mode:'EASY',score:76,q:20,dur:'18:30',date:'Oct 15, 2023'},
+  {sub:'Accounting',mode:'TIMED',score:91,q:25,dur:'23:05',date:'Oct 10, 2023'},
+  {sub:'Finance',mode:'PRACTICE',score:62,q:15,dur:'14:20',date:'Oct 8, 2023'},
+  {sub:'Economics',mode:'TIMED',score:79,q:25,dur:'21:44',date:'Oct 5, 2023'},
+  {sub:'ICT',mode:'BLITZ',score:96,q:10,dur:'05:12',date:'Oct 1, 2023'},
+  {sub:'Management',mode:'PRACTICE',score:55,q:10,dur:'09:40',date:'Sep 28, 2023'},
+];
+
+const tbody=document.getElementById('session-tbody');
+sessions.forEach((s,i)=>{
+  const cls=s.score>=80?'score-a':s.score>=65?'score-b':'score-c';
+  tbody.innerHTML+=`<tr>
+    <td style="font-family:var(--mono);font-size:10px;color:var(--muted)">${String(i+1).padStart(2,'0')}</td>
+    <td style="font-weight:500">${s.sub}</td>
+    <td><span class="mode-tag">${s.mode}</span></td>
+    <td><span class="score-pill ${cls}">${s.score}%</span></td>
+    <td style="font-family:var(--mono);font-size:11px;color:var(--muted)">${s.q} Q</td>
+    <td style="font-family:var(--mono);font-size:11px;color:var(--muted)">${s.dur}</td>
+    <td style="font-size:11px;color:var(--muted)">${s.date}</td>
+    <td><button class="replay-btn" onclick="showToast('[ REPLAYING: ${s.sub.toUpperCase()} ]')">REPLAY</button></td>
+  </tr>`;
+});
+
+// Build bar chart
+const scores=[72,78,81,76,88,91,85,94,88,76,91,94];
+const labels=['Nov','Dec','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct'];
+const chart=document.getElementById('bar-chart');
+const max=Math.max(...scores);
+scores.forEach((s,i)=>{
+  const col=document.createElement('div');
+  col.className='bar-col';
+  const pct=(s/max*100);
+  col.innerHTML=`<div class="bar" style="height:0%" data-h="${pct}%"><div class="bar-tooltip">${s}%</div></div><div class="bar-label">${labels[i]}</div>`;
+  chart.appendChild(col);
+});
+
+// Animate bars and fills on load
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.querySelectorAll('.bar').forEach(b=>{
+      b.style.height=b.dataset.h;
+    });
+    document.querySelectorAll('.bk-fill').forEach(f=>{
+      f.style.width=f.dataset.w;
+    });
+  },300);
+});
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RICOCHET — ABOUT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050508;--bg2:#0a0a10;--bg3:#0f0f18;--border:#1a1a2e;--border2:#252540;--acid:#b4ff39;--acid2:#7fff00;--red:#ff3b3b;--blue:#3b9eff;--text:#e8e8f0;--muted:#5a5a7a;--mono:'Space Mono',monospace;--display:'Bebas Neue',sans-serif;--body:'DM Sans',sans-serif;}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:9999;}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;background:rgba(5,5,8,0.92);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
+.nav-logo{font-family:var(--display);font-size:22px;letter-spacing:3px;color:var(--acid);}
+.nav-logo span{color:var(--muted)}
+.nav-links{display:flex;align-items:center}
+.nav-links a{font-family:var(--mono);font-size:10px;color:var(--muted);text-decoration:none;padding:6px 14px;letter-spacing:2px;text-transform:uppercase;border-right:1px solid var(--border);transition:color .15s,background .15s;}
+.nav-links a:first-child{border-left:1px solid var(--border)}
+.nav-links a:hover,.nav-links a.active{color:var(--acid);background:rgba(180,255,57,0.05)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-user{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;display:flex;align-items:center;gap:8px;}
+.nav-user::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 8px var(--acid);}
+aside{position:fixed;left:0;top:56px;bottom:0;width:220px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:24px 0;z-index:90;overflow-y:auto;}
+.side-section{padding:0 16px;margin-bottom:24px;}
+.side-label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;padding-left:8px;}
+.side-link{display:flex;align-items:center;gap:10px;padding:8px 12px;font-family:var(--body);font-size:13px;color:var(--muted);text-decoration:none;border-left:2px solid transparent;transition:all .15s;cursor:pointer;}
+.side-link:hover{color:var(--text);background:rgba(255,255,255,0.03)}
+.side-link.active{color:var(--acid);border-left-color:var(--acid);background:rgba(180,255,57,0.05)}
+.side-icon{font-size:13px;width:16px;text-align:center;opacity:.7}
+.side-divider{height:1px;background:var(--border);margin:8px 16px 16px}
+.side-cta{margin:0 16px 24px;padding:10px;background:var(--acid);color:#050508;font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;font-weight:700;transition:all .15s;text-align:center;}
+.side-cta:hover{background:var(--acid2)}
+main{margin-left:220px;margin-top:56px;padding:32px;min-height:calc(100vh - 56px)}
+.eyebrow{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+.eyebrow::before{content:'// ';color:var(--acid)}
+
+/* HERO BANNER */
+.about-hero{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:48px;margin-bottom:2px;
+  display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.about-hero::before{
+  content:'RICOCHET';
+  position:absolute;right:-20px;top:50%;transform:translateY(-50%);
+  font-family:var(--display);font-size:160px;
+  color:rgba(180,255,57,0.03);letter-spacing:4px;
+  pointer-events:none;white-space:nowrap;
+}
+.ah-tag{font-family:var(--mono);font-size:9px;color:var(--acid);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.ah-title{font-family:var(--display);font-size:56px;letter-spacing:2px;line-height:1;margin-bottom:12px}
+.ah-sub{font-size:15px;color:var(--muted);line-height:1.7;max-width:540px}
+.version-badge{
+  background:rgba(180,255,57,0.08);border:1px solid rgba(180,255,57,0.2);
+  padding:16px 24px;text-align:center;flex-shrink:0;
+}
+.vb-num{font-family:var(--display);font-size:48px;color:var(--acid);letter-spacing:2px;line-height:1}
+.vb-label{font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:3px;margin-top:4px;text-transform:uppercase}
+
+/* QUICK STATS */
+.quick-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:32px}
+.qs-card{background:var(--bg2);border:1px solid var(--border);padding:20px;border-top:2px solid var(--acid)}
+.qs-val{font-family:var(--display);font-size:32px;color:var(--acid);margin-bottom:4px}
+.qs-label{font-size:12px;color:var(--muted)}
+
+/* INFO GRID */
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-bottom:32px}
+.info-card{background:var(--bg2);border:1px solid var(--border);padding:28px}
+.ic-tag{font-family:var(--mono);font-size:8px;color:var(--acid);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.ic-title{font-family:var(--display);font-size:24px;letter-spacing:1px;margin-bottom:12px}
+.ic-body{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* EXAM INFO TABLE */
+.exam-info{background:var(--bg2);border:1px solid var(--border);padding:28px;margin-bottom:32px}
+.ei-title{font-family:var(--display);font-size:28px;letter-spacing:1px;margin-bottom:20px}
+.ei-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.ei-row{display:contents}
+.ei-key{background:var(--bg3);padding:12px 16px;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;border-bottom:1px solid var(--border)}
+.ei-val{background:var(--bg3);padding:12px 16px;font-size:13px;color:var(--text);border-bottom:1px solid var(--border)}
+.ei-val strong{color:var(--acid)}
+
+/* TIPS SECTION */
+.tips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:32px}
+.tip-card{background:var(--bg2);border:1px solid var(--border);padding:24px;position:relative}
+.tip-num{font-family:var(--display);font-size:48px;color:rgba(180,255,57,0.1);position:absolute;top:16px;right:16px;line-height:1;letter-spacing:2px}
+.tip-icon{font-size:20px;margin-bottom:12px}
+.tip-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--text);text-transform:uppercase;margin-bottom:8px}
+.tip-body{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* CTA */
+.about-cta{
+  background:var(--acid);padding:32px 40px;
+  display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;
+  cursor:pointer;transition:all .2s;
+}
+.about-cta:hover{background:var(--acid2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(180,255,57,.3)}
+.cta-title{font-family:var(--display);font-size:36px;letter-spacing:2px;color:#050508}
+.cta-sub{font-size:13px;color:rgba(0,0,0,0.5);margin-top:4px}
+.cta-btn{padding:12px 28px;background:#050508;color:var(--acid);font-family:var(--mono);font-size:10px;letter-spacing:2px;border:none;cursor:pointer;font-weight:700}
+
+@media(max-width:1100px){aside{display:none}main{margin-left:0}.quick-stats{grid-template-columns:repeat(2,1fr)}.tips-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.nav-links{display:none}.about-hero{grid-template-columns:1fr}.version-badge{display:none}.info-grid{grid-template-columns:1fr}.tips-grid{grid-template-columns:1fr}.quick-stats{grid-template-columns:1fr 1fr}.about-cta{grid-template-columns:1fr}main{padding:16px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">RICO<span>CHET</span></div>
+  <div class="nav-links">
+    <a href="/Ricochet/home">HOME</a>
+    <a href="/Ricochet/learn">LEARN</a>
+    <a href="/Ricochet/exams">EXAMS</a>
+    <a href="/Ricochet/history">HISTORY</a>
+    <a href="/Ricochet/about" class="active">ABOUT</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-user">WATERFLAME // DEV</div>
+  </div>
+</nav>
+<aside>
+  <div class="side-section">
+    <div class="side-label">Navigation</div>
+    <a class="side-link" href="/Ricochet/home"><span class="side-icon">⬡</span> Dashboard</a>
+    <a class="side-link" href="/Ricochet/learn"><span class="side-icon">◈</span> Curriculum</a>
+    <a class="side-link" href="/Ricochet/exams"><span class="side-icon">◉</span> Exam Hall</a>
+    <a class="side-link" href="/Ricochet/history"><span class="side-icon">▤</span> Analytics</a>
+  </div>
+  <div class="side-divider"></div>
+  <button class="side-cta" onclick="location.href='/Ricochet/learn'">▶ START DAILY PLAN</button>
+  <div class="side-section">
+    <a class="side-link active" href="/Ricochet/about"><span class="side-icon">◌</span> About</a>
+    <a class="side-link" href="#"><span class="side-icon">⚙</span> Settings</a>
+    <a class="side-link" href="#"><span class="side-icon">?</span> Support</a>
+  </div>
+</aside>
+<main>
+
+  <!-- HERO -->
+  <div class="about-hero">
+    <div>
+      <div class="ah-tag">// MISSION BRIEFING</div>
+      <h1 class="ah-title">WHAT IS<br>RICOCHET?</h1>
+      <p class="ah-sub">Ricochet is a precision-built HSC preparation platform for BBA students. Designed to simulate real exam conditions, track mastery by subject, and turn raw effort into measurable results before July 2, 2026.</p>
+    </div>
+    <div class="version-badge">
+      <div class="vb-num">V2</div>
+      <div class="vb-label">CURRENT BUILD</div>
+    </div>
+  </div>
+
+  <!-- QUICK STATS -->
+  <div class="quick-stats" style="margin-top:2px">
+    <div class="qs-card">
+      <div class="qs-val">25</div>
+      <div class="qs-label">MCQs per exam session</div>
+    </div>
+    <div class="qs-card">
+      <div class="qs-val">6</div>
+      <div class="qs-label">Core BBA subjects covered</div>
+    </div>
+    <div class="qs-card">
+      <div class="qs-val">142</div>
+      <div class="qs-label">Day study roadmap</div>
+    </div>
+    <div class="qs-card">
+      <div class="qs-val">3</div>
+      <div class="qs-label">Exam modes available</div>
+    </div>
+  </div>
+
+  <!-- INFO GRID -->
+  <div class="eyebrow">HOW IT WORKS</div>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="ic-tag">Step 01</div>
+      <div class="ic-title">STUDY THE CURRICULUM</div>
+      <div class="ic-body">Navigate to the Curriculum page and work through BBA subjects in order. Each subject has targeted MCQ sets and short question banks built around the official HSC syllabus.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-tag">Step 02</div>
+      <div class="ic-title">ENTER THE EXAM HALL</div>
+      <div class="ic-body">Test yourself under real conditions. Choose Practice, Timed, or Blitz mode. Configure questions per session and time limits. A per-question timer keeps you sharp.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-tag">Step 03</div>
+      <div class="ic-title">REVIEW YOUR ANALYTICS</div>
+      <div class="ic-body">Every session is logged. Track your score trajectory, identify weak subjects, and measure improvement over time. Data-driven preparation beats guesswork every time.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-tag">Step 04</div>
+      <div class="ic-title">REPEAT UNTIL PERFECT</div>
+      <div class="ic-body">The 142-day roadmap keeps you on pace. Follow the daily plan, stay consistent, and let the system tell you when you're ready. Confidence comes from repetition.</div>
+    </div>
+  </div>
+
+  <!-- EXAM INFO -->
+  <div class="eyebrow">HSC BBA EXAM INFO</div>
+  <div class="exam-info">
+    <div class="ei-title">QUICK SCAN INFO</div>
+    <div class="ei-grid">
+      <div class="ei-key">EXAM DATE</div>
+      <div class="ei-val"><strong>July 2, 2026</strong></div>
+      <div class="ei-key">EXAM TYPE</div>
+      <div class="ei-val">HSC — Higher Secondary Certificate</div>
+      <div class="ei-key">STREAM</div>
+      <div class="ei-val">Business Studies (BBA Focus)</div>
+      <div class="ei-key">FORMAT</div>
+      <div class="ei-val">MCQ + Short Questions + Creative Questions</div>
+      <div class="ei-key">MCQ MARKS</div>
+      <div class="ei-val"><strong>30 marks</strong> — 30 questions, 1 mark each</div>
+      <div class="ei-key">WRITTEN MARKS</div>
+      <div class="ei-val"><strong>70 marks</strong> — Short + Creative</div>
+      <div class="ei-key">TOTAL MARKS</div>
+      <div class="ei-val"><strong>100 marks</strong> per subject paper</div>
+      <div class="ei-key">PASSING GRADE</div>
+      <div class="ei-val">GPA 2.00 minimum per subject</div>
+    </div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="eyebrow">TACTICAL STUDY TIPS</div>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-num">01</div>
+      <div class="tip-icon">◎</div>
+      <div class="tip-title">Active Recall</div>
+      <div class="tip-body">Write definitions from memory instead of re-reading. Close the book, write what you know, then check. This is 2–3x more effective than passive review.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">02</div>
+      <div class="tip-icon">⧖</div>
+      <div class="tip-title">Spaced Repetition</div>
+      <div class="tip-body">Review material at increasing intervals — 1 day, 3 days, 7 days, 14 days. Ricochet's roadmap is built around this principle automatically.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">03</div>
+      <div class="tip-icon">⚡</div>
+      <div class="tip-title">Timed Practice</div>
+      <div class="tip-body">Always practice under time pressure before the real exam. Use Blitz mode weekly to keep your MCQ speed sharp. The exam won't wait for you.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">04</div>
+      <div class="tip-icon">▤</div>
+      <div class="tip-title">Weak Subject First</div>
+      <div class="tip-body">Your brain avoids difficulty. Override it — check Analytics, find your lowest subject, and spend the first 30 minutes of every session there.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">05</div>
+      <div class="tip-icon">◈</div>
+      <div class="tip-title">Exam Simulation</div>
+      <div class="tip-body">Run at least one full 25-question Timed exam per week. Familiarity with pressure reduces exam anxiety significantly on the actual day.</div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">06</div>
+      <div class="tip-icon">⬡</div>
+      <div class="tip-title">Review Mistakes</div>
+      <div class="tip-body">After every exam, go through every wrong answer. Understand why you got it wrong — misread, didn't know, or silly mistake. Each has a different fix.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="about-cta" onclick="location.href='/Ricochet/exams'">
+    <div>
+      <div class="cta-title">READY? ENTER THE EXAM HALL</div>
+      <div class="cta-sub">July 2, 2026 is closer than you think. Every session counts.</div>
+    </div>
+    <button class="cta-btn">ENTER →</button>
+  </div>
+
+</main>
+</body>
+</html>

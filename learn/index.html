@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RICOCHET — CURRICULUM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050508;--bg2:#0a0a10;--bg3:#0f0f18;--border:#1a1a2e;--border2:#252540;--acid:#b4ff39;--acid2:#7fff00;--red:#ff3b3b;--blue:#3b9eff;--text:#e8e8f0;--muted:#5a5a7a;--mono:'Space Mono',monospace;--display:'Bebas Neue',sans-serif;--body:'DM Sans',sans-serif;}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:9999;}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;background:rgba(5,5,8,0.92);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
+.nav-logo{font-family:var(--display);font-size:22px;letter-spacing:3px;color:var(--acid);}
+.nav-logo span{color:var(--muted)}
+.nav-links{display:flex;gap:0;align-items:center}
+.nav-links a{font-family:var(--mono);font-size:10px;color:var(--muted);text-decoration:none;padding:6px 14px;letter-spacing:2px;text-transform:uppercase;border-right:1px solid var(--border);transition:color .15s,background .15s;}
+.nav-links a:first-child{border-left:1px solid var(--border)}
+.nav-links a:hover,.nav-links a.active{color:var(--acid);background:rgba(180,255,57,0.05)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-user{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;display:flex;align-items:center;gap:8px;}
+.nav-user::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 8px var(--acid);}
+aside{position:fixed;left:0;top:56px;bottom:0;width:220px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:24px 0;z-index:90;overflow-y:auto;}
+.side-section{padding:0 16px;margin-bottom:24px;}
+.side-label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;padding-left:8px;}
+.side-link{display:flex;align-items:center;gap:10px;padding:8px 12px;font-family:var(--body);font-size:13px;color:var(--muted);text-decoration:none;border-left:2px solid transparent;transition:all .15s;cursor:pointer;}
+.side-link:hover{color:var(--text);background:rgba(255,255,255,0.03)}
+.side-link.active{color:var(--acid);border-left-color:var(--acid);background:rgba(180,255,57,0.05)}
+.side-icon{font-size:13px;width:16px;text-align:center;opacity:.7}
+.side-divider{height:1px;background:var(--border);margin:8px 16px 16px}
+.side-cta{margin:0 16px 24px;padding:10px;background:var(--acid);color:#050508;font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;font-weight:700;transition:all .15s;text-align:center;}
+.side-cta:hover{background:var(--acid2)}
+main{margin-left:220px;margin-top:56px;padding:32px;min-height:calc(100vh - 56px)}
+.page-tag{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.page-tag::before{content:'//';color:var(--acid)}
+.page-title{font-family:var(--display);font-size:48px;letter-spacing:2px;line-height:1;margin-bottom:8px}
+.page-sub{font-size:13px;color:var(--muted);margin-bottom:32px;line-height:1.6}
+
+/* SESSION BADGE */
+.session-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(180,255,57,0.08);border:1px solid rgba(180,255,57,0.2);
+  padding:6px 14px;margin-bottom:28px;
+  font-family:var(--mono);font-size:9px;color:var(--acid);letter-spacing:2px;
+}
+.session-badge::before{content:'●';animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* SUBJECT GRID */
+.subjects{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-bottom:32px}
+.subj{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:24px;cursor:pointer;transition:border-color .2s;
+  position:relative;overflow:hidden;
+}
+.subj:hover{border-color:var(--border2)}
+.subj-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
+.subj-icon{font-size:20px}
+.subj-pct-badge{
+  font-family:var(--display);font-size:28px;color:var(--acid);
+  line-height:1;
+}
+.subj-name{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--text);text-transform:uppercase;margin-bottom:4px}
+.subj-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:16px}
+.subj-bar{height:1px;background:var(--border);margin-bottom:12px}
+.subj-bar-fill{height:100%;background:var(--acid);transition:width 1.2s ease}
+.subj-actions{display:flex;gap:8px}
+.subj-btn{
+  padding:6px 14px;font-family:var(--mono);font-size:9px;
+  letter-spacing:1px;text-transform:uppercase;cursor:pointer;
+  transition:all .15s;border:none;
+}
+.subj-btn-primary{background:var(--acid);color:#050508;font-weight:700}
+.subj-btn-primary:hover{background:var(--acid2)}
+.subj-btn-ghost{background:var(--bg3);color:var(--muted);border:1px solid var(--border2)}
+.subj-btn-ghost:hover{color:var(--text);border-color:var(--border2)}
+
+/* EXAM PROMO */
+.exam-promo{
+  background:var(--acid);padding:28px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;transition:all .2s;
+}
+.exam-promo:hover{background:var(--acid2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(180,255,57,0.3)}
+.ep-left{}
+.ep-tag{font-family:var(--mono);font-size:8px;color:rgba(0,0,0,0.5);letter-spacing:3px;margin-bottom:4px}
+.ep-title{font-family:var(--display);font-size:36px;color:#050508;letter-spacing:2px;line-height:1}
+.ep-arrow{font-family:var(--display);font-size:48px;color:#050508;opacity:.6}
+
+.toast{position:fixed;bottom:24px;right:24px;background:var(--bg3);border:1px solid var(--border2);padding:12px 20px;font-family:var(--mono);font-size:11px;letter-spacing:1px;z-index:9999;transform:translateY(100px);opacity:0;transition:all .3s;}
+.toast.show{transform:translateY(0);opacity:1}
+
+@media(max-width:1100px){aside{display:none}main{margin-left:0}.subjects{grid-template-columns:1fr}}
+@media(max-width:700px){.nav-links{display:none}main{padding:16px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">RICO<span>CHET</span></div>
+  <div class="nav-links">
+    <a href="/Ricochet/home">HOME</a>
+    <a href="/Ricochet/learn" class="active">LEARN</a>
+    <a href="/Ricochet/exams">EXAMS</a>
+    <a href="/Ricochet/history">HISTORY</a>
+    <a href="/Ricochet/about">ABOUT</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-user">WATERFLAME // DEV</div>
+  </div>
+</nav>
+<aside>
+  <div class="side-section">
+    <div class="side-label">Navigation</div>
+    <a class="side-link" href="/Ricochet/home"><span class="side-icon">⬡</span> Dashboard</a>
+    <a class="side-link active" href="/Ricochet/learn"><span class="side-icon">◈</span> Curriculum</a>
+    <a class="side-link" href="/Ricochet/exams"><span class="side-icon">◉</span> Exam Hall</a>
+    <a class="side-link" href="/Ricochet/history"><span class="side-icon">▤</span> Analytics</a>
+  </div>
+  <div class="side-divider"></div>
+  <button class="side-cta">▶ START DAILY PLAN</button>
+  <div class="side-section">
+    <a class="side-link" href="#"><span class="side-icon">⚙</span> Settings</a>
+    <a class="side-link" href="#"><span class="side-icon">?</span> Support</a>
+  </div>
+</aside>
+<main>
+  <div class="page-tag">CURRICULUM // ACADEMIC MISSION</div>
+  <h1 class="page-title">CURRICULUM</h1>
+  <p class="page-sub">BBA-focused subjects for HSC 2026. Master your coursework through focused MCQ practice and short question drills.</p>
+
+  <div class="session-badge">SESSION ACTIVE — DAY 142 OF 142</div>
+
+  <div style="font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px">// SUBJECT MODULES</div>
+
+  <div class="subjects">
+    <div class="subj">
+      <div class="subj-header">
+        <div>
+          <div class="subj-name">Accounting</div>
+          <div class="subj-desc">Financial statements, journal entries, and reconciliation principles for high-level business analysis.</div>
+        </div>
+        <div class="subj-pct-badge">82%</div>
+      </div>
+      <div class="subj-bar"><div class="subj-bar-fill" style="width:82%"></div></div>
+      <div class="subj-actions">
+        <button class="subj-btn subj-btn-primary" onclick="showToast('[ OPENING ACCOUNTING MCQ ]')">PRACTICE MCQ</button>
+        <button class="subj-btn subj-btn-ghost" onclick="showToast('[ OPENING SUBJECT GK ]')">SUBJECT GK</button>
+      </div>
+    </div>
+    <div class="subj">
+      <div class="subj-header">
+        <div>
+          <div class="subj-name">Finance & Banking</div>
+          <div class="subj-desc">Monetary policy, corporate finance, and risk management fundamentals for modern markets.</div>
+        </div>
+        <div class="subj-pct-badge">45%</div>
+      </div>
+      <div class="subj-bar"><div class="subj-bar-fill" style="width:45%"></div></div>
+      <div class="subj-actions">
+        <button class="subj-btn subj-btn-primary" onclick="showToast('[ OPENING FINANCE MCQ ]')">PRACTICE MCQ</button>
+        <button class="subj-btn subj-btn-ghost" onclick="showToast('[ OPENING SUBJECT GK ]')">SUBJECT GK</button>
+      </div>
+    </div>
+    <div class="subj">
+      <div class="subj-header">
+        <div>
+          <div class="subj-name">Management</div>
+          <div class="subj-desc">Strategic planning, organizational behavior, and leadership theories for aspiring executives.</div>
+        </div>
+        <div class="subj-pct-badge">12%</div>
+      </div>
+      <div class="subj-bar"><div class="subj-bar-fill" style="width:12%"></div></div>
+      <div class="subj-actions">
+        <button class="subj-btn subj-btn-primary" onclick="showToast('[ OPENING MANAGEMENT MCQ ]')">PRACTICE MCQ</button>
+        <button class="subj-btn subj-btn-ghost" onclick="showToast('[ OPENING SUBJECT GK ]')">SUBJECT GK</button>
+      </div>
+    </div>
+    <div class="subj">
+      <div class="subj-header">
+        <div>
+          <div class="subj-name">Economics</div>
+          <div class="subj-desc">Micro and Macroeconomics, supply-demand curves, and international trade dynamics.</div>
+        </div>
+        <div class="subj-pct-badge">67%</div>
+      </div>
+      <div class="subj-bar"><div class="subj-bar-fill" style="width:67%"></div></div>
+      <div class="subj-actions">
+        <button class="subj-btn subj-btn-primary" onclick="showToast('[ OPENING ECONOMICS MCQ ]')">PRACTICE MCQ</button>
+        <button class="subj-btn subj-btn-ghost" onclick="showToast('[ OPENING SUBJECT GK ]')">SUBJECT GK</button>
+      </div>
+    </div>
+    <div class="subj">
+      <div class="subj-header">
+        <div>
+          <div class="subj-name">ICT</div>
+          <div class="subj-desc">Digital literacy, database systems, networking, and the foundations of computational thinking.</div>
+        </div>
+        <div class="subj-pct-badge" style="color:var(--acid2)">95%</div>
+      </div>
+      <div class="subj-bar"><div class="subj-bar-fill" style="width:95%;background:var(--acid2)"></div></div>
+      <div class="subj-actions">
+        <button class="subj-btn subj-btn-primary" onclick="showToast('[ OPENING ICT MCQ ]')">PRACTICE MCQ</button>
+        <button class="subj-btn subj-btn-ghost" onclick="showToast('[ OPENING SUBJECT GK ]')">SUBJECT GK</button>
+      </div>
+    </div>
+    <div class="subj">
+      <div class="subj-header">
+        <div>
+          <div class="subj-name">English</div>
+          <div class="subj-desc">Business communication, advanced grammar, and literature analysis for global proficiency.</div>
+        </div>
+        <div class="subj-pct-badge">31%</div>
+      </div>
+      <div class="subj-bar"><div class="subj-bar-fill" style="width:31%"></div></div>
+      <div class="subj-actions">
+        <button class="subj-btn subj-btn-primary" onclick="showToast('[ OPENING ENGLISH MCQ ]')">PRACTICE MCQ</button>
+        <button class="subj-btn subj-btn-ghost" onclick="showToast('[ OPENING SUBJECT GK ]')">SUBJECT GK</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="exam-promo" onclick="location.href='/Ricochet/exams'">
+    <div class="ep-left">
+      <div class="ep-tag">READY FOR THE REAL THING?</div>
+      <div class="ep-title">ENTER FULL SIMULATION →</div>
+    </div>
+    <div class="ep-arrow">▶</div>
+  </div>
+</main>
+<div class="toast" id="toast"></div>
+<script>
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+window.addEventListener('load',()=>{
+  document.querySelectorAll('.subj-bar-fill').forEach(el=>{
+    const w=el.style.width;el.style.width='0%';
+    setTimeout(()=>{el.style.width=w;},400);
+  });
+});
+</script>
+</body>
+</html>
