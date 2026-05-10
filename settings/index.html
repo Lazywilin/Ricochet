@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RICOCHET — SETTINGS</title>
+<script src="../theme.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050508;--bg2:#0a0a10;--bg3:#0f0f18;--border:#1a1a2e;--border2:#252540;--acid:#b4ff39;--acid2:#7fff00;--red:#ff3b3b;--blue:#3b9eff;--text:#e8e8f0;--muted:#5a5a7a;--mono:'Space Mono',monospace;--display:'Bebas Neue',sans-serif;--body:'DM Sans',sans-serif;}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:9999;}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;background:rgba(5,5,8,0.92);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
+.nav-logo{font-family:var(--display);font-size:22px;letter-spacing:3px;color:var(--acid);}
+.nav-logo span{color:var(--muted)}
+.nav-links{display:flex;align-items:center}
+.nav-links a{font-family:var(--mono);font-size:10px;color:var(--muted);text-decoration:none;padding:6px 14px;letter-spacing:2px;text-transform:uppercase;border-right:1px solid var(--border);transition:color .15s,background .15s;}
+.nav-links a:first-child{border-left:1px solid var(--border)}
+.nav-links a:hover,.nav-links a.active{color:var(--acid);background:rgba(180,255,57,0.05)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-user{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;display:flex;align-items:center;gap:8px;}
+.nav-user::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 8px var(--acid);}
+aside{position:fixed;left:0;top:56px;bottom:0;width:220px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:24px 0;z-index:90;overflow-y:auto;}
+.side-section{padding:0 16px;margin-bottom:24px;}
+.side-label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;padding-left:8px;}
+.side-link{display:flex;align-items:center;gap:10px;padding:8px 12px;font-family:var(--body);font-size:13px;color:var(--muted);text-decoration:none;border-left:2px solid transparent;transition:all .15s;cursor:pointer;}
+.side-link:hover{color:var(--text);background:rgba(255,255,255,0.03)}
+.side-link.active{color:var(--acid);border-left-color:var(--acid);background:rgba(180,255,57,0.05)}
+.side-icon{font-size:13px;width:16px;text-align:center;opacity:.7}
+.side-divider{height:1px;background:var(--border);margin:8px 16px 16px}
+.side-cta{margin:0 16px 24px;padding:10px;background:var(--acid);color:#050508;font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;font-weight:700;transition:all .15s;text-align:center;}
+.side-cta:hover{background:var(--acid2)}
+main{margin-left:220px;margin-top:56px;padding:32px;min-height:calc(100vh - 56px);max-width:800px;}
+.page-tag{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.page-tag::before{content:'//';color:var(--acid)}
+.page-title{font-family:var(--display);font-size:48px;letter-spacing:2px;line-height:1;margin-bottom:8px}
+.page-sub{font-size:13px;color:var(--muted);margin-bottom:32px;line-height:1.6}
+.eyebrow{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+.eyebrow::before{content:'// ';color:var(--acid)}
+
+/* SETTINGS BLOCKS */
+.settings-block{background:var(--bg2);border:1px solid var(--border);margin-bottom:2px;}
+.sb-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.sb-title{font-family:var(--display);font-size:20px;letter-spacing:1px}
+.sb-desc{font-size:12px;color:var(--muted);margin-top:2px}
+.sb-body{padding:24px}
+
+/* THEME PICKER */
+.theme-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:0}
+.theme-option{
+  border:1px solid var(--border);padding:16px;cursor:pointer;
+  transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.theme-option:hover{border-color:var(--border2)}
+.theme-option.active{border-color:var(--acid);background:rgba(180,255,57,0.04)}
+.theme-swatch{width:36px;height:36px;border-radius:50%}
+.theme-name{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.theme-option.active .theme-name{color:var(--acid)}
+
+/* TOGGLE SWITCH */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);}
+.toggle-row:last-child{border-bottom:none;padding-bottom:0}
+.toggle-left{}
+.toggle-label{font-size:14px;color:var(--text);margin-bottom:2px}
+.toggle-desc{font-size:12px;color:var(--muted)}
+.toggle{position:relative;width:44px;height:24px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{
+  position:absolute;inset:0;background:var(--border2);
+  cursor:pointer;transition:.3s;
+}
+.toggle-slider::before{
+  content:'';position:absolute;height:18px;width:18px;
+  left:3px;bottom:3px;background:var(--muted);transition:.3s;
+}
+.toggle input:checked + .toggle-slider{background:rgba(180,255,57,0.2);border:1px solid var(--acid)}
+.toggle input:checked + .toggle-slider::before{transform:translateX(20px);background:var(--acid)}
+
+/* PROFILE */
+.profile-field{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+.profile-field:last-child{margin-bottom:0}
+.field-label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.field-input{
+  background:var(--bg3);border:1px solid var(--border2);
+  color:var(--text);font-family:var(--mono);font-size:12px;
+  padding:10px 14px;transition:border-color .15s;letter-spacing:1px;
+  outline:none;
+}
+.field-input:focus{border-color:var(--acid)}
+
+/* SAVE BTN */
+.save-btn{
+  padding:12px 28px;background:var(--acid);color:#050508;
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;border:none;cursor:pointer;
+  font-weight:700;transition:all .15s;
+}
+.save-btn:hover{background:var(--acid2)}
+
+/* DANGER ZONE */
+.danger-btn{
+  padding:10px 20px;background:transparent;color:var(--red);
+  font-family:var(--mono);font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;border:1px solid rgba(255,59,59,0.3);cursor:pointer;
+  transition:all .15s;
+}
+.danger-btn:hover{background:rgba(255,59,59,0.1);border-color:var(--red)}
+
+@media(max-width:1100px){aside{display:none}main{margin-left:0}}
+@media(max-width:700px){.nav-links{display:none}.theme-grid{grid-template-columns:repeat(2,1fr)}main{padding:16px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">RICO<span>CHET</span></div>
+  <div class="nav-links">
+    <a href="/Ricochet/home">HOME</a>
+    <a href="/Ricochet/learn">LEARN</a>
+    <a href="/Ricochet/exams">EXAMS</a>
+    <a href="/Ricochet/history">HISTORY</a>
+    <a href="/Ricochet/about">ABOUT</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-user" id="nav-username">WATERFLAME // DEV</div>
+  </div>
+</nav>
+<aside>
+  <div class="side-section">
+    <div class="side-label">Navigation</div>
+    <a class="side-link" href="/Ricochet/home"><span class="side-icon">⬡</span> Dashboard</a>
+    <a class="side-link" href="/Ricochet/learn"><span class="side-icon">◈</span> Curriculum</a>
+    <a class="side-link" href="/Ricochet/exams"><span class="side-icon">◉</span> Exam Hall</a>
+    <a class="side-link" href="/Ricochet/history"><span class="side-icon">▤</span> Analytics</a>
+  </div>
+  <div class="side-divider"></div>
+  <button class="side-cta" onclick="location.href='/Ricochet/learn'">▶ START DAILY PLAN</button>
+  <div class="side-section">
+    <a class="side-link active" href="/Ricochet/settings"><span class="side-icon">⚙</span> Settings</a>
+    <a class="side-link" href="/Ricochet/about"><span class="side-icon">◌</span> About</a>
+  </div>
+</aside>
+<main>
+  <div class="page-tag">SYSTEM // CONFIGURATION</div>
+  <h1 class="page-title">SETTINGS</h1>
+  <p class="page-sub">Customize your Ricochet experience. All settings are saved locally in your browser.</p>
+
+  <!-- APPEARANCE -->
+  <div class="eyebrow">APPEARANCE</div>
+  <div class="settings-block">
+    <div class="sb-header">
+      <div>
+        <div class="sb-title">THEME COLOR</div>
+        <div class="sb-desc">Choose your accent color. Saved across all pages.</div>
+      </div>
+    </div>
+    <div class="sb-body">
+      <div class="theme-grid">
+        <div class="theme-option" data-acid="#b4ff39" data-acid2="#7fff00" onclick="pickTheme(this)">
+          <div class="theme-swatch" style="background:#b4ff39"></div>
+          <div class="theme-name">ACID</div>
+        </div>
+        <div class="theme-option" data-acid="#3b9eff" data-acid2="#1a7fe0" onclick="pickTheme(this)">
+          <div class="theme-swatch" style="background:#3b9eff"></div>
+          <div class="theme-name">BLUE</div>
+        </div>
+        <div class="theme-option" data-acid="#ff3b9a" data-acid2="#e0006e" onclick="pickTheme(this)">
+          <div class="theme-swatch" style="background:#ff3b9a"></div>
+          <div class="theme-name">PINK</div>
+        </div>
+        <div class="theme-option" data-acid="#ff8c00" data-acid2="#e07000" onclick="pickTheme(this)">
+          <div class="theme-swatch" style="background:#ff8c00"></div>
+          <div class="theme-name">ORANGE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISPLAY OPTIONS -->
+  <div class="settings-block" style="margin-top:2px">
+    <div class="sb-header">
+      <div>
+        <div class="sb-title">DISPLAY OPTIONS</div>
+        <div class="sb-desc">Visual preferences for the interface.</div>
+      </div>
+    </div>
+    <div class="sb-body">
+      <div class="toggle-row">
+        <div class="toggle-left">
+          <div class="toggle-label">Scanline Effect</div>
+          <div class="toggle-desc">Subtle CRT scanlines overlay on all pages</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-scanlines" checked onchange="saveSetting('scanlines', this.checked)"/>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-left">
+          <div class="toggle-label">Countdown on Dashboard</div>
+          <div class="toggle-desc">Show live HSC countdown on the home page</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-countdown" checked onchange="saveSetting('countdown', this.checked)"/>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-left">
+          <div class="toggle-label">Animated Progress Bars</div>
+          <div class="toggle-desc">Animate subject progress bars on page load</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-animations" checked onchange="saveSetting('animations', this.checked)"/>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="settings-block" style="margin-top:2px">
+    <div class="sb-header">
+      <div>
+        <div class="sb-title">PROFILE</div>
+        <div class="sb-desc">Your display name and student info.</div>
+      </div>
+    </div>
+    <div class="sb-body">
+      <div class="profile-field">
+        <div class="field-label">Display Name</div>
+        <input class="field-input" type="text" id="field-name" placeholder="WATERFLAME" maxlength="20"/>
+      </div>
+      <div class="profile-field">
+        <div class="field-label">Student ID / Roll</div>
+        <input class="field-input" type="text" id="field-roll" placeholder="e.g. 123456" maxlength="20"/>
+      </div>
+      <div class="profile-field">
+        <div class="field-label">Target Grade</div>
+        <select class="field-input" id="field-grade">
+          <option value="A+">A+ (GPA 5.00)</option>
+          <option value="A">A (GPA 4.00)</option>
+          <option value="A-">A- (GPA 3.50)</option>
+          <option value="B">B (GPA 3.00)</option>
+        </select>
+      </div>
+      <button class="save-btn" onclick="saveProfile()">SAVE PROFILE</button>
+    </div>
+  </div>
+
+  <!-- EXAM DEFAULTS -->
+  <div class="settings-block" style="margin-top:2px">
+    <div class="sb-header">
+      <div>
+        <div class="sb-title">EXAM DEFAULTS</div>
+        <div class="sb-desc">Default settings for new exam sessions.</div>
+      </div>
+    </div>
+    <div class="sb-body">
+      <div class="toggle-row">
+        <div class="toggle-left">
+          <div class="toggle-label">Auto-advance on Timeout</div>
+          <div class="toggle-desc">Move to next question when per-question timer hits zero</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-autoadvance" checked onchange="saveSetting('autoadvance', this.checked)"/>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-left">
+          <div class="toggle-label">Show Correct Answer After Submit</div>
+          <div class="toggle-desc">Highlight correct answers on the results screen</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-showanswer" checked onchange="saveSetting('showanswer', this.checked)"/>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- DANGER ZONE -->
+  <div class="settings-block" style="margin-top:2px;border-color:rgba(255,59,59,0.2)">
+    <div class="sb-header">
+      <div>
+        <div class="sb-title" style="color:var(--red)">DANGER ZONE</div>
+        <div class="sb-desc">Irreversible actions. Be careful.</div>
+      </div>
+    </div>
+    <div class="sb-body" style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="danger-btn" onclick="resetSettings()">RESET ALL SETTINGS</button>
+      <button class="danger-btn" onclick="clearHistory()">CLEAR EXAM HISTORY</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ── LOAD SETTINGS ON PAGE READY ─────────────────────────────
+document.addEventListener('DOMContentLoaded', ()=>{
+  const s = ricochetGetSettings ? ricochetGetSettings() : {};
+
+  // Mark active theme
+  document.querySelectorAll('.theme-option').forEach(opt=>{
+    if(opt.dataset.acid === s.acid) opt.classList.add('active');
+  });
+
+  // Toggles
+  ['scanlines','countdown','animations','autoadvance','showanswer'].forEach(key=>{
+    const el = document.getElementById('toggle-'+key);
+    if(el && s[key] !== undefined) el.checked = s[key];
+  });
+
+  // Profile
+  if(s.name)  document.getElementById('field-name').value  = s.name;
+  if(s.roll)  document.getElementById('field-roll').value  = s.roll;
+  if(s.grade) document.getElementById('field-grade').value = s.grade;
+
+  // Update nav username
+  if(s.name) document.getElementById('nav-username').textContent = s.name.toUpperCase() + ' // DEV';
+});
+
+function ricochetGetSettings(){
+  try{ return Object.assign({acid:'#b4ff39',acid2:'#7fff00',scanlines:true,countdown:true,animations:true,autoadvance:true,showanswer:true}, JSON.parse(localStorage.getItem('ricochet_settings')||'{}')); }
+  catch(e){ return {}; }
+}
+function ricochetSave(s){
+  try{ localStorage.setItem('ricochet_settings', JSON.stringify(s)); } catch(e){}
+}
+
+function pickTheme(el){
+  document.querySelectorAll('.theme-option').forEach(o=>o.classList.remove('active'));
+  el.classList.add('active');
+  const acid = el.dataset.acid, acid2 = el.dataset.acid2;
+  setTheme(acid, acid2);
+}
+
+function saveSetting(key, val){
+  const s = ricochetGetSettings();
+  s[key] = val;
+  ricochetSave(s);
+
+  // Apply immediately
+  if(key === 'scanlines'){
+    let style = document.getElementById('_scanlines_style');
+    if(!val){
+      if(!style){ style=document.createElement('style'); style.id='_scanlines_style'; document.head.appendChild(style); }
+      style.textContent='body::before{display:none!important}';
+    } else {
+      if(style) style.textContent='';
+    }
+  }
+  showToast('[ SETTING SAVED ]');
+}
+
+function saveProfile(){
+  const s = ricochetGetSettings();
+  s.name  = document.getElementById('field-name').value.trim() || 'WATERFLAME';
+  s.roll  = document.getElementById('field-roll').value.trim();
+  s.grade = document.getElementById('field-grade').value;
+  ricochetSave(s);
+  document.getElementById('nav-username').textContent = s.name.toUpperCase() + ' // DEV';
+  showToast('[ PROFILE SAVED ]');
+}
+
+function resetSettings(){
+  if(!confirm('Reset all settings to default? This cannot be undone.')) return;
+  localStorage.removeItem('ricochet_settings');
+  showToast('[ SETTINGS RESET ]');
+  setTimeout(()=>location.reload(), 800);
+}
+
+function clearHistory(){
+  if(!confirm('Clear all exam history? This cannot be undone.')) return;
+  localStorage.removeItem('ricochet_history');
+  showToast('[ HISTORY CLEARED ]');
+}
+</script>
+</body>
+</html>
